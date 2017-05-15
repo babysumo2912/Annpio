@@ -1,4 +1,4 @@
-<?php include 'header_admin.php'?>
+<?php include 'header_admin.php';?>
 <section class = "border padding20 hdadmin">
     <div class = "text-center title-phieu">
         <span>Phiếu Nhập Kho</span>

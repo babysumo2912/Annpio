@@ -1,3 +1,31 @@
+<!-- <?php
+// class admin extends CI_Controller{
+    // public function index(){
+        // $login = $this->session->userdata('login');
+        // if(isset($login) && $login == 'admin'){
+            // $data['admin'] = $this->User_models->information($login);
+            // $count_hoadon = $this->Admin_models->hoadon_count();
+            // $count_mess = $this->Messenger_models->count();
+            // $data['count_mess'] = $count_mess;
+            // $data['count_hoadon'] = $count_hoadon;
+            // $query = $this->db->get('tb_user');
+            // $data['user'] = $query->result();
+            // $this->load->view('admin',$data);
+    //     }else{
+    //         redirect('home');
+    //     }
+    // }
+    // public function delete($id){
+    //     $login = $this->session->userdata('login');
+    //     if(!isset($login) || $login != "admin"){
+    //         redirect('home');
+    //         die();
+    //     }
+    //     $this->Admin_models->delete_user($id);
+    //     redirect('admin');
+    // }
+// }
+?> -->
  <?php
 class admin extends CI_Controller{
     public function index(){

@@ -50,14 +50,14 @@ class home extends CI_Controller{
             $data['mess']=$mess;
             $this->load->view('login',$data);
         }else{
-            foreach($check['user'] as $item){
+            foreach($check['user'] as   $item){
                 $name = $item->name;
                 $phone = $item->phone;
                 $address = $item->address;
             }
             $data['phone'] = $phone;
             $data['address'] = $address;
-            $this->load->view('admin/admin',$data);
+            $this->load->view('admin',$data);
             $session_login = array(
                 'login' => $email ,
                 'name' => $name
