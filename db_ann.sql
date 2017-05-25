@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2017 at 07:56 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Dec 28, 2016 at 02:09 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,40 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_admin`
---
-
-CREATE TABLE `tb_admin` (
-  `id` int(11) NOT NULL,
-  `account` varchar(30) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_admin`
---
-
-INSERT INTO `tb_admin` (`id`, `account`, `name`, `password`) VALUES
-(1, 'admin', 'Admin', '21232f297a57a5a743894a0e4a801fc3');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_chitietnhap`
---
-
-CREATE TABLE `tb_chitietnhap` (
-  `id_chitietnhap` int(11) NOT NULL,
-  `id_nhapkho` int(10) NOT NULL,
-  `product` varchar(50) NOT NULL,
-  `number` int(10) NOT NULL,
-  `price` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_chitiet_hoadon`
 --
 
@@ -69,6 +35,27 @@ CREATE TABLE `tb_chitiet_hoadon` (
   `price` bigint(20) NOT NULL,
   `subtotal` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_chitiet_hoadon`
+--
+
+INSERT INTO `tb_chitiet_hoadon` (`id`, `mahoadon`, `img`, `name`, `qty`, `price`, `subtotal`) VALUES
+(7, 19, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(8, 20, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(9, 21, '1213.jpg', 'sanpham104', 1, 600, 600),
+(10, 22, '1213.jpg', 'sanpham104', 1, 600, 600),
+(11, 23, '1213.jpg', 'sanpham104', 1, 600, 600),
+(12, 24, '1213.jpg', 'sanpham104', 1, 600, 600),
+(13, 25, '1213.jpg', 'sanpham104', 1, 600, 600),
+(14, 26, '1213.jpg', 'sanpham104', 1, 600, 600),
+(15, 27, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(16, 28, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(17, 29, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(18, 30, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(19, 31, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(28, 36, 'phpstorm.png', 'san pham 90', 1, 2000000, 2000000),
+(29, 36, '12121.png', 'sanpham102', 1, 500, 500);
 
 -- --------------------------------------------------------
 
@@ -89,6 +76,25 @@ CREATE TABLE `tb_hoadon` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_hoadon`
+--
+
+INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `money`, `ship`, `ghichu`, `date`, `active`) VALUES
+(19, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 2000000, 40000, '', '2016-12-16 10:00:51', 1),
+(20, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 2000000, 40000, '', '2016-12-13 05:11:53', 0),
+(21, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:12:55', 0),
+(22, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:16:50', 0),
+(23, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:18:34', 0),
+(24, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:20:17', 0),
+(25, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:21:39', 0),
+(26, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 600, 40000, '', '2016-12-13 05:22:09', 0),
+(27, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 2000000, 40000, '', '2016-12-13 05:24:38', 0),
+(28, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 2000000, 40000, '', '2016-12-16 09:50:10', 1),
+(29, 'ngocduc@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'hanoi', 2000000, 40000, '', '2016-12-13 05:25:40', 0),
+(30, 'dasda@gmail', 'ádas', '01234567891', 'ádasda', 'hanoi', 2000000, 40000, '', '2016-12-13 05:27:01', 0),
+(31, 'dasda@gmail', 'ádas', '01234567891', 'ádasda', 'hanoi', 2000000, 40000, '', '2016-12-23 07:56:45', 1);
 
 -- --------------------------------------------------------
 
@@ -115,19 +121,6 @@ INSERT INTO `tb_message` (`id`, `name`, `email`, `content`, `date`, `active`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_nhapkho`
---
-
-CREATE TABLE `tb_nhapkho` (
-  `id_nhapkho` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `number` int(10) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_product`
 --
 
@@ -140,6 +133,21 @@ CREATE TABLE `tb_product` (
   `number` int(11) NOT NULL,
   `catalog` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_product`
+--
+
+INSERT INTO `tb_product` (`id`, `date`, `img`, `name`, `price`, `number`, `catalog`) VALUES
+(6, '2016-12-28 19:57:35', 'chimcc.png', 'sanpham6', 20000, 100, 1),
+(7, '2016-12-28 18:51:26', 'chimcc1.png', 'sanpham 7', 21, 28994, 1),
+(8, '2016-12-28 19:57:26', 'despicable-me-2-Minion-icon-5.png', 'sanpham 8', 3000000, 100, 1),
+(9, '2016-12-28 19:57:42', 'gimp.png', '1', 11, 100, 1),
+(10, '2016-12-28 18:56:40', 'phpstorm.png', 'san pham 90', 2000000, 4, 1),
+(11, '2016-12-28 18:51:26', 'netscape_37.png', 'sanpham 102', 2999997, 25, 1),
+(12, '2016-12-28 18:56:40', '12121.png', 'sanpham102', 500, 17, 3),
+(14, '2016-11-27 11:19:22', 'sandal1.jpg', 'sanpham9', 100000, 10, 1),
+(15, '2016-11-27 11:20:36', 'botcaogot.jpg', 'sanpham10', 2000000, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -186,24 +194,13 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `email`, `password`, `phone`, `address`) VALUES
+(1, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '', ''),
 (2, 'ngocduc', 'ngocduc@gmail.com', '4156fd5c1cb353803988421bf5c73913', '', ''),
 (3, 'NgocDuc', 'babysumo@gmail.com', '4156fd5c1cb353803988421bf5c73913', '', '');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `tb_admin`
---
-ALTER TABLE `tb_admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tb_chitietnhap`
---
-ALTER TABLE `tb_chitietnhap`
-  ADD PRIMARY KEY (`id_chitietnhap`);
 
 --
 -- Indexes for table `tb_chitiet_hoadon`
@@ -222,12 +219,6 @@ ALTER TABLE `tb_hoadon`
 --
 ALTER TABLE `tb_message`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tb_nhapkho`
---
-ALTER TABLE `tb_nhapkho`
-  ADD PRIMARY KEY (`id_nhapkho`);
 
 --
 -- Indexes for table `tb_product`
@@ -252,40 +243,25 @@ ALTER TABLE `tb_user`
 --
 
 --
--- AUTO_INCREMENT for table `tb_admin`
---
-ALTER TABLE `tb_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tb_chitietnhap`
---
-ALTER TABLE `tb_chitietnhap`
-  MODIFY `id_chitietnhap` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
 ALTER TABLE `tb_chitiet_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `tb_hoadon`
 --
 ALTER TABLE `tb_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `tb_message`
 --
 ALTER TABLE `tb_message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `tb_nhapkho`
---
-ALTER TABLE `tb_nhapkho`
-  MODIFY `id_nhapkho` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --

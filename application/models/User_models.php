@@ -41,6 +41,7 @@ class User_models extends CI_Model
             return $query->result();
         }
     }
+    //full code them hoa don to
     public function insert_order($data){
         $query = $this->db->insert('tb_hoadon',$data);
         if($query){
@@ -51,6 +52,8 @@ class User_models extends CI_Model
             }
         }else return false;
     }
+    //end
+    //hoa don chiu tiet
     public function set_order($data){
         $query = $this->db->insert('tb_chitiet_hoadon',$data);
         if($query){

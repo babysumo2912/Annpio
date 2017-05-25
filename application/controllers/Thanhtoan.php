@@ -15,6 +15,7 @@ class Thanhtoan extends CI_Controller {
         $data['cart'] = $cart;
         $this->load->view('thanhtoan',$data);
     }
+    //full code them hoa don
     public function save_order(){
         if($this->input->post('ghichu')){
             $ghichu = $this->input->post('ghichu');

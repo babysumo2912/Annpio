@@ -231,7 +231,7 @@ $money = $this->session->userdata('money');
                 </a>
             </th>
         </tr>
-        <?php
+        <?php 
         echo form_open('cart/capnhap');
         $i = 1;
             foreach($cart as $row){
