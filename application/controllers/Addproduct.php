@@ -1,14 +1,14 @@
 <?php
 class addproduct extends CI_Controller {
     public function index(){
-        $login = $this->session->userdata('login');
-        if(isset($login) && $login == 'admin'){
+        $login = $this->session->userdata('admin');
+        if(isset($login)){
             $data['admin'] = $this->User_models->information($login);
             $count_hoadon = $this->Admin_models->hoadon_count();
             $count_mess = $this->Messenger_models->count();
             $data['count_hoadon'] = $count_hoadon;
             $data['count_mess'] = $count_mess;
-            $this->load->view('addproduct',$data);
+            $this->load->view('admin/addproduct',$data);
         }else
         {
             redirect('home');
@@ -40,12 +40,12 @@ class addproduct extends CI_Controller {
         }else{
             $data['error'] = $this->upload->display_errors();
 
-            $this->load->view('addproduct', $data);
+            $this->load->view('admin/addproduct', $data);
         }
         if(isset($data['addnew']) && $data['addnew'] == false){
             $error = 'Product name already exists !';
             $data['error'] = $error;
-            $this->load->view('addproduct',$data);
+            $this->load->view('admin/addproduct',$data);
         }
         if(isset($data['addnew']) && $data['addnew'] == true){
             $data['product'] = $this->Admin_models->product();

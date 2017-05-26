@@ -245,7 +245,7 @@ if(!isset($couunt_mess)){
     ?>
     <div class="col-md-12">
         <table class="table table-hover tb_product">
-                <h3><b>Table Product</b></h3>
+                <h3><b>Danh sách sản phẩm</b></h3>
             <tr>
                 <th>ID</th>
                 <th>Date</th>

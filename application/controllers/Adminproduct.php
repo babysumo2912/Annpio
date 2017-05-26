@@ -1,8 +1,8 @@
 <?php
 class Adminproduct extends CI_Controller{
     public function index(){
-        $login = $this->session->userdata('login');
-        if(isset($login) && $login == 'admin'){
+        $login = $this->session->userdata('admin');
+        if(isset($login)){
             $count_hoadon = $this->Admin_models->hoadon_count();
             $data['count_hoadon'] = $count_hoadon;
             $count_mess = $this->Messenger_models->count();
@@ -14,7 +14,7 @@ class Adminproduct extends CI_Controller{
             $this->db->order_by('number','ASC');
             $query = $this->db->get('tb_product');
             $data['product'] = $query->result();
-            $this->load->view('adminproduct',$data);
+            $this->load->view('admin/product',$data);
         }else{
             redirect('home');
         }
@@ -24,9 +24,13 @@ class Adminproduct extends CI_Controller{
         if(!isset($login) && $login!= "admnin"){
             redirect('home');
         }
+        $count_hoadon = $this->Admin_models->hoadon_count();
+        $count_mess = $this->Messenger_models->count();
+        $data['count_mess'] = $count_mess;
+        $data['count_hoadon'] = $count_hoadon;
         $data['product'] = $this->Admin_models->get();
         $data['data_edit'] = $this->Admin_models->get_single($id);
-        $this->load->view('adminproduct',$data);
+        $this->load->view('admin/product',$data);
     }
     public function edit(){
         $id = $this->input->post('id');
@@ -69,7 +73,7 @@ class Adminproduct extends CI_Controller{
                 redirect('adminproduct');
             }else{
                 $data['err'] = "Updata Fail!";
-                $this->load->view('adminproduct',$data);
+                $this->load->view('admin/product',$data);
             }
 //        }
     }
@@ -85,11 +89,11 @@ class Adminproduct extends CI_Controller{
         $this->db->limit($n,$start);
         $query = $this->db->get('tb_product');
         $data['product'] = $query->result();
-        $this->load->view('adminproduct',$data);
+        $this->load->view('admin/product',$data);
     }
     public function delete($id){
         $this->Admin_models->delete_product($id);
-        redirect('adminproduct');
+        redirect('Adminproduct');
     }
 }
 ?>

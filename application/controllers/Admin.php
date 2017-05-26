@@ -75,11 +75,11 @@ class admin extends CI_Controller{
     public function delete($id){
         $login = $this->session->userdata('admin');
         if(!isset($login)){
-            redirect('home');
+            redirect('admin');
             die();
         }
         $this->Admin_models->delete_user($id);
-        redirect('admin');
+        redirect('quanlikhachhang');
     }
     public function logout(){
         $this->session->sess_destroy();
@@ -92,6 +92,10 @@ class admin extends CI_Controller{
             die();
         }
         $data['admin'] = $this->Admin_models->information($login);
+        $count_hoadon = $this->Admin_models->hoadon_count();
+        $count_mess = $this->Messenger_models->count();
+        $data['count_mess'] = $count_mess;
+        $data['count_hoadon'] = $count_hoadon;
         $this->load->view('admin/nhapkho',$data);
     }
 }

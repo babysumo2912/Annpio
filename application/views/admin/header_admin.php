@@ -1,3 +1,12 @@
+<?php
+if(!isset($count_hoadon)){
+    $count_hoadon = 0;
+}
+if(!isset($count_mess)){
+    $count_mess = 0;
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +35,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-      <a href="#" class = "navbar-brand">
+      <a href="<?php echo base_url()?>admin" class = "navbar-brand">
       <i class = "fa fa-home fa-lg" title = "Home Page"></i>
 <!--        --><?php
 //          if (isset($admin)) {
@@ -43,7 +52,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-male"></i> Tài khoản<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Khách Hàng</a></li>
+            <li><a href="<?php echo base_url()?>quanlikhachhang">Khách Hàng</a></li>
             <li><a href="#">Nhân viên</a></li>
             <li><a href="#">Đối tác vận chuyển</a></li>
 <!--            <li role="separator" class="divider"></li>-->
@@ -64,14 +73,27 @@
             <!--            <li><a href="#">One more separated link</a></li>-->
           </ul>
         </li>
-        <li><a href="#"><i class = "fa fa-money"></i> Doanh thu</a></li>
+        <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-money"></i> Doanh thu <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="<?php echo base_url()?>hoadon">Hóa đơn <span class="badge"><?php echo $count_hoadon?></span></a></li>
+                <li><a href="#">Thống kê</a></li>
+            </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-cube"></i> Sản phẩm <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Danh mục sản phẩm</a></li>
-            <li><a href="#">Chi tiết sản phẩm</a></li>
+            <li><a href="<?php echo base_url()?>Adminproduct">Chi tiết sản phẩm</a></li>
           </ul>
         </li>
+          <li class="dropdown">
+              <a href="#"><i class = "fa fa-newspaper-o"></i> Tin tức</span></a>
+<!--              <ul class="dropdown-menu">-->
+<!--                  <li><a href="#">Danh mục sản phẩm</a></li>-->
+<!--                  <li><a href="#">Chi tiết sản phẩm</a></li>-->
+<!--              </ul>-->
+          </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -80,8 +102,8 @@
         <button type="submit" class="btn btn-default">Tìm Kiếm</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class = "fa fa-comments-o"><sup>0</sup></i></a></li>
-          <li><a href="#"><i class = "fa fa-globe"><sup>0</sup></i></a></li>
+        <li><a href="#"><i class = "fa fa-comments-o"><sup><?php echo $count_mess?></sup></i></a></li>
+          <li><a href="<?php echo base_url()?>hoadon"><i class = "fa fa-globe"><sup><?php echo $count_hoadon?></sup></i></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <i class = "fa fa-user-secret"></i>
