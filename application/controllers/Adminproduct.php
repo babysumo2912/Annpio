@@ -20,8 +20,8 @@ class Adminproduct extends CI_Controller{
         }
     }
     public function product($id){
-        $login = $this->session->userdata('login');
-        if(!isset($login) && $login!= "admnin"){
+        $login = $this->session->userdata('admin');
+        if(!isset($login)){
             redirect('home');
         }
         $count_hoadon = $this->Admin_models->hoadon_count();

@@ -68,8 +68,10 @@ class admin extends CI_Controller{
                 'admin' => $id,
                 'time' => time(),
             );
+//            $this->session->set_userdata($admin);
             $this->session->set_userdata($session_admin);
-            redirect('admin');
+                redirect('admin');
+//            }else echo 1;
         }
     }
     public function delete($id){
