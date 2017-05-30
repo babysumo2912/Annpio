@@ -149,7 +149,7 @@ include'header_admin.php'
                         <a href="<?php echo base_url()?>adminproduct/product/<?php echo $item->id?>" class="btn btn-success edit" title="Sửa thông tin sản phẩm">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
-                        <a href="<?php echo base_url()?>adminproduct/delete/<?php echo $item->id?>" class="btn btn-danger delete" title="Xóa thông tin sản phẩm">
+                        <a href="<?php echo base_url()?>adminproduct/delete/<?php echo $item->id?>" class="btn btn-danger delete" title="Xóa thông tin sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?php echo $item->name?>');">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>

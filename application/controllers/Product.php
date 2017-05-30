@@ -65,6 +65,14 @@ class product extends CI_Controller{
         }
         redirect('product');
     }
+    public function view($id_product){
+        $data = array();
+        $product = $this->User_models->view_product($id_product);
+        if($product){
+            $data['product'] = $product;
+        }else $data['err'] = "Không tìm thấy sản phẩm phù hợp!";
+        $this->load->view('view_product',$data);
+    }
 
 }
 ?>

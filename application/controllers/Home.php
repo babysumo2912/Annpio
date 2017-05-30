@@ -74,6 +74,10 @@ class home extends CI_Controller{
             redirect('home');
             die();
         }
+        $soluongmua = $this->input->post('number');
+        if(isset($soluongmua)){
+            $soluong = $soluongmua;
+        }else $soluong = 1;
         $this->db->where('id=',$id);
         $query_product = $this->db->get('tb_product');
         $product = $query_product->result();
@@ -86,12 +90,12 @@ class home extends CI_Controller{
             'id' => $id,
             'name' => $name,
             'price' => $price,
-            'qty' => 1,
+            'qty' => $soluong,
             'img' => $img,
             'max' => $number,
         );
         if($this->cart->insert($cart)){
-            $count ++;
+            $count +=$soluongmua;
             $session_data = array(
                 'count' => $count,
             );

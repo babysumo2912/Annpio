@@ -27,6 +27,7 @@ if(!isset($count_mess)){
 <!--    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
     <script type="text/javascript" src="<?php echo base_url();?>public/style/plugin/tinymce/init-tinymce.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
+
 </head>
 <body class = "bodyadmin">
 <nav class="navbar navbar-default">

@@ -97,5 +97,21 @@ class admin_models extends CI_model{
             }else return false;
         }
     }
+    public function update_nhanvien($id,$data){
+        $this->db->where('id',$id);
+        $query = $this->db->update('tb_admin',$data);
+        if(isset($query)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function delete_nhanvien($id){
+        $this->db->where('id',$id);
+        $query = $this->db->delete('tb_admin');
+        if(isset($query)){
+            return true;
+        }else return false;
+    }
 }
 ?>

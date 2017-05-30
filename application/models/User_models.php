@@ -60,5 +60,12 @@ class User_models extends CI_Model
             return true;
         }else return false;
     }
+    public function view_product($id_product){
+        $this->db->where('id',$id_product);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
 }
 ?>

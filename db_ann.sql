@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2017 at 06:13 AM
+-- Generation Time: May 31, 2017 at 12:26 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -30,15 +30,40 @@ CREATE TABLE `tb_admin` (
   `id` int(11) NOT NULL,
   `account` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `ca` varchar(20) NOT NULL,
+  `chucvu` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_admin`
 --
 
-INSERT INTO `tb_admin` (`id`, `account`, `name`, `password`) VALUES
-(1, 'admin', 'Admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `tb_admin` (`id`, `account`, `name`, `password`, `ca`, `chucvu`) VALUES
+(1, 'admin', 'Admin', '21232f297a57a5a743894a0e4a801fc3', 'Full', 'admin'),
+(8, 'hoaithu', 'Phạm Hoài Thu', 'ac7c1659c88b0b70236d38cac1368db1', 'Ca sáng', 'Nhân viên'),
+(9, 'huyhip123', 'Nguyễn Đắc Huy', '1eb24fcf41495c7ac6ec1f188fadc35a', 'Ca chiều', 'Nhân viên'),
+(13, 'trangg', 'Nguyễn Thị Huyền Trang', '0a00d3890d8a023941b80be7b67d0876', 'Ca tối', 'Nhân viên');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_catalog`
+--
+
+CREATE TABLE `tb_catalog` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_catalog`
+--
+
+INSERT INTO `tb_catalog` (`id`, `name`) VALUES
+(1, 'Sandal'),
+(2, 'Pumbs'),
+(3, 'Sport Shoes');
 
 -- --------------------------------------------------------
 
@@ -128,7 +153,8 @@ CREATE TABLE `tb_message` (
 --
 
 INSERT INTO `tb_message` (`id`, `name`, `email`, `content`, `date`, `active`) VALUES
-(8, 'Ngoc Duc', 'abc@gmail.com', 'ABC', '2016-12-25 07:56:23', 1);
+(8, 'Ngoc Duc', 'abc@gmail.com', 'ABC', '2016-12-25 07:56:23', 1),
+(9, 'Lai Lan Anh', 'lananh@gmail.com', 'Shop có đợt giảm giá không ạ', '2017-05-30 08:35:41', 0);
 
 -- --------------------------------------------------------
 
@@ -212,7 +238,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `email`, `password`, `phone`, `address`) VALUES
-(5, 'Lại Thị Lan Anh', '1221050146@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', '');
+(5, 'Lại Thị Lan Anh', '1221050146@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', ''),
+(6, 'Lai Lan Anh', 'lananh@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', '');
 
 --
 -- Indexes for dumped tables
@@ -222,6 +249,12 @@ INSERT INTO `tb_user` (`id`, `name`, `email`, `password`, `phone`, `address`) VA
 -- Indexes for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_catalog`
+--
+ALTER TABLE `tb_catalog`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -280,7 +313,12 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `tb_catalog`
+--
+ALTER TABLE `tb_catalog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_chitietnhap`
 --
@@ -300,7 +338,7 @@ ALTER TABLE `tb_hoadon`
 -- AUTO_INCREMENT for table `tb_message`
 --
 ALTER TABLE `tb_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tb_nhapkho`
 --
@@ -320,7 +358,7 @@ ALTER TABLE `tb_test`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

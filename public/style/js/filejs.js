@@ -87,4 +87,5 @@ $(document).ready( function(){
     //     $('#content').load('promotion.php');
     // });
     //end_tao menu product
+
 });
