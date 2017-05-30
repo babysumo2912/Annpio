@@ -22,6 +22,11 @@ if(!isset($count_mess)){
     <script src="<?php echo base_url();?>public/style/js/jquery.cycle2.min.js"></script>
     <script src="<?php echo base_url();?>public/style/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>public/style/js/filejs.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>public/style/plugin/tinymce/tinymce.min.js"></script>
+<!--    <script>tinymce.init({ selector:'textarea' });</script>-->
+<!--    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
+    <script type="text/javascript" src="<?php echo base_url();?>public/style/plugin/tinymce/init-tinymce.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body class = "bodyadmin">
 <nav class="navbar navbar-default">
@@ -53,7 +58,7 @@ if(!isset($count_mess)){
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-male"></i> Tài khoản<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url()?>quanlikhachhang">Khách Hàng</a></li>
-            <li><a href="#">Nhân viên</a></li>
+            <li><a href="<?php echo base_url()?>admin_nhanvien">Nhân viên</a></li>
             <li><a href="#">Đối tác vận chuyển</a></li>
 <!--            <li role="separator" class="divider"></li>-->
 <!--            <li><a href="#">Separated link</a></li>-->
@@ -88,19 +93,13 @@ if(!isset($count_mess)){
           </ul>
         </li>
           <li class="dropdown">
-              <a href="#"><i class = "fa fa-newspaper-o"></i> Tin tức</span></a>
-<!--              <ul class="dropdown-menu">-->
-<!--                  <li><a href="#">Danh mục sản phẩm</a></li>-->
-<!--                  <li><a href="#">Chi tiết sản phẩm</a></li>-->
-<!--              </ul>-->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-newspaper-o"></i> Tin tức<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="<?php echo base_url()?>admin_tintuc">Bài viết mới </a></li>
+                  <li><a href="#">Danh sách bài viết</a></li>
+              </ul>
           </li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search...">
-        </div>
-        <button type="submit" class="btn btn-default">Tìm Kiếm</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><i class = "fa fa-comments-o"><sup><?php echo $count_mess?></sup></i></a></li>
           <li><a href="<?php echo base_url()?>hoadon"><i class = "fa fa-globe"><sup><?php echo $count_hoadon?></sup></i></a></li>
@@ -119,3 +118,4 @@ if(!isset($count_mess)){
   </div><!-- /.container-fluid -->
     </div>
 </nav>
+

@@ -78,5 +78,24 @@ class admin_models extends CI_model{
             return $query->num_rows();
         }else return 0;
     }
+    public function nhanvien(){
+        $this->db->where('chucvu!=','admin');
+        $query = $this->db->get("tb_admin");
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    public function themnhanvien($data){
+        $this->db->where('account',$data['account']);
+        $check = $this->db->get('tb_admin');
+        if($check->num_rows()>0){
+            return false;
+        }else{
+            $query = $this->db->insert('tb_admin',$data);
+            if(isset($query)){
+                return true;
+            }else return false;
+        }
+    }
 }
 ?>

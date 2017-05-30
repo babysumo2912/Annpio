@@ -31,10 +31,14 @@ class admin extends CI_Controller{
     public function index(){
         $login = $this->session->userdata('admin');
         $time = $this->session->userdata('time');
+        $err = $this->session->flashdata('err');
         if(isset($login)){
             if(time() - $time >= 3000000000){
                 redirect('admin');
             }else{
+                if(isset($err)){
+                    $data['err'] = $err;
+                }
                 $data['admin'] = $this->Admin_models->information($login);
                 $count_hoadon = $this->Admin_models->hoadon_count();
                 $count_mess = $this->Messenger_models->count();
@@ -63,9 +67,11 @@ class admin extends CI_Controller{
         }else{
             foreach ($login['admin'] as $row) {
                 $id = $row->id;
+                $chucvu = $row->chucvu;
             }
             $session_admin = array(
                 'admin' => $id,
+                'chucvu' =>$chucvu,
                 'time' => time(),
             );
 //            $this->session->set_userdata($admin);

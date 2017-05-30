@@ -730,3 +730,7 @@ body{
 .left{
     float: left;
 }
+.max{
+    max-width: 1100px;
+    margin: 0 auto;
+}
