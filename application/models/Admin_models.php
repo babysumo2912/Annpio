@@ -113,5 +113,51 @@ class admin_models extends CI_model{
             return true;
         }else return false;
     }
+    function add_catalog($data){
+        $this->db->where('madanhmuc',$data['madanhmuc']);
+        $check = $this->db->get('tb_catalog');
+        if($check->num_rows() > 0){
+            return false;
+        }else{
+            $query = $this->db->insert('tb_catalog',$data);
+            if(isset($query)){
+                return true;
+            }
+        }
+    }
+    function get_catalog(){
+        $query = $this->db->get('tb_catalog');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function get_info_catalog($madanhmuc){
+        $this->db->where('madanhmuc',$madanhmuc);
+        $query = $this->db->get('tb_catalog');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function update_catalog($madanhmuc,$data){
+        $this->db->where('madanhmuc',$madanhmuc);
+        $update = $this->db->update('tb_catalog',$data);
+        if($update){
+            return true;
+        }else return false;
+    }
+    function xoa_danhmuc($madanhmuc){
+        $this->db->where('madanhmuc',$madanhmuc);
+        $delete = $this->db->delete('tb_catalog');
+        if($delete){
+            return true;
+        }else return false;
+    }
+    function search_sp($key){
+        $this->db->like('name',$key);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
 }
 ?>

@@ -89,7 +89,7 @@ if(!isset($count_mess)){
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class = "fa fa-cube"></i> Sản phẩm <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Danh mục sản phẩm</a></li>
+            <li><a href="<?php echo base_url()?>danhmuc_admin">Danh mục sản phẩm</a></li>
             <li><a href="<?php echo base_url()?>Adminproduct">Chi tiết sản phẩm</a></li>
           </ul>
         </li>

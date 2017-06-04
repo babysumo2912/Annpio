@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2017 at 06:04 PM
+-- Generation Time: Jun 04, 2017 at 12:00 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -53,6 +53,7 @@ INSERT INTO `tb_admin` (`id`, `account`, `name`, `password`, `ca`, `chucvu`) VAL
 
 CREATE TABLE `tb_catalog` (
   `id` int(11) NOT NULL,
+  `madanhmuc` varchar(5) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -60,10 +61,10 @@ CREATE TABLE `tb_catalog` (
 -- Dumping data for table `tb_catalog`
 --
 
-INSERT INTO `tb_catalog` (`id`, `name`) VALUES
-(1, 'Sandal'),
-(2, 'Pumbs'),
-(3, 'Sport Shoes');
+INSERT INTO `tb_catalog` (`id`, `madanhmuc`, `name`) VALUES
+(4, 'TTB', 'Thời trang nam'),
+(5, 'TTG', 'Thời trang nữ'),
+(6, 'TTCS', 'Thời trang công sở');
 
 -- --------------------------------------------------------
 
@@ -136,6 +137,16 @@ INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `mon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_kho`
+--
+
+CREATE TABLE `tb_kho` (
+  `id_kho` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_message`
 --
 
@@ -177,11 +188,13 @@ CREATE TABLE `tb_nhapkho` (
 
 CREATE TABLE `tb_product` (
   `id` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `masanpham` varchar(10) NOT NULL,
   `img` varchar(70) NOT NULL,
   `name` varchar(50) NOT NULL,
   `price` bigint(11) NOT NULL,
+  `price_nhap` int(11) NOT NULL,
   `number` int(11) NOT NULL,
+  `number_kho` int(11) NOT NULL,
   `catalog` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -189,9 +202,9 @@ CREATE TABLE `tb_product` (
 -- Dumping data for table `tb_product`
 --
 
-INSERT INTO `tb_product` (`id`, `date`, `img`, `name`, `price`, `number`, `catalog`) VALUES
-(1, '2017-05-26 10:51:07', '11.jpg', 'Sản phẩm 1', 20000, 19, 2),
-(2, '2017-05-26 10:57:01', '71.jpg', 'sanr pham 2', 500000, 31, 1);
+INSERT INTO `tb_product` (`id`, `masanpham`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `catalog`) VALUES
+(3, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 1),
+(4, '2', '71.jpg', 'san pham 2', 5000, 2000, 20, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -318,7 +331,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_catalog`
 --
 ALTER TABLE `tb_catalog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_chitietnhap`
 --
@@ -348,7 +361,7 @@ ALTER TABLE `tb_nhapkho`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --

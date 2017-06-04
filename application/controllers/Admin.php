@@ -99,12 +99,50 @@ class admin extends CI_Controller{
             redirect('admin');
             die();
         }
+        $err = $this->session->flashdata('err_search');
+        if(isset($err)){
+            $data['err'] = $err;
+        }
         $data['admin'] = $this->Admin_models->information($login);
         $count_hoadon = $this->Admin_models->hoadon_count();
         $count_mess = $this->Messenger_models->count();
         $data['count_mess'] = $count_mess;
         $data['count_hoadon'] = $count_hoadon;
+        $catalog = $this->Admin_models->get_catalog();
+        if($catalog){
+            $data['catalog'] = $catalog;
+        }
+        $data_search = $this->session->flashdata('data_search');
+        if(isset($data_search)){
+            $data['data_search'] = $data_search;
+        }
+        $check = $this->session->flashdata('check');
+        if(isset($check)){
+            $data['check'] = $check;
+        }
         $this->load->view('admin/nhapkho',$data);
+    }
+    public function searchsp(){
+        $key =  $this->input->post('key');
+        $search = $this->Admin_models->search_sp($key);
+        if($search){
+            $this->session->set_flashdata('data_search',$search);
+            redirect('admin/nhapkho');
+        }else{
+            $err = "Không tìm thấy sản phẩm phù hợp";
+            $this->session->set_flashdata('err_search',$err);
+            redirect('admin/nhapkho');
+        }
+    }
+    public function check_sp($id){
+        $data = $this->Admin_models->get_single($id);
+        if($data){
+            $this->session->set_flashdata('check',$data);
+            redirect('admin/nhapkho');
+        }
+    }
+    public function add_nhapkho(){
+
     }
 }
 ?>
