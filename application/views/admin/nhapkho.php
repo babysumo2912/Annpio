@@ -49,8 +49,41 @@
         ?>
         <fieldset>
             <div class="text-center" style="padding: 15px">
-                <b>Nhập mới sản phẩm</b>
+                <b>Nhập thông tin sản phẩm</b>
             </div>
+            <?php if(isset($check)){
+            foreach($check as $value){}
+            $catalog = $this->Home_models->getinfo('tb_catalog','madanhmuc',$value->madanhmuc);
+            if($catalog){
+                foreach ($catalog as $getdm){};
+            }
+            ?>
+            <div class="form-group">
+                <input type="text" readonly value="Mã sản phẩm: <?php echo $value->madanhmuc.' '.$value->id?>" class="form-control"  style="border: none; background: inherit">
+            </div>
+            <div class="form-group">
+                <img src="<?php echo base_url() ?>public/img/product/<?php echo $value->img ?>" alt="" width="100px" height="100px">
+                <?php echo $value->name?> - <?php echo $value->size?>
+            </div>
+            <div class="form-group">
+                <p>Danh mục:<?php echo $getdm->name?></p>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="tensanpham" placeholder="Gía nhập ...">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="tensanpham" placeholder="Giá bán dự kiến">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="tensanpham" placeholder="Số lượng ...">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                    &nbsp; Thêm
+                </button>
+            </div>
+        <?php }else{?>
             <div class="form-group">
                 <input type="text" class="form-control" name="tensanpham" placeholder="Tên sản phẩm ...">
             </div>
@@ -75,6 +108,17 @@
                 </select>
             </div>
             <div class="form-group">
+                <select name="size" id="" class="form-control">
+                    <option value="0">Chọn Size</option>
+                    <option value="M">M</option>
+                    <option value="S">S</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="FS">Free Size</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <input type="text" class="form-control" name="tensanpham" placeholder="Số lượng ...">
             </div>
             <div class="form-group">
@@ -86,58 +130,13 @@
                     &nbsp; Thêm
                 </button>
             </div>
+            <?php }?>
         </fieldset>
         <?php echo form_close();?>
         </div>
         <div class="col-xs-5" style="border: 1px #ccc solid; float:right">
             <div class="text-center" style="padding: 15px">
-                <b>Bổ sung sản phẩm</b>
-            </div>
-            <div>
-                <?php if(isset($check)){
-                    foreach($check as $value){}
-                ?>
-                <?php
-                $style = array(
-                    'class' => 'form-group',
-                );
-                echo form_open('admin/nhapmoisanpham',$style);
-                ?>
-                <div class="form-group">
-                    <img src="<?php echo base_url() ?>public/img/product/<?php echo $value->img ?>" alt="" width="100px" height="100px">
-                    <?php echo $value->name?>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="tensanpham" placeholder="Gía nhập ...">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="tensanpham" placeholder="Giá bán dự kiến">
-                </div>
-                <div class="form-group">
-                    <select name="danhmuc" id="" class="form-control">
-                        <option value="0">Chọn danh mục</option>
-                        <?php
-                        if(isset($catalog)){
-                            foreach($catalog as $dm){
-                                ?>
-                                <option value="<?php echo $dm->madanhmuc?>"><?php echo $dm->name?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="tensanpham" placeholder="Số lượng ...">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-plus"></i>
-                        &nbsp; Thêm
-                    </button>
-                </div>
-                <?php echo form_close();?>
-                <?php }else{?>
+                <b>Sản phẩm trong kho</b>
             </div>
             <div class="search">
                 <?php
@@ -167,8 +166,8 @@
             <?php
             if(isset($data_search)){
                 ?>
-                <div class="row" style="height:300px;overflow-x: hidden">
-                    <table class="table table-hover">
+                <div style="height:300px;overflow-x: hidden ">
+                    <table class="table table-hover table-bordered">
                         <tr>
                             <td></td>
                             <td>Sản phẩm</td>
@@ -184,7 +183,7 @@
                                 </td>
                                 <td>
                                     <img src="<?php echo base_url()?>public/img/product/<?php echo $item->img?>" alt="" width="50px" height="50px">
-                                    <?php echo $item->name?>
+                                    <?php echo $item->name?> - <?php echo $item->size?>
                                 </td>
                                 <td>
                                     <?php echo number_format($item->number)?>
@@ -201,19 +200,22 @@
                 <?php
             }
             ?>
-            <?php }?>
         </div>
     </div>
-    <br>
-    <div class = "form_nhap row">
-        <table class="table table-bordered table-hover">
-            <tr>
-                <td>STT</td>
-                <td>STT</td>
-                <td>STT</td>
-
-            </tr>
-        </table>
+    <div style="margin-top: 50px">
+        <div class = "form_nhap">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td>STT</td>
+                    <td>Sản Phẩm</td>
+                    <td>Giá nhập</td>
+                    <td>Danh mục</td>
+                    <td>Số lượng</td>
+                    <td>Size</td>
+                    <td>Thanh toán</td>
+                </tr>
+            </table>
+        </div>
     </div>
 <?php
 //    echo form_close();

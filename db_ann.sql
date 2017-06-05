@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2017 at 12:00 PM
+-- Generation Time: Jun 05, 2017 at 02:47 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -195,16 +195,18 @@ CREATE TABLE `tb_product` (
   `price_nhap` int(11) NOT NULL,
   `number` int(11) NOT NULL,
   `number_kho` int(11) NOT NULL,
-  `catalog` int(11) NOT NULL
+  `madanhmuc` varchar(11) NOT NULL,
+  `size` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_product`
 --
 
-INSERT INTO `tb_product` (`id`, `masanpham`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `catalog`) VALUES
-(3, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 1),
-(4, '2', '71.jpg', 'san pham 2', 5000, 2000, 20, 1, 2);
+INSERT INTO `tb_product` (`id`, `masanpham`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
+(3, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 'TTB', 'M'),
+(4, '2', '71.jpg', 'san pham 2', 5000, 2000, 20, 1, 'TTG', 'XL'),
+(5, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 'TTB', 'XL');
 
 -- --------------------------------------------------------
 
@@ -361,7 +363,7 @@ ALTER TABLE `tb_nhapkho`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --

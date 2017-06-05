@@ -141,6 +141,44 @@ class admin extends CI_Controller{
             redirect('admin/nhapkho');
         }
     }
+    public function nhapmoisanpham(){
+        $img = $this->input->post('userfile');
+        $name = $this->input->post('name');
+        $price = $this->input->post('price');
+        $number = $this->input->post('number');
+        $catalog = $this->input->post('catalog');
+        if(!isset($name) && !isset($price) && !isset($number) && !isset($img) && !isset($catalog)){
+            redirect('adminproduct');
+        }
+        $config['upload_path'] = './public/img/product/';
+        $config['allowed_types'] = 'gif|png|jpg|jpeg';
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload()) {
+            $data['upload'] = $this->upload->data();
+            $file_name = $data['upload']['file_name'];
+            $upload = array(
+                'img' => $file_name,
+                'name' => $name,
+                'price' => $price,
+                'number' => $number,
+                'catalog' => $catalog
+            );
+            $data['addnew'] = $this->Admin_models->addproduct($upload);
+        }else{
+            $data['error'] = $this->upload->display_errors();
+
+            $this->load->view('admin/addproduct', $data);
+        }
+        if(isset($data['addnew']) && $data['addnew'] == false){
+            $error = 'Product name already exists !';
+            $data['error'] = $error;
+            $this->load->view('admin/addproduct',$data);
+        }
+        if(isset($data['addnew']) && $data['addnew'] == true){
+            $data['product'] = $this->Admin_models->product();
+            redirect('adminproduct',$data);
+        }
+    }
     public function add_nhapkho(){
 
     }
