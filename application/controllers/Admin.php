@@ -99,9 +99,17 @@ class admin extends CI_Controller{
             redirect('admin');
             die();
         }
-        $err = $this->session->flashdata('err_search');
+        $err_search = $this->session->flashdata('err_search');
         if(isset($err)){
-            $data['err'] = $err;
+            $data['err'] = $err_search;
+        }
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $data['err_add'] = $err;
+        }
+        $err = $this->session->flashdata('err_luu');
+        if(isset($err)){
+            $data['err_luu'] = $err;
         }
         $data['admin'] = $this->Admin_models->information($login);
         $count_hoadon = $this->Admin_models->hoadon_count();
@@ -119,6 +127,10 @@ class admin extends CI_Controller{
         $check = $this->session->flashdata('check');
         if(isset($check)){
             $data['check'] = $check;
+        }
+        $cart = $this->cart->contents();
+        if($cart){
+            $data['cart'] = $cart;
         }
         $this->load->view('admin/nhapkho',$data);
     }
@@ -142,45 +154,127 @@ class admin extends CI_Controller{
         }
     }
     public function nhapmoisanpham(){
-        $img = $this->input->post('userfile');
-        $name = $this->input->post('name');
-        $price = $this->input->post('price');
-        $number = $this->input->post('number');
-        $catalog = $this->input->post('catalog');
-        if(!isset($name) && !isset($price) && !isset($number) && !isset($img) && !isset($catalog)){
-            redirect('adminproduct');
+        $masanpham = $this->input->post('masanpham');
+        $tensanpham = $this->input->post('tensanpham');
+        $gianhap = $this->input->post('gianhap');
+        $giaban = $this->input->post('giaban');
+        $soluong = $this->input->post('soluong');
+        $danhmuc = $this->input->post('danhmuc');
+        $size = $this->input->post('size');
+        if(!isset($tensanpham) && !isset($giaban) && !isset($gianhap) && !isset($soluong) && !isset($danhmuc) && !isset($size)){
+            redirect('admin/nhapkho');
         }
-        $config['upload_path'] = './public/img/product/';
-        $config['allowed_types'] = 'gif|png|jpg|jpeg';
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload()) {
-            $data['upload'] = $this->upload->data();
-            $file_name = $data['upload']['file_name'];
-            $upload = array(
-                'img' => $file_name,
-                'name' => $name,
-                'price' => $price,
-                'number' => $number,
-                'catalog' => $catalog
-            );
-            $data['addnew'] = $this->Admin_models->addproduct($upload);
+        if($size == "0"){
+            $err = "Vui lòng chọn size";
+            $this->session->set_flashdata('err',$err);
+            redirect('admin/nhapkho');
+        }
+        if($danhmuc == "0"){
+            $err = "Vui lòng chọn danh mục";
+            $this->session->set_flashdata('err',$err);
+            redirect('admin/nhapkho');
+        }
+        if(isset($masanpham)){
+//            if(isset($soluong) && isset($gianhap) && isset($giaban)){
+                $array_masp = explode(' ',$masanpham);
+                $data_product = $this->Admin_models->get_single($array_masp['1']);
+                if($data_product){
+                    foreach($data_product as $dtp){};
+                    $id = $dtp->id;
+                    $tensanpham = $dtp->name;
+                    $size = $dtp->size;
+                    $danhmuc = $dtp->madanhuc;
+                    $img = $dtp->img;
+                }else{
+                    echo "Loi tim san pham"; die();
+                }
+//            }else{
+//                echo "Loi linh tinh"; die();
+//            }
         }else{
-            $data['error'] = $this->upload->display_errors();
+            $i = $this->session->userdata('i');
+            $config['upload_path'] = './public/img/product/';
+            $config['allowed_types'] = 'gif|png|jpg|jpeg';
+            $this->load->library('upload',$config);
+            if($this->upload->do_upload()) {
+                $data['upload'] = $this->upload->data();
+                $img = $data['upload']['file_name'];
+                if(isset($i)){
+                    $id=$i;
+                }else{
+                    $id = -1;
+                    $i = -1;
+                }
+            }else{
+                $error = $this->upload->display_errors();
 
-            $this->load->view('admin/addproduct', $data);
+                echo $error;
+                die();
+            }
         }
-        if(isset($data['addnew']) && $data['addnew'] == false){
-            $error = 'Product name already exists !';
-            $data['error'] = $error;
-            $this->load->view('admin/addproduct',$data);
-        }
-        if(isset($data['addnew']) && $data['addnew'] == true){
-            $data['product'] = $this->Admin_models->product();
-            redirect('adminproduct',$data);
-        }
+        $cart = array(
+            'id' => $id,
+            'name' => $tensanpham,
+            'price' => $gianhap,
+            'price_ban' => $giaban,
+            'danhmuc' => $danhmuc,
+            'img' => $img,
+            'size' => $size,
+            'qty'=>$soluong,
+        );
+        if($this->cart->insert($cart)){
+            $i--;
+            $this->session->set_userdata('i',$i);
+            redirect('admin/nhapkho');
+        }else echo "Loi khong nhap duoc";
     }
-    public function add_nhapkho(){
+    public function capnhap_pnk(){
+        $cart_info = $_POST['cart'] ;
+        foreach( $cart_info as $id => $cart)
+        {
+            $rowid = $cart['rowid'];
+            $price = $cart['price'];
+            $amount = $price * $cart['qty'];
+            $qty = $cart['qty'];
 
+            $data = array(
+                'rowid' => $rowid,
+                'price' => $price,
+                'amount' => $amount,
+                'qty' => $qty
+            );
+            $this->cart->update($data);
+        }
+        redirect('admin/nhapkho');
+    }
+    public function luupnk(){
+        $cart = $this->cart->contents();
+        if(count($cart) > 0){
+            $data_product = $this->Admin_models->product();
+            foreach($cart as $row){
+                foreach ($data_product as $item){
+                    if($row['id'] == $$item->id){
+                        echo "Trungf";
+                    }else{
+                        $data_add = array(
+                            'img' => $row['img'],
+                            'name' => $row['name'],
+                            'price' => $row['price_ban'],
+                            'price_nhap' => $row['price'],
+                            'number' => $row['number'],
+                            'number_kho' => $row['number'],
+                            'madanhmuc' => $row['danhmuc'],
+                            'size'=>$row['size'],
+                        );
+                        //thêm CSDL
+                    }
+                }
+            }
+        }else{
+            $err = "Hiện tại bạn chưa có sản phẩm để lưu kho!";
+            $this->session->set_flashdata('err_luu',$err);
+            redirect('admin/nhapkho');
+        }
     }
 }
 ?>

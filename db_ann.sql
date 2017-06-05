@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2017 at 02:47 PM
+-- Generation Time: Jun 05, 2017 at 10:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -62,9 +62,10 @@ CREATE TABLE `tb_catalog` (
 --
 
 INSERT INTO `tb_catalog` (`id`, `madanhmuc`, `name`) VALUES
-(4, 'TTB', 'Thời trang nam'),
-(5, 'TTG', 'Thời trang nữ'),
-(6, 'TTCS', 'Thời trang công sở');
+(7, 'A', 'Áo'),
+(8, 'Q', 'Quần'),
+(9, 'VD', 'Váy Đầm'),
+(10, 'PK', 'Phụ Kiện');
 
 -- --------------------------------------------------------
 
@@ -188,7 +189,6 @@ CREATE TABLE `tb_nhapkho` (
 
 CREATE TABLE `tb_product` (
   `id` int(11) NOT NULL,
-  `masanpham` varchar(10) NOT NULL,
   `img` varchar(70) NOT NULL,
   `name` varchar(50) NOT NULL,
   `price` bigint(11) NOT NULL,
@@ -198,15 +198,6 @@ CREATE TABLE `tb_product` (
   `madanhmuc` varchar(11) NOT NULL,
   `size` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_product`
---
-
-INSERT INTO `tb_product` (`id`, `masanpham`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
-(3, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 'TTB', 'M'),
-(4, '2', '71.jpg', 'san pham 2', 5000, 2000, 20, 1, 'TTG', 'XL'),
-(5, 'abc', '11.jpg', 'san pham 1', 1000, 500, 10, 10, 'TTB', 'XL');
 
 -- --------------------------------------------------------
 
@@ -333,7 +324,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_catalog`
 --
 ALTER TABLE `tb_catalog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_chitietnhap`
 --
