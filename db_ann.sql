@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2017 at 10:30 PM
+-- Generation Time: Jun 07, 2017 at 07:02 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -199,6 +199,14 @@ CREATE TABLE `tb_product` (
   `size` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tb_product`
+--
+
+INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
+(2, 'aokhoac.jpg', 'Áo dạ dáng lửng Asos', 1339000, 550000, 15, 15, 'A', 'S'),
+(3, 'aosomi1.jpg', 'Sơ mi dáng rộng Asos', 390000, 200000, 19, 19, 'A', 'L');
+
 -- --------------------------------------------------------
 
 --
@@ -354,7 +362,7 @@ ALTER TABLE `tb_nhapkho`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --

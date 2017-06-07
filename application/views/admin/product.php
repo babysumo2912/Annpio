@@ -101,48 +101,32 @@ include'header_admin.php'
             <h3><b>Danh sách sản phẩm</b></h3>
             <tr>
                 <th>Mã sản phẩm</th>
-                <th>Ngày đăng</th>
+<!--                <th>Ngày đăng</th>-->
                 <th>Ảnh</th>
                 <th>Tên</th>
-                <th>Giá <sup>VND</sup></th>
-                <th>Số lượng</th>
+                <th>Giá nhập <sup>VND</sup></th>
+                <th>Giá bán <sup>VND</sup></th>
+                <th>Số lượng có thể bán</th>
+                <th>Số lượng trong kho</th>
                 <th>Danh mục</th>
-                <th>
-                    <a href="<?php echo base_url()?>addproduct" class="btn btn-primary form-control">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        &nbsp;
-                        Thêm mới
-                    </a>
-                </th>
             </tr>
             <?php
             foreach($product as $item){
                 ?>
                 <tr>
-                    <td><?php echo $item->id;?></td>
-                    <td><?php echo $item->date?></td>
+                    <td><?php echo $item->madanhmuc.' '.$item->id;?></td>
+<!--                    <td>--><?php //echo $item->date?><!--</td>-->
                     <td>
                         <img src="<?php echo base_url()?>public/img/product/<?php echo $item->img?>" alt="<?php echo $item->name?>">
                     </td>
                     <td><?php echo $item->name;?></td>
+                    <td><?php echo number_format($item->price_nhap);?></td>
                     <td><?php echo number_format($item->price);?></td>
                     <td><?php echo $item->number?></td>
+                    <td><?php echo $item->number_kho?></td>
                     <td>
                         <?php
-                        switch($item->catalog){
-                            case 1:
-                                echo 'Sandal';
-                                break;
-                            case 2:
-                                echo 'Pumbs';
-                                break;
-                            case 3:
-                                echo 'Sport Shoes';
-                                break;
-                            default:
-                                echo '';
-                                break;
-                        }
+                        echo 'áo';
                         ?>
                     </td>
                     <td>

@@ -249,9 +249,22 @@ class admin extends CI_Controller{
     }
     public function luupnk(){
         $cart = $this->cart->contents();
+        $data_product = $this->Admin_models->product();
+
         if(count($cart) > 0){
-            $data_product = $this->Admin_models->product();
             foreach($cart as $row){
+                if($data_product == false){
+                    $data_add = array(
+                        'img' => $row['img'],
+                        'name' => $row['name'],
+                        'price' => $row['price_ban'],
+                        'price_nhap' => $row['price'],
+                        'number' => $row['qty'],
+                        'number_kho' => $row['qty'],
+                        'madanhmuc' => $row['danhmuc'],
+                        'size'=>$row['size'],
+                    );
+                    $this->Admin_models->addproduct($data_add);}
                 foreach ($data_product as $item){
                     if($row['id'] == $$item->id){
                         echo "Trungf";
@@ -261,15 +274,17 @@ class admin extends CI_Controller{
                             'name' => $row['name'],
                             'price' => $row['price_ban'],
                             'price_nhap' => $row['price'],
-                            'number' => $row['number'],
-                            'number_kho' => $row['number'],
+                            'number' => $row['qty'],
+                            'number_kho' => $row['qty'],
                             'madanhmuc' => $row['danhmuc'],
                             'size'=>$row['size'],
                         );
-                        //thêm CSDL
+                        $this->Admin_models->addproduct($data_add);
                     }
-                }
+               }
             }
+            $this->cart->destroy();
+            redirect('admin/nhapkho');
         }else{
             $err = "Hiện tại bạn chưa có sản phẩm để lưu kho!";
             $this->session->set_flashdata('err_luu',$err);

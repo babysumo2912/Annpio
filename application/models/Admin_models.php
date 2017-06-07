@@ -5,13 +5,15 @@ class admin_models extends CI_model{
         $this->db->delete('tb_user');
     }
     public function addproduct($data){
-        $this->db->where('name',$data['name']);
-        $check = $this->db->get('tb_product');
-        if($check->num_rows() > 0){
-            return false;
-        }else{
-            $addproduct = $this->db->insert('tb_product',$data);
-        }
+//        $this->db->where('name',$data['name']);
+//        $check = $this->db->get('tb_product');
+//        if($check->num_rows() > 0){
+//            return false;
+//        }else{
+//            $addproduct = $this->db->insert('tb_product',$data);
+//        }
+//
+        $addproduct = $this->db->insert('tb_product',$data);
         if(isset($addproduct)){
             return true;
 //            $query = $this->db->get('tb_product');

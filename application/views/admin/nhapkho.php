@@ -256,7 +256,6 @@
                 echo form_open('admin/capnhap_pnk');
                     $money = 0;
                 if(isset($cart)){
-                    echo '<pre>';var_dump($cart); echo '<pre>';
                     $i = 1 ;
 
                     foreach($cart as $row){
