@@ -29,60 +29,32 @@ include'header_admin.php'
                 }
                 ?>
                 <div class="form-group">
-                    <b>ID</b>
+                    <b>Mã sản phẩm</b>
                     <input type="number" name="id" class="form-control" value="<?php echo $item->id?>" readonly>
                 </div>
                 <div class="form-group">
-                    <b>Name Product:</b>
+                    <b>Tên sản phẩm:</b>
                     <input type="text" name="name" value="<?php echo $item->name?>" class="form-control" required>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <b>File Img:</b>
                     <input type="file" name="userfile">
-                </div>
+                </div> -->
                 <div class="form-group">
-                    <b>Price Product:</b>
+                    <b>Giá bán sản phẩm:</b>
                     <input type="number" name="price" value="<?php echo $item->price?>" class="form-control" required>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <b>Number Product:</b>
                     <input type="number" name="number" value="<?php echo $item->number?>" class="form-control" required>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <b>Catalog:</b>
-                    <select name="catalog" id="" class="form-control">
-                        <?php
-                        switch ($item->catalog){
-                            case 1:
-                                ?>
-                                <option value="1" selected>Sandal</option>
-                                <option value="2">Pumps</option>
-                                <option value="3">Sport Shoes</option>
-                                <?php
-                                break;
-                            case 2:
-                                ?>
-                                <option value="1">Sandal</option>
-                                <option value="2" selected>Pumps</option>
-                                <option value="3">Sport Shoes</option>
-                                <?php
-                                break;
-                            case 3:
-                                ?>
-                                <option value="1">Sandal</option>
-                                <option value="2">Pumps</option>
-                                <option value="3" selected>Sport Shoes</option>
-                                <?php
-                                break;
-                            default:
-                                ?>
-                                <option value="1">Sandal</option>
-                                <option value="2">Pumps</option>
-                                <option value="3">Sport Shoes</option>
-                                <?php
-                        }
+                     <?php
+                        $danhmuc = $this->Home_models->getinfo('tb_catalog','madanhmuc',$item->madanhmuc);
+                        foreach ($danhmuc as $key) {};
+                        echo $key->name;
                         ?>
-                    </select>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-info" value="Save">
@@ -109,6 +81,7 @@ include'header_admin.php'
                 <th>Số lượng có thể bán</th>
                 <th>Số lượng trong kho</th>
                 <th>Danh mục</th>
+                <th></th>
             </tr>
             <?php
             foreach($product as $item){
@@ -126,7 +99,9 @@ include'header_admin.php'
                     <td><?php echo $item->number_kho?></td>
                     <td>
                         <?php
-                        echo 'áo';
+                        $danhmuc = $this->Home_models->getinfo('tb_catalog','madanhmuc',$item->madanhmuc);
+                        foreach ($danhmuc as $key) {};
+                        echo $key->name;
                         ?>
                     </td>
                     <td>

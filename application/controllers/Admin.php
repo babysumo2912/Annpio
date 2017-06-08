@@ -100,7 +100,7 @@ class admin extends CI_Controller{
             die();
         }
         $err_search = $this->session->flashdata('err_search');
-        if(isset($err)){
+        if(isset($err_search)){
             $data['err'] = $err_search;
         }
         $err = $this->session->flashdata('err');
@@ -137,10 +137,11 @@ class admin extends CI_Controller{
     public function searchsp(){
         $key =  $this->input->post('key');
         $search = $this->Admin_models->search_sp($key);
-        if($search){
+        if($search!=false){
             $this->session->set_flashdata('data_search',$search);
             redirect('admin/nhapkho');
         }else{
+
             $err = "Không tìm thấy sản phẩm phù hợp";
             $this->session->set_flashdata('err_search',$err);
             redirect('admin/nhapkho');
@@ -183,7 +184,7 @@ class admin extends CI_Controller{
                     $id = $dtp->id;
                     $tensanpham = $dtp->name;
                     $size = $dtp->size;
-                    $danhmuc = $dtp->madanhuc;
+                    $danhmuc = $dtp->madanhmuc;
                     $img = $dtp->img;
                 }else{
                     echo "Loi tim san pham"; die();
@@ -249,10 +250,15 @@ class admin extends CI_Controller{
     }
     public function luupnk(){
         $cart = $this->cart->contents();
-        $data_product = $this->Admin_models->product();
+        $data_product = $this->Admin_models->data_product();
+        // var_dump($data_product);die();
 
         if(count($cart) > 0){
+            $number = 0;
+            $money = 0;
             foreach($cart as $row){
+                $number += $row['qty'];
+                $money+= $row['sutotal'];
                 if($data_product == false){
                     $data_add = array(
                         'img' => $row['img'],
@@ -264,24 +270,68 @@ class admin extends CI_Controller{
                         'madanhmuc' => $row['danhmuc'],
                         'size'=>$row['size'],
                     );
-                    $this->Admin_models->addproduct($data_add);}
+                $this->Admin_models->addproduct($data_add);
+                }
+                // var_dump($data_product);die();
+                $check = false;
                 foreach ($data_product as $item){
-                    if($row['id'] == $$item->id){
-                        echo "Trungf";
-                    }else{
-                        $data_add = array(
-                            'img' => $row['img'],
-                            'name' => $row['name'],
-                            'price' => $row['price_ban'],
-                            'price_nhap' => $row['price'],
-                            'number' => $row['qty'],
-                            'number_kho' => $row['qty'],
-                            'madanhmuc' => $row['danhmuc'],
-                            'size'=>$row['size'],
-                        );
-                        $this->Admin_models->addproduct($data_add);
+
+                    if($row['id'] == $item->id){
+                        $product_old = $this->Admin_models->get_single($row['id']);
+                        if($product_old){
+                            foreach ($product_old as $po) {}
+                            $number_old = $po->number;
+                            $number_old_kho = $po->number_kho;
+                            $number_new = $number_old + $row['qty'];
+                            $number_new_kho = $number_old_kho + $row['qty'];
+                            // echo $number_old;die();
+                            $data_edit = array(
+                                'number_kho' => $number_new_kho,
+                                'number' => $number_new,
+                                'price' => $row['price_ban'],
+                                'price_nhap' => $row['price'],
+                                );
+                            $edit = $this->Admin_models->edit($row['id'],$data_edit);
+                            $check = true;
+                        }
                     }
-               }
+                }
+                if($check == false)
+                {
+                    $data_add = array(
+                        'img' => $row['img'],
+                        'name' => $row['name'],
+                        'price' => $row['price_ban'],
+                        'price_nhap' => $row['price'],
+                        'number' => $row['qty'],
+                        'number_kho' => $row['qty'],
+                        'madanhmuc' => $row['danhmuc'],
+                        'size'=>$row['size'],
+                    );
+                    $this->Admin_models->addproduct($data_add);
+                }
+                
+            }
+            $admin = $this->session->userdata('admin');
+            $luukho = array(
+                'name' => $admin,
+                'number' => $number,
+                'money' => $money,
+                );
+            $nhapkho = $this->Admin_models->luukho($luukho);
+            if($nhapkho){
+                foreach($nhapkho as $idnk){};
+                $id_nhapkho = $idnk->id_nhapkho;
+                $chitiet_nhapkho = array(
+                    'tensanpham',
+                    'anhsanpham',
+                    'gianhap',
+                    'giaban',
+                    'soluong',
+                    'danhmuc',
+                    'size',
+                    );
+
             }
             $this->cart->destroy();
             redirect('admin/nhapkho');

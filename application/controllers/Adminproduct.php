@@ -35,10 +35,7 @@ class Adminproduct extends CI_Controller{
     public function edit(){
         $id = $this->input->post('id');
         $name = $this->input->post('name');
-        $img = $this->input->post('userfile');
         $price = $this->input->post('price');
-        $number = $this->input->post('number');
-        $catalog = $this->input->post('catalog');
 //        if(isset($img)){
 //            $config['upload_path'] = './public/img/product';
 //            $config['allowed_types'] = 'png|jpg|jpeg|gif';
@@ -65,8 +62,6 @@ class Adminproduct extends CI_Controller{
             $data= array(
                 'name' => $name,
                 'price' => $price,
-                'number' => $number,
-                'catalog' => $catalog
             );
             $edit = $this->Admin_models->edit($id,$data);
             if($edit == true){

@@ -57,7 +57,13 @@ class admin_models extends CI_model{
         $query = $this->db->get('tb_product');
         if($query->num_rows() > 0){
             return $query->num_rows();
-        }
+        }else return false;
+    }
+    public function data_product(){
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
     }
     public function get_single($id){
         $this->db->where('id', $id);
@@ -160,6 +166,14 @@ class admin_models extends CI_model{
         if($query->num_rows() > 0){
             return $query->result();
         }else return false;
+    }
+    public function luukho($data){
+        $query = $this->db->insert('tb_nhapkho',$data);
+        if($query){
+            $this->db->select_max('id_nhapkho');
+            $id_nhapkho = $this->db->get('tb_nhapkho');
+            return $id_nhapkho->result();
+        }
     }
 }
 ?>

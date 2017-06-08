@@ -161,6 +161,7 @@
                         <tr>
                             <td></td>
                             <td>Sản phẩm</td>
+                            <td>Size</td>
                             <td>Số lượng tồn</td>
                             <td>Giá bán</td>
                         </tr>
@@ -172,9 +173,10 @@
                                     <a href="<?php echo base_url()?>admin/check_sp/<?php echo $item->id?>"><i class="fa fa-check"></i></a>
                                 </td>
                                 <td>
-                                    <img src="<?php echo base_url()?>public/img/product/<?php echo $item->img?>" alt="" width="50px" height="50px">
-                                    <?php echo $item->name?> - <?php echo $item->size?>
+                                    <img src="<?php echo base_url()?>public/img/product/<?php echo $item->img?>" alt="" width="50px" height="50px" style="float: left">
+                                    <?php echo $item->name?>
                                 </td>
+                                <td><?php echo $item->size?></td>
                                 <td>
                                     <?php echo number_format($item->number)?>
                                 </td>

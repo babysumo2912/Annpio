@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2017 at 07:02 PM
+-- Generation Time: Jun 09, 2017 at 12:49 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -177,6 +177,7 @@ INSERT INTO `tb_message` (`id`, `name`, `email`, `content`, `date`, `active`) VA
 CREATE TABLE `tb_nhapkho` (
   `id_nhapkho` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
+  `money` int(11) NOT NULL,
   `number` int(10) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -204,8 +205,9 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
-(2, 'aokhoac.jpg', 'Áo dạ dáng lửng Asos', 1339000, 550000, 15, 15, 'A', 'S'),
-(3, 'aosomi1.jpg', 'Sơ mi dáng rộng Asos', 390000, 200000, 19, 19, 'A', 'L');
+(13, 'aokhoac.jpg', 'Áo dạ dáng lửng Asos', 990000, 300000, 57, 57, 'A', 'M'),
+(19, 'aosomi1.jpg', 'Sơ mi dáng rộng Asos', 900000, 300000, 23, 23, 'A', 'L'),
+(20, 'image1xxl--12-.jpg', 'Quần váy rủ Asos', 700000, 300000, 30, 37, 'Q', 'S');
 
 -- --------------------------------------------------------
 
@@ -362,7 +364,7 @@ ALTER TABLE `tb_nhapkho`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --
