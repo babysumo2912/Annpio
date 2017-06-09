@@ -258,7 +258,7 @@ class admin extends CI_Controller{
             $money = 0;
             foreach($cart as $row){
                 $number += $row['qty'];
-                $money+= $row['sutotal'];
+                $money+= $row['subtotal'];
                 if($data_product == false){
                     $data_add = array(
                         'img' => $row['img'],
@@ -272,66 +272,72 @@ class admin extends CI_Controller{
                     );
                 $this->Admin_models->addproduct($data_add);
                 }
+                else
+                {
                 // var_dump($data_product);die();
-                $check = false;
-                foreach ($data_product as $item){
+                    $check = false;
+                    foreach ($data_product as $item){
 
-                    if($row['id'] == $item->id){
-                        $product_old = $this->Admin_models->get_single($row['id']);
-                        if($product_old){
-                            foreach ($product_old as $po) {}
-                            $number_old = $po->number;
-                            $number_old_kho = $po->number_kho;
-                            $number_new = $number_old + $row['qty'];
-                            $number_new_kho = $number_old_kho + $row['qty'];
-                            // echo $number_old;die();
-                            $data_edit = array(
-                                'number_kho' => $number_new_kho,
-                                'number' => $number_new,
-                                'price' => $row['price_ban'],
-                                'price_nhap' => $row['price'],
-                                );
-                            $edit = $this->Admin_models->edit($row['id'],$data_edit);
-                            $check = true;
+                        if($row['id'] == $item->id){
+                            $product_old = $this->Admin_models->get_single($row['id']);
+                            if($product_old){
+                                foreach ($product_old as $po) {}
+                                $number_old = $po->number;
+                                $number_old_kho = $po->number_kho;
+                                $number_new = $number_old + $row['qty'];
+                                $number_new_kho = $number_old_kho + $row['qty'];
+                                // echo $number_old;die();
+                                $data_edit = array(
+                                    'number_kho' => $number_new_kho,
+                                    'number' => $number_new,
+                                    'price' => $row['price_ban'],
+                                    'price_nhap' => $row['price'],
+                                    );
+                                $edit = $this->Admin_models->edit($row['id'],$data_edit);
+                                $check = true;
+                            }
                         }
                     }
-                }
-                if($check == false)
-                {
-                    $data_add = array(
-                        'img' => $row['img'],
-                        'name' => $row['name'],
-                        'price' => $row['price_ban'],
-                        'price_nhap' => $row['price'],
-                        'number' => $row['qty'],
-                        'number_kho' => $row['qty'],
-                        'madanhmuc' => $row['danhmuc'],
-                        'size'=>$row['size'],
-                    );
-                    $this->Admin_models->addproduct($data_add);
+                    if($check == false)
+                    {
+                        $data_add = array(
+                            'img' => $row['img'],
+                            'name' => $row['name'],
+                            'price' => $row['price_ban'],
+                            'price_nhap' => $row['price'],
+                            'number' => $row['qty'],
+                            'number_kho' => $row['qty'],
+                            'madanhmuc' => $row['danhmuc'],
+                            'size'=>$row['size'],
+                        );
+                        $this->Admin_models->addproduct($data_add);
+                    }
                 }
                 
             }
             $admin = $this->session->userdata('admin');
             $luukho = array(
-                'name' => $admin,
+                'id_admin' => $admin,
                 'number' => $number,
                 'money' => $money,
                 );
             $nhapkho = $this->Admin_models->luukho($luukho);
             if($nhapkho){
-                foreach($nhapkho as $idnk){};
-                $id_nhapkho = $idnk->id_nhapkho;
-                $chitiet_nhapkho = array(
-                    'tensanpham',
-                    'anhsanpham',
-                    'gianhap',
-                    'giaban',
-                    'soluong',
-                    'danhmuc',
-                    'size',
-                    );
-
+                foreach ($cart as $row) {
+                    foreach($nhapkho as $idnk){};
+                    $id_nhapkho = $idnk->id_nhapkho;
+                    $chitiet_nhapkho = array(
+                        'id_nhapkho' => $id_nhapkho,
+                        'tensanpham'=> $row['name'],
+                        'anhsanpham' => $row['img'],
+                        'gianhap'=> $row['price'],
+                        'giaban' => $row['price_ban'],
+                        'soluong' => $row['qty'],
+                        'danhmuc' => $row['danhmuc'],
+                        'size' => $row['size'],
+                        );
+                    $this->Admin_models->luuchitietnhapkho($chitiet_nhapkho);
+                }
             }
             $this->cart->destroy();
             redirect('admin/nhapkho');
@@ -341,5 +347,66 @@ class admin extends CI_Controller{
             redirect('admin/nhapkho');
         }
     }
+    public function kho(){
+        $data = array();
+        $login = $this->session->userdata('admin');
+        $time = $this->session->userdata('time');
+        $err = $this->session->flashdata('err');
+        if(isset($login)){
+            if(time() - $time >= 3000000000){
+                redirect('admin');
+            }else{
+                if(isset($err)){
+                    $data['err'] = $err;
+                }
+                $data['admin'] = $this->Admin_models->information($login);
+                $count_hoadon = $this->Admin_models->hoadon_count();
+                $count_mess = $this->Messenger_models->count();
+                $data['count_mess'] = $count_mess;
+                $data['count_hoadon'] = $count_hoadon;
+                $query = $this->db->get('tb_user');
+                $data['user'] = $query->result();
+                $datanhapkho = $this->Admin_models->hoadonnhap();
+                if($datanhapkho){
+                    $data['nhapkho'] = $datanhapkho;
+                }
+                $this->load->view('admin/kho',$data);
+            }
+        }else{
+            $this->load->view('admin/adminlogin');
+        }
+    }
+    public function view_phieunhap($id_phieunhap){
+
+        $data = array();
+        $login = $this->session->userdata('admin');
+        $time = $this->session->userdata('time');
+        // $err = $this->session->flashdata('err');
+        if(isset($login)){
+            if(time() - $time >= 3000000000){
+                redirect('admin');
+            }else{
+                $data['admin'] = $this->Admin_models->information($login);
+                $count_hoadon = $this->Admin_models->hoadon_count();
+                $count_mess = $this->Messenger_models->count();
+                $data['count_mess'] = $count_mess;
+                $data['count_hoadon'] = $count_hoadon;
+                $query = $this->db->get('tb_user');
+                $data['user'] = $query->result();
+                $datanhapkho = $this->Admin_models->hoadonnhap_info($id_phieunhap);
+                if($datanhapkho){
+                    $data['nhapkho'] = $datanhapkho;
+                }
+                $datanhapkho = $this->Admin_models->view_phieunhap($id_phieunhap);
+                if($datanhapkho){
+                    $data['chitietnhap'] = $datanhapkho;
+                }else $data['err'] = "Khong tim thay phieu nhap nay`";
+                $this->load->view('admin/view_phieunhap',$data);
+            }
+        }else{
+            $this->load->view('admin/adminlogin');
+        }   
+    }
+    
 }
 ?>

@@ -175,5 +175,29 @@ class admin_models extends CI_model{
             return $id_nhapkho->result();
         }
     }
+    public function luuchitietnhapkho($data){
+        $this->db->insert('tb_chitietnhap',$data);
+        return true;
+    }   
+    public function hoadonnhap(){
+        $query = $this->db->get('tb_nhapkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    public function view_phieunhap($id_phieunhap){        
+        $this->db->where('id_nhapkho', $id_phieunhap);
+        $query = $this->db->get('tb_chitietnhap');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function hoadonnhap_info($id_phieunhap){        
+        $this->db->where('id_nhapkho', $id_phieunhap);
+        $query = $this->db->get('tb_nhapkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
 }
 ?>

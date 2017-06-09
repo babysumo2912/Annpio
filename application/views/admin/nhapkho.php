@@ -1,6 +1,6 @@
 <?php include 'header_admin.php';?>
 <section class="padding20 hdadmin">
-    <div class = "form_nhap row">
+    <div class = "form_nhap row"> 
         <div class=" col-xs-5" style="border: 1px #ccc solid; float: left;">
             <?php
             $style = array(

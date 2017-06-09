@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2017 at 12:49 AM
+-- Generation Time: Jun 09, 2017 at 01:51 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -65,7 +65,8 @@ INSERT INTO `tb_catalog` (`id`, `madanhmuc`, `name`) VALUES
 (7, 'A', 'Áo'),
 (8, 'Q', 'Quần'),
 (9, 'VD', 'Váy Đầm'),
-(10, 'PK', 'Phụ Kiện');
+(10, 'PK', 'Phụ Kiện'),
+(11, 'TX', 'Túi Xách');
 
 -- --------------------------------------------------------
 
@@ -76,10 +77,24 @@ INSERT INTO `tb_catalog` (`id`, `madanhmuc`, `name`) VALUES
 CREATE TABLE `tb_chitietnhap` (
   `id_chitietnhap` int(11) NOT NULL,
   `id_nhapkho` int(10) NOT NULL,
-  `product` varchar(50) NOT NULL,
-  `number` int(10) NOT NULL,
-  `price` int(10) NOT NULL
+  `tensanpham` varchar(50) NOT NULL,
+  `anhsanpham` varchar(50) NOT NULL,
+  `gianhap` varchar(11) NOT NULL,
+  `giaban` varchar(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `danhmuc` varchar(5) NOT NULL,
+  `size` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_chitietnhap`
+--
+
+INSERT INTO `tb_chitietnhap` (`id_chitietnhap`, `id_nhapkho`, `tensanpham`, `anhsanpham`, `gianhap`, `giaban`, `soluong`, `danhmuc`, `size`) VALUES
+(5, 9, 'Túi bucket', 'image1xxl11.jpg', '500000', '1100000', 30, 'TX', 'Free Size'),
+(6, 9, 'Túi dáng cổ điển Asos', 'image1xxl--43-1.jpg', '650000', '1120000', 7, 'TX', 'Free Size'),
+(7, 10, 'Túi dáng cổ điển Asos', 'image1xxl--43-1.jpg', '650000', '1120000', 3, 'TX', 'Free Size'),
+(8, 10, 'Quần váy rủ Asos', 'image1xxl--12-1.jpg', '650000', '1300000', 8, 'TX', 'Free Size ');
 
 -- --------------------------------------------------------
 
@@ -176,11 +191,19 @@ INSERT INTO `tb_message` (`id`, `name`, `email`, `content`, `date`, `active`) VA
 
 CREATE TABLE `tb_nhapkho` (
   `id_nhapkho` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `id_admin` int(11) NOT NULL,
   `money` int(11) NOT NULL,
   `number` int(10) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_nhapkho`
+--
+
+INSERT INTO `tb_nhapkho` (`id_nhapkho`, `id_admin`, `money`, `number`, `date`) VALUES
+(9, 1, 19550000, 37, '2017-06-09 10:49:00'),
+(10, 1, 7150000, 11, '2017-06-09 10:50:21');
 
 -- --------------------------------------------------------
 
@@ -205,9 +228,9 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
-(13, 'aokhoac.jpg', 'Áo dạ dáng lửng Asos', 990000, 300000, 57, 57, 'A', 'M'),
-(19, 'aosomi1.jpg', 'Sơ mi dáng rộng Asos', 900000, 300000, 23, 23, 'A', 'L'),
-(20, 'image1xxl--12-.jpg', 'Quần váy rủ Asos', 700000, 300000, 30, 37, 'Q', 'S');
+(41, 'image1xxl11.jpg', 'Túi bucket', 1100000, 500000, 30, 30, 'TX', 'Free Size'),
+(42, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 1120000, 650000, 10, 10, 'TX', 'Free Size'),
+(43, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1300000, 650000, 8, 8, 'TX', 'Free Size');
 
 -- --------------------------------------------------------
 
@@ -334,12 +357,12 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_catalog`
 --
 ALTER TABLE `tb_catalog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tb_chitietnhap`
 --
 ALTER TABLE `tb_chitietnhap`
-  MODIFY `id_chitietnhap` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_chitietnhap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
@@ -359,12 +382,12 @@ ALTER TABLE `tb_message`
 -- AUTO_INCREMENT for table `tb_nhapkho`
 --
 ALTER TABLE `tb_nhapkho`
-  MODIFY `id_nhapkho` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nhapkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tb_test`
 --

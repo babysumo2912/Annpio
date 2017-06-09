@@ -72,7 +72,7 @@ if(!isset($count_mess)){
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url()?>admin/nhapkho">Nhập kho</a></li>
             <li><a href="#">Xuất kho</a></li>
-            <li><a href="#">Tồn kho</a></li>
+            <li><a href="<?php echo base_url() ?>admin/kho">Tồn kho</a></li>
             <!--            <li role="separator" class="divider"></li>-->
             <!--            <li><a href="#">Separated link</a></li>-->
             <!--            <li role="separator" class="divider"></li>-->
