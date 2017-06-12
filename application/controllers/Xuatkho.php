@@ -64,13 +64,41 @@ class Xuatkho extends CI_Controller
 		        	echo "Hóa đơn bạn chọn không tìm thấy trong CSDL";
 		        	die();
 		        }else{
+		        	$number = 0;
 		        	foreach ($view_single as $key) {};
+		        	foreach ($view_single_order as $row) {
+		        		$number+= $row->qty;
+		        	}
 		        	$data_add = array(
 		        		'id_admin' => $login,
-		        		
+		        		'tenkh' => $key->name,
+		        		'sdt' => $key->phone,
+		        		'diachi' => $key->address,
+		        		'thanhpho' => $key->city,
+		        		'thanhtoan' => $key->money,
+		        		'soluong' => $number,
+		        		'trangthai' => 'Đơn online'.$key->id,
 		        		);
+		        	$data_update = array(
+		        		'active' => '1',
+		        		);
+		        	$this->Hoa_don_models->edit($id,$data_update);
+		        	$add = $this->Kho_models->add($data_add);
+		        	if(isset($add)){
+		        		foreach ($add as $value) {};
+		        		foreach ($view_single_order as $item) {
+		        			$data_add_detail = array(
+		        				'id_xuatkho' => $value->id_xuatkho,
+		        				'img' => $item->img,
+		        				'sanpham' => $item->name,
+		        				'soluong' => $item->qty,
+		        				'gia' => $item->price,
+		        				'thanhtien' => $item->subtotal,
+		        				);	
+		        			$this->Kho_models->add_detail($data_add_detail);
+		        		}
+		        	}redirect('admin');
 		        }
-		        $this->load->view('admin/phieuxuat',$data);
             }
         }else{
             $this->load->view('admin/adminlogin');

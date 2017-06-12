@@ -1,6 +1,10 @@
 <?php 
 include'header_admin.php';
 ?>
+<?php 
+if(isset($view_single)){
+	foreach ($view_single as $key) {};
+ ?>
 <section class = "border padding20 hdadmin">
 <?php
 //    echo form_open();
@@ -23,6 +27,10 @@ include'header_admin.php';
         echo mdate("%h:%i:%a",time());
         ?>
     </div>
+    <?php 
+    echo form_open('xuatkho/luucsdl/'.$key->id)
+
+     ?>
     <div class = "content_admin">
         <div class = "left">
             <p class = "people">
@@ -34,6 +42,7 @@ include'header_admin.php';
                     }
                 } ?>
             </p>
+ 			<p>Nội dung xuất đơn: Xuất đơn hàng có mã số: <?php echo $key->id ?> (đơn hàng online)</p>
         </div>
     </div>
     <?php
@@ -49,10 +58,6 @@ include'header_admin.php';
 	        <div class="text-center">
 	        	<h4>Thông tin khách hàng</h4>
 	        </div>
-	        <?php 
-	        if(isset($view_single)){
-	        	foreach ($view_single as $key) {}
-	         ?>	
         	<p>Tên khách hàng: <b><?php echo $key->name ?></b></p>
         	<p>Số điện thoại: <b><?php echo $key->phone ?></b></p>
         	<p>Địa chỉ: <b><?php echo $key->address ?></b></p>

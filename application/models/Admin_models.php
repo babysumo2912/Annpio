@@ -199,5 +199,25 @@ class admin_models extends CI_model{
             return $query->result();
         }else return false;   
     }
+    public function view_phieuxuat($id_phieuxuat){        
+        $this->db->where('id_xuatkho', $id_phieuxuat);
+        $query = $this->db->get('tb_chitietxuat');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function hoadonxuat_info($id_phieuxuat){        
+        $this->db->where('id_xuatkho', $id_phieuxuat);
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function hoadonxuat(){
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
 }
 ?>

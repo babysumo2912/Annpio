@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2017 at 12:58 PM
+-- Generation Time: Jun 12, 2017 at 09:10 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -86,21 +86,6 @@ CREATE TABLE `tb_chitietnhap` (
   `size` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tb_chitietnhap`
---
-
-INSERT INTO `tb_chitietnhap` (`id_chitietnhap`, `id_nhapkho`, `tensanpham`, `anhsanpham`, `gianhap`, `giaban`, `soluong`, `danhmuc`, `size`) VALUES
-(5, 9, 'Túi bucket', 'image1xxl11.jpg', '500000', '1100000', 30, 'TX', 'Free Size'),
-(6, 9, 'Túi dáng cổ điển Asos', 'image1xxl--43-1.jpg', '650000', '1120000', 7, 'TX', 'Free Size'),
-(7, 10, 'Túi dáng cổ điển Asos', 'image1xxl--43-1.jpg', '650000', '1120000', 3, 'TX', 'Free Size'),
-(8, 10, 'Quần váy rủ Asos', 'image1xxl--12-1.jpg', '650000', '1300000', 8, 'TX', 'Free Size '),
-(9, 11, 'Quần Short', 'image1xxl--14-.jpg', '500000', '750000', 10, 'Q', 'L'),
-(10, 11, 'Quần Jean', 'image4xxl--10-.jpg', '300000', '700000', 7, 'Q', 'XL'),
-(11, 11, 'Đầm maxi pha ren', 'image1xxl-1--c6eac49d-8358-44bc-a768-70d3a4da85aa.', '700000', '2190000', 3, 'VD', 'L'),
-(12, 12, 'Túi đeo chéo Mango', 'image1xxl--49-.jpg', '650000', '990000', 30, 'TX', 'Free Size'),
-(13, 13, 'Đầm maxi trễ vai', 'image1xxl--2-.jpg', '400000', '1190000', 6, 'VD', 'XL');
-
 -- --------------------------------------------------------
 
 --
@@ -116,6 +101,15 @@ CREATE TABLE `tb_chitietxuat` (
   `gia` int(11) NOT NULL,
   `thanhtien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_chitietxuat`
+--
+
+INSERT INTO `tb_chitietxuat` (`id_chitietxuat`, `id_xuatkho`, `img`, `sanpham`, `soluong`, `gia`, `thanhtien`) VALUES
+(43, 12, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(44, 12, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(45, 12, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000);
 
 -- --------------------------------------------------------
 
@@ -139,10 +133,9 @@ CREATE TABLE `tb_chitiet_hoadon` (
 --
 
 INSERT INTO `tb_chitiet_hoadon` (`id`, `id_product`, `mahoadon`, `img`, `name`, `qty`, `price`, `subtotal`) VALUES
-(10, 41, 8, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(11, 43, 8, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1, 1300000, 1300000),
-(12, 47, 8, 'image1xxl--49-.jpg', 'Túi đeo chéo Mango', 1, 990000, 990000),
-(13, 46, 8, 'image1xxl-1--c6eac49d-8358-44bc-a768-70d3a4da85aa.jpg', 'Đầm maxi pha ren', 1, 2190000, 2190000);
+(17, 41, 10, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(18, 43, 10, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(19, 48, 10, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000);
 
 -- --------------------------------------------------------
 
@@ -169,7 +162,8 @@ CREATE TABLE `tb_hoadon` (
 --
 
 INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `money`, `ship`, `ghichu`, `date`, `active`) VALUES
-(8, 'babysumo2912@gmail.com', 'Ngọc Đức  123', '0438827017', 'Co Nhue', 'Hà Nội', 5580000, 40000, '', '2017-06-12 10:39:17', 0);
+(9, 'lananhnd.298@gmail.com', 'Lai Lan Anh', '0123456789', 'Co Nhue', 'Đà Nẵng', 5470000, 40000, '', '2017-06-12 18:42:21', 0),
+(10, 'babysumo2912@gmail.com', 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 40000, '', '2017-06-12 18:42:35', 1);
 
 -- --------------------------------------------------------
 
@@ -218,17 +212,6 @@ CREATE TABLE `tb_nhapkho` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tb_nhapkho`
---
-
-INSERT INTO `tb_nhapkho` (`id_nhapkho`, `id_admin`, `money`, `number`, `date`) VALUES
-(9, 1, 19550000, 37, '2017-06-09 10:49:00'),
-(10, 1, 7150000, 11, '2017-06-09 10:50:21'),
-(11, 1, 9200000, 20, '2017-06-10 07:25:59'),
-(12, 1, 19500000, 30, '2017-06-10 07:30:15'),
-(13, 1, 2400000, 6, '2017-06-10 07:34:46');
-
 -- --------------------------------------------------------
 
 --
@@ -252,14 +235,14 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
-(41, 'image1xxl11.jpg', 'Túi bucket', 1100000, 500000, 29, 30, 'TX', 'Free Size'),
+(41, 'image1xxl11.jpg', 'Túi bucket', 1100000, 500000, 28, 30, 'TX', 'Free Size'),
 (42, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 1120000, 650000, 10, 10, 'TX', 'Free Size'),
-(43, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1300000, 650000, 7, 8, 'TX', 'Free Size'),
+(43, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1300000, 650000, 3, 8, 'TX', 'Free Size'),
 (44, 'image1xxl--14-.jpg', 'Quần Short', 750000, 500000, 10, 10, 'Q', 'L'),
 (45, 'image4xxl--10-.jpg', 'Quần Jean', 700000, 300000, 7, 7, 'Q', 'XL'),
-(46, 'image1xxl-1--c6eac49d-8358-44bc-a768-70d3a4da85aa.jpg', 'Đầm maxi pha ren', 2190000, 700000, 2, 3, 'VD', 'L'),
-(47, 'image1xxl--49-.jpg', 'Túi đeo chéo Mango', 990000, 650000, 29, 30, 'TX', 'Free Size'),
-(48, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1190000, 400000, 6, 6, 'VD', 'XL');
+(46, 'image1xxl-1--c6eac49d-8358-44bc-a768-70d3a4da85aa.jpg', 'Đầm maxi pha ren', 2190000, 700000, 1, 3, 'VD', 'L'),
+(47, 'image1xxl--49-.jpg', 'Túi đeo chéo Mango', 990000, 650000, 27, 30, 'TX', 'Free Size'),
+(48, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1190000, 400000, 5, 6, 'VD', 'XL');
 
 -- --------------------------------------------------------
 
@@ -322,10 +305,18 @@ CREATE TABLE `tb_xuatkho` (
   `sdt` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `diachi` text COLLATE utf8_unicode_ci NOT NULL,
   `thanhpho` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `money` int(11) NOT NULL,
-  `number` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `thanhtoan` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `ngaythang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `trangthai` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_xuatkho`
+--
+
+INSERT INTO `tb_xuatkho` (`id_xuatkho`, `id_admin`, `tenkh`, `sdt`, `diachi`, `thanhpho`, `thanhtoan`, `soluong`, `ngaythang`, `trangthai`) VALUES
+(12, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 5, '2017-06-12 18:42:35', 'Đơn online10');
 
 --
 -- Indexes for dumped tables
@@ -426,17 +417,17 @@ ALTER TABLE `tb_chitietnhap`
 -- AUTO_INCREMENT for table `tb_chitietxuat`
 --
 ALTER TABLE `tb_chitietxuat`
-  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
 ALTER TABLE `tb_chitiet_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tb_hoadon`
 --
 ALTER TABLE `tb_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_message`
 --
@@ -466,7 +457,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_xuatkho`
 --
 ALTER TABLE `tb_xuatkho`
-  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
