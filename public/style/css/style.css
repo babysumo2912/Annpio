@@ -786,3 +786,9 @@ body{
 .save a:hover{
     color: white;
 }
+.print a{
+    font-size: 14px;
+}
+.print a:hover{
+    color: white;
+}

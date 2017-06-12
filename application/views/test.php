@@ -1,54 +1,91 @@
 <?php
-?>
+//============================================================+
+// File name   : example_021.php
+// Begin       : 2008-03-04
+// Last Update : 2013-05-14
+//
+// Description : Example 021 for TCPDF class
+//               WriteHTML text flow
+//
+// Author: Nicola Asuni
+//
+// (c) Copyright:
+//               Nicola Asuni
+//               Tecnick.com LTD
+//               www.tecnick.com
+//               info@tecnick.com
+//============================================================+
 
-<html>
-<head>
-    <title>AnnPio - Thế giới giày nữ</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/style.css">
-    <link rel="icon" href="<?php echo base_url();?>public/img/logo/icon.png">
-    <script src="<?php echo base_url();?>public/style/js/jquery-3.1.0.js"></script>
-    <script src="<?php echo base_url();?>public/style/js/jquery.cycle2.min.js"></script>
-    <script src="<?php echo base_url();?>public/style/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>public/style/js/filejs.js"></script>
-</head>
-<body>
-    <h1>Test now!</h1>
-    <div class="col-md-4">
-        <?php
-        if(isset($error)){
-            echo $error;
-        }
-        if(isset($add)){
-            foreach ($add as $item){
-                echo $item->img.'<br>';
-            }
-        }
-        ?>
-    </div>
-    <?php
-    $style = array(
-        'class'=>'form-group col-md-4',
-        'enctype' =>'multipart/form-data'
-    );
-    echo form_open('test/upload',$style)
-    ?>
-    <fieldset>
-        <legend>Upload</legend>
-        <div class="form-group">
-<!--            //bat buoc phai dat ten file la userfile!-->
-            <input type="file" name="userfile" size="10">
-         </div>
-        <div class="form-group">
-            <input type="submit" name="upload" value="Upload" class="btn btn-primary" style="margin-left:40%">
-        </div>
-    </fieldset>
-    <?php
-    echo form_close();
-    ?>
-</body>
-</html>
+/**
+ * Creates an example PDF TEST document using TCPDF
+ * @package com.tecnick.tcpdf
+ * @abstract TCPDF - Example: WriteHTML text flow.
+ * @author Nicola Asuni
+ * @since 2008-03-04
+ */
 
+// Include the main TCPDF library (search for installation path).
+// require_once('tcpdf_include.php');
 
+// create new PDF document
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+// set document information
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('Nicola Asuni');
+$pdf->SetTitle('TCPDF Example 021');
+$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+// set default header data
+// $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 021', PDF_HEADER_STRING);
+
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+// set some language-dependent strings (optional)
+if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+    require_once(dirname(__FILE__).'/lang/eng.php');
+    $pdf->setLanguageArray($l);
+}
+
+// ---------------------------------------------------------
+
+// set font
+$pdf->SetFont('helvetica', '', 9);
+
+// add a page
+$pdf->AddPage();
+
+// create some HTML content
+$html = '<div style="color: red; align: center"><h1>REport thanh cong</h1></div>';
+
+// output the HTML content
+$pdf->writeHTML($html, true, 0, true, 0);
+
+// reset pointer to the last page
+$pdf->lastPage();
+
+// ---------------------------------------------------------
+
+//Close and output PDF document
+$pdf->Output('example_021.pdf', 'I');
+
+//============================================================+
+// END OF FILE
+//============================================================+

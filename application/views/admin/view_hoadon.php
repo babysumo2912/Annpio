@@ -140,12 +140,17 @@ if(isset($xuatkho)){
 			</td>
 		</tr>
 	</table>
+	<div class="text-center print">
+ 		<a href="<?php echo base_url()?>admin/creat_pdf_phieuxuat/<?php echo $key->id_xuatkho ?>" class="btn btn-success" ><i class="fa fa-print"></i> In hoá đơn</a>
+	</div>	
 	<?php
 	}
 }
 	 ?>
+	
 	 <!-- end -->
-	 </div>
+	
+ </div>
 <?php 
 include'footer.php';
 

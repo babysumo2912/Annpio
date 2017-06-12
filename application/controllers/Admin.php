@@ -396,15 +396,49 @@ class admin extends CI_Controller{
                 $data['count_hoadon'] = $count_hoadon;
                 $query = $this->db->get('tb_user');
                 $data['user'] = $query->result();
-                $datanhapkho = $this->Admin_models->hoadonxuat_info($id_phieuxuat);
-                if($datanhapkho){
-                    $data['xuatkho'] = $datanhapkho;
+                $dataxuatkho = $this->Admin_models->hoadonxuat_info($id_phieuxuat);
+                if($dataxuatkho){
+                    $data['xuatkho'] = $dataxuatkho;
                 }
-                $datanhapkho = $this->Admin_models->view_phieuxuat($id_phieuxuat);
-                if($datanhapkho){
-                    $data['chitietxuat'] = $datanhapkho;
+                $datactxuatkho = $this->Admin_models->view_phieuxuat($id_phieuxuat);
+                if($datactxuatkho){
+                    $data['chitietxuat'] = $datactxuatkho;
                 }else $data['err'] = "Khong tim thay phieu nhap nay`";
+
                 $this->load->view('admin/view_hoadon',$data);
+            }
+        }else{
+            $this->load->view('admin/adminlogin');
+        }   
+    }
+    public function creat_pdf_phieuxuat($id_phieuxuat){
+        $data = array();
+        $login = $this->session->userdata('admin');
+        $time = $this->session->userdata('time');
+        // $err = $this->session->flashdata('err');
+        if(isset($login)){
+            if(time() - $time >= 3000000000){
+                redirect('admin');
+            }else{
+                $data['admin'] = $this->Admin_models->information($login);
+                $count_hoadon = $this->Admin_models->hoadon_count();
+                $count_mess = $this->Messenger_models->count();
+                $data['count_mess'] = $count_mess;
+                $data['count_hoadon'] = $count_hoadon;
+                $query = $this->db->get('tb_user');
+                $data['user'] = $query->result();
+                $dataxuatkho = $this->Admin_models->hoadonxuat_info($id_phieuxuat);
+                if($dataxuatkho){
+                    $data['xuatkho'] = $dataxuatkho;
+                }
+                $datactxuatkho = $this->Admin_models->view_phieuxuat($id_phieuxuat);
+                if($datactxuatkho){
+                    $data['chitietxuat'] = $datactxuatkho;
+                    $this->load->library('Pdf');
+                    $this->load->view('admin/report_hoadonxuat',$data);
+                }
+
+                // $this->load->view('admin/view_hoadon',$data);
             }
         }else{
             $this->load->view('admin/adminlogin');

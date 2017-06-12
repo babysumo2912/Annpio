@@ -97,7 +97,7 @@ class Xuatkho extends CI_Controller
 		        				);	
 		        			$this->Kho_models->add_detail($data_add_detail);
 		        		}
-		        	}redirect('admin');
+		        	}redirect('admin/creat_pdf_phieuxuat/'.$value->id_xuatkho);
 		        }
             }
         }else{

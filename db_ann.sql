@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2017 at 09:10 PM
+-- Generation Time: Jun 13, 2017 at 12:29 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -109,7 +109,19 @@ CREATE TABLE `tb_chitietxuat` (
 INSERT INTO `tb_chitietxuat` (`id_chitietxuat`, `id_xuatkho`, `img`, `sanpham`, `soluong`, `gia`, `thanhtien`) VALUES
 (43, 12, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
 (44, 12, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(45, 12, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000);
+(45, 12, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
+(46, 13, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(47, 13, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(48, 13, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
+(49, 14, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(50, 14, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(51, 14, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
+(52, 15, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(53, 15, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(54, 15, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
+(55, 16, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
+(56, 16, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
+(57, 16, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000);
 
 -- --------------------------------------------------------
 
@@ -162,8 +174,7 @@ CREATE TABLE `tb_hoadon` (
 --
 
 INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `money`, `ship`, `ghichu`, `date`, `active`) VALUES
-(9, 'lananhnd.298@gmail.com', 'Lai Lan Anh', '0123456789', 'Co Nhue', 'Đà Nẵng', 5470000, 40000, '', '2017-06-12 18:42:21', 0),
-(10, 'babysumo2912@gmail.com', 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 40000, '', '2017-06-12 18:42:35', 1);
+(10, 'babysumo2912@gmail.com', 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 40000, '', '2017-06-12 22:06:22', 1);
 
 -- --------------------------------------------------------
 
@@ -316,7 +327,11 @@ CREATE TABLE `tb_xuatkho` (
 --
 
 INSERT INTO `tb_xuatkho` (`id_xuatkho`, `id_admin`, `tenkh`, `sdt`, `diachi`, `thanhpho`, `thanhtoan`, `soluong`, `ngaythang`, `trangthai`) VALUES
-(12, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 5, '2017-06-12 18:42:35', 'Đơn online10');
+(12, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 5, '2017-06-12 18:42:35', 'Đơn online10'),
+(13, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:06:22', 'Đơn online10'),
+(14, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:15:04', 'Đơn online10'),
+(15, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:18:25', 'Đơn online10'),
+(16, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:19:38', 'Đơn online10');
 
 --
 -- Indexes for dumped tables
@@ -417,7 +432,7 @@ ALTER TABLE `tb_chitietnhap`
 -- AUTO_INCREMENT for table `tb_chitietxuat`
 --
 ALTER TABLE `tb_chitietxuat`
-  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
@@ -457,7 +472,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_xuatkho`
 --
 ALTER TABLE `tb_xuatkho`
-  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
