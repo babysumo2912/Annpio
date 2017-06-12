@@ -95,7 +95,7 @@ class home extends CI_Controller{
             'max' => $number,
         );
         if($this->cart->insert($cart)){
-            $count +=$soluongmua;
+            $count +=$soluong;
             $session_data = array(
                 'count' => $count,
             );

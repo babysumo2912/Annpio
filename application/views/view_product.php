@@ -4,10 +4,10 @@ $name = $this->session->userdata('name');
 $count = $this->session->userdata('count');
 if(isset($product)){
     foreach($product as $sp){}
-    $catalog = $this->Home_models->getinfo('tb_catalog','id',$sp->catalog);
-    if($catalog){
-        foreach($catalog as $dm){};
-    }
+    // $catalog = $this->Home_models->getinfo('tb_catalog','id',$sp->catalog);
+    // if($catalog){
+//         foreach($catalog as $dm){};
+//     }
 }
 if(isset($err)){
     echo $err.'<a href="<?php eho base_url()"product>Quay lại trang sản phẩm</a>';
@@ -16,7 +16,7 @@ if(isset($err)){
 ?>
 <html>
 <head>
-    <title>AnnPio - Product</title>
+    <title>AnnPio - Sản phẩm</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap-theme.min.css">
@@ -40,7 +40,7 @@ if(isset($err)){
             <div class="logo">
                 <a href="<?php echo base_url();?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1>NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1>NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
         </div>
@@ -48,11 +48,11 @@ if(isset($err)){
             <div class="navbar-right">
                 <div class="menufix">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -79,7 +79,7 @@ if(isset($err)){
                                 <a href="#login-box" class="login-window">
                                     <span class="glyphicon glyphicon-user"></span>
                                     &nbsp;
-                                    Login
+                                    Đăng nhập
                                 </a>
                                 <?php
                             }
@@ -103,7 +103,7 @@ if(isset($err)){
             <div class="logo">
                 <a href="<?php echo base_url();?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1>NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1>NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
         </div>
@@ -111,11 +111,11 @@ if(isset($err)){
             <div class="navbar-right">
                 <div class="menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li class="actived"><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -142,7 +142,7 @@ if(isset($err)){
                                 <a href="#login-box" class="login-window">
                                     <span class="glyphicon glyphicon-user"></span>
                                     &nbsp;
-                                    Login
+                                    Đăng nhập
                                 </a>
                                 <?php
                             }
@@ -158,8 +158,8 @@ if(isset($err)){
 <div id="login-box" class="login-box">
     <a class="close" href="#">X</a><br><br>
     <div class="login-f">
-        <p class="title-login">Login</p>
-        <p>Register an account now to receive incentives from us.</p>
+        <p class="title-login">Đăng nhập</p>
+        <p>Đăng kí tài khoản để có thể nhận được dịch vụ chăm sóc khách hàng từ chúng tôi!</p>
         <?php
         $style = array(
             'class' => 'form-group'
@@ -170,43 +170,44 @@ if(isset($err)){
             <input type="text" class="form-control" name="email" placeholder="Email ..." required>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password ..." required>
+            <input type="password" class="form-control" name="password" placeholder="Mật khẩu ..." required>
         </div>
         <div class="form-group">
-            <input type="submit" name="login" class="btn btn-info" value="Login">
+            <input type="submit" name="login" class="btn btn-info" value="Đăng nhập">
         </div>
         <?php echo form_close();?>
     </div>
     <div class="login-e">
-        <p>Do not have an account ?</p>
-        <a href="#register-box" class="register-window">Register</a>
+        <p>Bạn chưa có tài khoản ?</p>
+        <a href="#register-box" class="register-window">Đăng ký</a>
     </div>
 </div>
 <div id="register-box" class="login-box">
     <a class="close" href="#">X</a><br><br>
     <div class="login-f">
-        <p class="title-login">Register</p>
-        <p>Please fill out the information below</p>
+        <p class="title-login">Đăng ký</p>
+        <p>Vui lòng điền đầy đủ thông tin bên dưới</p>
         <?php
         echo form_open('home/register',$style);
         ?>
         <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="Full Name ..." required>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="email" placeholder="Email ..." required>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password ..." required>
-        </div>
-        <div class="form-group">
-            <input type="submit" name="register" class="btn btn-info" value="Register">
-            <a href="#login-box" class="relogin-window">Back Login</a>
-        </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Họ và tên ..." required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email ..." required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Mật khẩu ..." required>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="register" class="btn btn-info" value="Đăng kí">
+                <a href="#login-box" class="relogin-window">Đăng nhập</a>
+            </div>
         <?php
         echo form_close();
         ?>
-        ?>
+        </div>
     </div>
 </div>
 <!--    //form login register-->
@@ -250,11 +251,6 @@ echo form_open('home/buy/'.$sp->id);
 <?php
 echo form_close();
 ?>
-
-
-
-
-
 <div>
     <img src="<?php echo base_url();?>public/img/widebaner.jpg" alt="annpiogiamgia" width="100%">
 </div>
@@ -264,23 +260,23 @@ echo form_close();
             <div class="logo" style="width: 100%">
                 <a href="<?php echo base_url();?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1 style="float: left">NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1 style="float: left">NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
             <p>Tự hào là điểm đến mua sắm online hàng đầu Việt Nam, AnnPio hứa hẹn đem đến những sản phẩm thời trang độc đáo và chất lượng theo xu hướng của thế giới, nhằm mang đến trải nghiệm mua sắm tuyệt vời cho các tín đồ thời trang.</p>
         </div>
         <div class="col-md-3">
-            <h3>LINKS</h3>
+            <h3>LIÊN HỆ</h3>
             <ul>
-                <li><a href="<?php echo base_url();?>home">Home</a></li>
-                <li><a href="<?php echo base_url();?>introduce">Introduce</a></li>
-                <li><a href="<?php echo base_url();?>product">Product</a></li>
-                <li><a href="<?php echo base_url();?>news">News</a></li>
-                <li><a href="<?php echo base_url();?>contact">Contact</a></li>
+                <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
             </ul>
         </div>
         <div class="col-md-3">
-            <h3>SIGN UP FOR</h3>
+            <h3>ĐĂNG KÝ</h3>
             <p>Đăng kí nhận những thông tin khuyến mãi từ cửa hàng của chúng tôi</p>
             <form action="" method="post">
                 <div class="input-group">
@@ -292,11 +288,11 @@ echo form_close();
             </form>
         </div>
         <div class="col-md-3">
-            <h3>CONTACT US</h3>
+            <h3>HỖ TRỢ</h3>
             <p>Nếu bạn có thắc mắc hãy liên hệ với chúng tôi theo các cách dưới đây</p>
             <p class="contactus">
                 <span class="glyphicon glyphicon-record"></span>Tin kinh tế K57 - HUMG<br><br>
-                <span class="glyphicon glyphicon-phone-alt"></span>0165456527x <br><br>
+                <span class="glyphicon glyphicon-phone-alt"></span>097239404xx <br><br>
                 <span class="glyphicon glyphicon-envelope"></span>support@gmail.com<br><br>
             </p>
         </div>
@@ -305,10 +301,10 @@ echo form_close();
 <div class="footer">
     <div class="endfooter">
         <div class="col-md-9">
-            <p>&copy; Bản quyền thuộc về <span>Đức Ann</span></p>
+            <p>&copy; Bản quyền thuộc về <span>Lại Lan Anh - 1221050146</span></p>
         </div>
         <div class="col-md-2">
-            <img src="<?php echo base_url();?>public/img/payment.png" alt="payment">
+            <img src="<?php echo base_url(); ?>public/img/payment.png" alt="payment">
         </div>
     </div>
 </div>

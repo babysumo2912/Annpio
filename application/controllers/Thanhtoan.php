@@ -48,6 +48,7 @@ class Thanhtoan extends CI_Controller {
             $mahoadon = $item->id;
             if($cart = $this->cart->contents()){
                 foreach ($cart as $item){
+                    $id_product = $item['id'];
                     $product = $item['name'];
                     $img = $item['img'];
                     $qty = $item['qty'];
@@ -55,6 +56,7 @@ class Thanhtoan extends CI_Controller {
                     $moneypro = $item['subtotal'];
                     $data_product = array(
                         'mahoadon' => $mahoadon,
+                        'id_product' => $id_product,
                         'name' => $product,
                         'img' => $img,
                         'qty' => $qty,

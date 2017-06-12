@@ -34,6 +34,9 @@ class product extends CI_Controller{
         $this->load->library("cart");
         $login = $this->session->userdata('login');
         $count = $this->session->userdata('count');
+        if($count <= 0){
+            $count = 0;
+        }
         if($login == 'admin'){
             redirect('home');
             die();

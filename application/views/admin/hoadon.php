@@ -98,9 +98,9 @@ include'header_admin.php';
         </div>
     </div>
     <div class="text-center">
-        <a href="<?php echo base_url()?>hoadon/giaohang/<?php echo $item->id?>" class="btn btn-success">
+        <a href="<?php echo base_url()?>xuatkho/hoadon/<?php echo $item->id?>" class="btn btn-success">
             <span class="glyphicon glyphicon-send"></span> &nbsp;
-            Giao Hàng
+            Tạo phiếu xuất
         </a>
     </div>
 </div>
