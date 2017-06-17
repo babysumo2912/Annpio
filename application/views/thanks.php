@@ -11,7 +11,7 @@ foreach ($view_single_order as $row){
 ?>
 <html>
 <head>
-    <title>AnnPio - Thế giới giày nữ</title>
+    <title>AnnPio - Thế giới thời trang</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap-theme.min.css">
@@ -35,7 +35,7 @@ foreach ($view_single_order as $row){
             <div class="logo">
                 <a href="<?php echo base_url()?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1>NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1>NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
         </div>
@@ -43,15 +43,15 @@ foreach ($view_single_order as $row){
             <div class="navbar-right">
                 <div class="menufix">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
-                                <sup>0</sup>
+                                <sup><?php echo $count?></sup>
                             </a>
                         </li>
                     </ul>
@@ -100,15 +100,15 @@ foreach ($view_single_order as $row){
             <div class="navbar-right">
                 <div class="menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
-                                <sup>0</sup>
+                                <sup><?php echo $count?></sup>
                             </a>
                         </li>
                     </ul>
@@ -266,7 +266,7 @@ foreach ($view_single_order as $row){
             <p>Tự hào là điểm đến mua sắm online hàng đầu Việt Nam, AnnPio hứa hẹn đem đến những sản phẩm thời trang độc đáo và chất lượng theo xu hướng của thế giới, nhằm mang đến trải nghiệm mua sắm tuyệt vời cho các tín đồ thời trang.</p>
         </div>
         <div class="col-md-3">
-            <h3>LINKS</h3>
+            <h3>LIÊN KẾT</h3>
             <ul>
                 <li><a href="<?php echo base_url();?>home">Home</a></li>
                 <li><a href="<?php echo base_url();?>introduce">Introduce</a></li>
@@ -276,7 +276,7 @@ foreach ($view_single_order as $row){
             </ul>
         </div>
         <div class="col-md-3">
-            <h3>SIGN UP FOR</h3>
+            <h3>ĐĂNG KÍ</h3>
             <p>Đăng kí nhận những thông tin khuyến mãi từ cửa hàng của chúng tôi</p>
             <form action="" method="post">
                 <div class="input-group">
@@ -288,7 +288,7 @@ foreach ($view_single_order as $row){
             </form>
         </div>
         <div class="col-md-3">
-            <h3>CONTACT US</h3>
+            <h3>LIÊN HỆ</h3>
             <p>Nếu bạn có thắc mắc hãy liên hệ với chúng tôi theo các cách dưới đây</p>
             <p class="contactus">
                 <span class="glyphicon glyphicon-record"></span>Tin kinh tế K57 - HUMG<br><br>
@@ -301,7 +301,7 @@ foreach ($view_single_order as $row){
 <div class="footer">
     <div class="endfooter">
         <div class="col-md-9">
-            <p>&copy; Bản quyền thuộc về <span>Đức Ann</span></p>
+            <p>&copy; Bản quyền thuộc về <span>Lại Thị Lan Anh</span></p>
         </div>
         <div class="col-md-2">
             <img src="<?php echo base_url();?>public/img/payment.png" alt="payment">

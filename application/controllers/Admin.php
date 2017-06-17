@@ -1,4 +1,4 @@
-<!-- <?php
+<!-- <?php  
 // class admin extends CI_Controller{
     // public function index(){
         // $login = $this->session->userdata('login');

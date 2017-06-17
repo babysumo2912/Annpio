@@ -164,7 +164,7 @@ if(isset($err)){
         $style = array(
             'class' => 'form-group'
         );
-        echo form_open('home/login',$style);
+        echo form_open('product/login/'.$sp->id,$style);
         ?>
         <div class="form-group">
             <input type="text" class="form-control" name="email" placeholder="Email ..." required>
@@ -229,7 +229,15 @@ echo form_open('home/buy/'.$sp->id);
         <h1><?php echo $sp->name?></h1>
         <h2 style="color: red"><?php echo number_format($sp->price)?><sup>đ</sup></h2>
         <hr>
-        bổ sung mô tả vào chỗ này!
+        Quần váy rủ Asos phù hợp cho cả phong cách dạo phố và tiệc tối.
+<br>
+Quần có cạp cao, lớp giả váy phía trước xoắn rất cá tính.
+<br>
+Chất liệu: viscose
+<br>
+Lót trong: Không
+<br>
+Màu sắc: Đen, xám, cam
         <hr>
         <div class="row">
             <div class="col-md-6">

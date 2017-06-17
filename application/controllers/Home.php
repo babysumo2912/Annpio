@@ -44,7 +44,8 @@ class home extends CI_Controller{
     public function login(){
         $email = $this->input->post('email');
         $pass = md5($this->input->post('password'));
-        $check['user'] = $this->User_models->login($email,$pass);
+        if(isset($email && isset($login))){
+            $check['user'] = $this->User_models->login($email,$pass);
         if($check['user'] == false){
             $mess="Email or password is incorrect!";
             $data['mess']=$mess;
@@ -64,7 +65,9 @@ class home extends CI_Controller{
             );
             $this->session->set_userdata($session_login);
             redirect('home');
-        }
+            }  
+        }else $this->load->view('login');
+        
     }
     public function buy($id){
         $login = $this->session->userdata('login');
@@ -72,6 +75,10 @@ class home extends CI_Controller{
         $this->load->library("cart");
         if(isset($login) && $login=='admin'){
             redirect('home');
+            die();
+        }
+        if(!isset($login)){
+            redirect('product/login/'.$id);
             die();
         }
         $soluongmua = $this->input->post('number');

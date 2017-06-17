@@ -1,11 +1,9 @@
 <?php
-$login = $this->session->userdata('login');
-$name = $this->session->userdata('name');
-$count = $this->session->userdata('count')
+$count = $this->session->userdata('count');
 ?>
 <html>
 <head>
-    <title>AnnPio - Product</title>
+    <title>AnnPio - Login</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>public/style/css/bootstrap-theme.min.css">
@@ -53,26 +51,11 @@ $count = $this->session->userdata('count')
                 <div class="menurightfix">
                     <ul class="nav navbar-nav">
                         <li>
-                            <?php
-                            if(isset($name)){ ?>
-                                <a href="<?php echo base_url()?>user">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    &nbsp;
-                                    <?php
-                                    echo $name;
-                                    ?>
-                                </a>
-                                <?php
-                            }else {
-                                ?>
-                                <a href="#login-box" class="login-window">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    &nbsp;
-                                    Login
-                                </a>
-                                <?php
-                            }
-                            ?>
+                            <a href="#login-box" class="login-window">
+                                <span class="glyphicon glyphicon-user"></span>
+                                &nbsp;
+                                Login
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -102,7 +85,7 @@ $count = $this->session->userdata('count')
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo base_url();?>home">HOME</a></li>
                         <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li class="actived"><a href="<?php echo base_url();?>product">PRODUCT</a></li>
+                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
                         <li><a href="<?php echo base_url();?>news">NEWS</a></li>
                         <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
                         <li>
@@ -116,26 +99,11 @@ $count = $this->session->userdata('count')
                 <div class="menuright">
                     <ul class="nav navbar-nav">
                         <li>
-                            <?php
-                            if(isset($name)){ ?>
-                                <a href="<?php echo base_url()?>user">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    &nbsp;
-                                    <?php
-                                    echo $name;
-                                    ?>
-                                </a>
-                                <?php
-                            }else {
-                                ?>
-                                <a href="#login-box" class="login-window">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    &nbsp;
-                                    Login
-                                </a>
-                                <?php
-                            }
-                            ?>
+                            <a href="#login-box" class="login-window">
+                                <span class="glyphicon glyphicon-user"></span>
+                                &nbsp;
+                                Login
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -153,7 +121,7 @@ $count = $this->session->userdata('count')
         $style = array(
             'class' => 'form-group'
         );
-        echo form_open('home/login',$style);
+        echo form_open('product/login/'.$id,$style);
         ?>
         <div class="form-group">
             <input type="text" class="form-control" name="email" placeholder="Email ..." required>
@@ -202,83 +170,60 @@ $count = $this->session->userdata('count')
 <div class="centerintro">
     <div class="row widthcenterintro">
         <div class="col-md-10">
-            <span class="a">PRODUCT</span>
+            <span class="a">ACCOUNT LOGIN</span>
         </div>
         <div class="col-md-2">
             <a href="<?php echo base_url();?>home" class="a">Home</a>
             /
-            <span>Product</span>
+            <span>Login</span>
         </div>
     </div>
 </div>
 <div class="row centerpro">
-    <div class="col-md-3">
-        <div class="menuleft">
-            <p>Menu</p>
-            <ul>
-                <li><a href="<?php echo base_url()?>sandal">Sandal</a></li>
-                <li class="actived"><a href="<?php echo base_url()?>pumps">Pumps</a></li>
-                <li><a href="<?php echo base_url()?>sportshoes">Sport Shoes</a></li>
-                <li><a href="<?php echo base_url()?>new-product">New product</a></li>
-                <li><a href="<?php echo base_url()?>promotion-product">Promotion product</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-9" id="content">
-        <?php
-        if(isset($product)){
-            foreach ($product as $item) {
-                ?>
-                <div class="col-sm-3 widthpro">
-                    <form action="#" method="post" class="form-group">
-                        <a href="#">
-                            <img src="<?php echo base_url();?>public/img/product/<?php echo $item->img?>" alt="<?php echo $item->name?>" width="100%">
-                        </a>
-                        <div class="contentpro">
-                            <a href="#" title="<?php echo $item->name?>"><?php echo $item->name?></a>
-                        </div>
-                        <div class="text-center">
-                            <p class="newprice"><?php echo number_format($item->price)?> <sup>đ</sup></p>
-                        </div>
-                        <div class="buy">
-                            <a href="<?php echo base_url()?>pumps/buy/<?php echo $item->id?>" class="form-control">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
-                                Buy Now
-                            </a>
-                        </div>
-                    </form>
-                </div>
-                <?php
+    <div class="form-login">
+        <div class="login-f">
+            <p class="title-login">Login</p>
+            <p>Register an account now to receive incentives from us.</p>
+            <?php
+            if(isset($mess)){?>
+            <p><b><?php echo $mess ?></b></p>
+            <?php
             }
-        }
-        ?>
-        <div class="col-sm-12 text-center">
-            <ul class="pagination">
-                <?php
-                if(isset($fullpage)) {
-                    for ($page = 1; $page <= $fullpage; $page++) {
-                        ?>
-                        <li>
-                            <a href="<?php echo base_url()?>pumps/page/<?php echo $page?>"><?php echo $page ?></a>
-                        </li>
-                        <?php
-                    }
-                }
-                ?>
-            </ul>
+            ?>
+            <?php
+            $style = array(
+                'class' => 'form-group'
+            );
+            echo form_open('product/login/'.$id,$style);
+            ?>
+            <div class="form-group">
+                <input type="text" class="form-control" name="email" placeholder="Email ..." required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password ..." required>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="login" class="btn btn-info" value="Login">
+            </div>
+            <?php
+            echo form_close();
+            ?>
+        </div>
+        <div class="login-e">
+            <p>Do not have an account ?</p>
+            <a href="<?php echo base_url()?>register">Register</a>
         </div>
     </div>
-
 </div>
 <div>
-    <img src="<?php echo base_url();?>public/img/widebaner.jpg" alt="annpiogiamgia" width="100%">
+    <img src="<?php echo base_url(); ?>public/img/widebaner.jpg" alt="annpiogiamgia" width="100%">
 </div>
 <div class="row end">
     <div class="widthend">
         <div class="col-md-3">
             <div class="logo" style="width: 100%">
-                <a href="<?php echo base_url();?>home">
-                    <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
+                <a href="<?php echo base_url()?>home">
+                    <img src="<?php echo base_url(); ?>public/img/logo/logo.png" alt="annpio">
                     <h1 style="float: left">NNPIO <br> <span>Thế giới giày nữ</span></h1>
                 </a>
             </div>
@@ -287,11 +232,11 @@ $count = $this->session->userdata('count')
         <div class="col-md-3">
             <h3>LINKS</h3>
             <ul>
-                <li><a href="<?php echo base_url();?>home">Home</a></li>
-                <li><a href="<?php echo base_url();?>introduce">Introduce</a></li>
-                <li><a href="<?php echo base_url();?>product">Product</a></li>
-                <li><a href="<?php echo base_url();?>news">News</a></li>
-                <li><a href="<?php echo base_url();?>contact">Contact</a></li>
+                <li><a href="<?php echo base_url();?>home">HOME</a></li>
+                <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
+                <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
+                <li><a href="<?php echo base_url();?>news">NEWS</a></li>
+                <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
             </ul>
         </div>
         <div class="col-md-3">
@@ -323,7 +268,7 @@ $count = $this->session->userdata('count')
             <p>&copy; Bản quyền thuộc về <span>Đức Ann</span></p>
         </div>
         <div class="col-md-2">
-            <img src="<?php echo base_url();?>public/img/payment.png" alt="payment">
+            <img src="<?php echo base_url(); ?>public/img/payment.png" alt="payment">
         </div>
     </div>
 </div>
@@ -334,5 +279,6 @@ $count = $this->session->userdata('count')
     </a>
 </div>
 <!--end_tao nut back to top-->
+
 </body>
 </html>
