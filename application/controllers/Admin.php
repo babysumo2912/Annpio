@@ -29,15 +29,55 @@
  <?php
 class admin extends CI_Controller{
     public function index(){
+        $tongdoanhthu = 0;
         $login = $this->session->userdata('admin');
         $time = $this->session->userdata('time');
         $err = $this->session->flashdata('err');
+        $err_day = $this->session->flashdata('err_day');
+        $err_nv = $this->session->flashdata('err_nv');
         if(isset($login)){
             if(time() - $time >= 3000000000){
                 redirect('admin');
             }else{
+                if(isset($err_nv)){
+                    $data['err_nv'] = $err_nv;
+                }
+                if(isset($err_day)){
+                    $data['err_day'] = $err_day;
+                }
                 if(isset($err)){
                     $data['err'] = $err;
+                }
+                $datatongdoanhthu = $this->Admin_models->hoadonxuat();
+                if($datatongdoanhthu){
+                    foreach ($datatongdoanhthu as $tdt) {
+                        $tongdoanhthu+=$tdt->thanhtoan;
+                    }
+                }
+                $data['tongdoanhthu'] = $tongdoanhthu;
+                $top_nhvien = $this->Admin_models->top_nhvien();
+                if($top_nhvien){
+                    $data['top_nhvien'] = $top_nhvien;
+                }
+                $thongke_nv = $this->session->flashdata('thongke_nv');
+                if($thongke_nv){
+                    $data['thongke_nv'] = $thongke_nv;
+                }
+                $thongke_hd = $this->session->flashdata('thongke_hd');
+                if($thongke_hd){
+                    $data['thongke_hd'] = $thongke_hd;
+                }
+                $thongke_xk = $this->session->flashdata('thongke_xk');
+                if($thongke_xk){
+                    $data['thongke_xk'] = $thongke_xk;
+                }
+                $day_begin = $this->session->flashdata('day_begin');
+                if(isset($day_begin)){
+                    $data['day_begin'] = $day_begin;
+                }
+                $day_end = $this->session->flashdata('day_end');
+                if(isset($day_end)){
+                    $data['day_end'] = $day_end;
                 }
                 $data['admin'] = $this->Admin_models->information($login);
                 $count_hoadon = $this->Admin_models->hoadon_count();
@@ -474,6 +514,35 @@ class admin extends CI_Controller{
         }else{
             $this->load->view('admin/adminlogin');
         }   
+    }
+    public function thongke(){
+        $day_begin = $this->input->post('day_begin');
+        $day_end = $this->input->post('day_end');
+        if(isset($day_begin) && isset($day_end)){
+            if($day_end < $day_begin){
+                $err_day = "Ngày kết thúc phải lớn hơn ngày bắt đầu!";
+                $this->session->set_flashdata('err_day',$err_day);
+            }else{
+                $thongke_nv = $this->Admin_models->thongke_nv($day_begin,$day_end);
+                if($thongke_nv){
+                    // var_dump($thongke_nv);die();
+                    $this->session->set_flashdata('thongke_nv',$thongke_nv);
+                }else{
+                    $err_nv = $this->session->set_flashdata('err_nv',$err_nv);
+                }
+                // $thongke_hd = $this->Admin_models->thongke_hd($day_begin,$day_end);
+                // if($thongke_nv){
+                //     $this->session->set_flashdata('thongke_hd',$thongke_hd);
+                // }
+                $thongke_xk = $this->Admin_models->thongke_xk($day_begin,$day_end);
+                if($thongke_xk){
+                    $this->session->set_flashdata('thongke_xk',$thongke_xk);
+                }
+            }
+            $day_begin = $this->session->set_flashdata('day_begin',$day_begin);
+            $day_end = $this->session->set_flashdata('day_end',$day_end);
+            redirect('admin');
+        }
     }
     
 }

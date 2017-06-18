@@ -158,7 +158,14 @@ class xuatkho extends CI_Controller
 		        				'soluong' => $item->qty,
 		        				'gia' => $item->price,
 		        				'thanhtien' => $item->subtotal,
-		        				);	
+		        				);
+		        			$product = $this->Admin_models->get_single($item->id_product);
+		        			foreach ($product as $prd) {};
+		        			$soluongmoi = $prd->number_kho - $item->qty;
+		        			$update_number = array(
+		        				'number_kho' => $soluongmoi,
+		        				);
+		        			$this->Admin_models->edit($item->id_product,$update_number);
 		        			$this->Kho_models->add_detail($data_add_detail);
 		        		}
 		        	}redirect('admin/creat_pdf_phieuxuat/'.$value->id_xuatkho);
@@ -235,9 +242,54 @@ class xuatkho extends CI_Controller
 			redirect('xuatkho');
 		}
 		if(isset($id_admin) && isset($tenkhachhang) && isset($sdt) && isset($diachi) && isset($thanhpho)){
-
+			$money = 0;
+			$number = 0;
+			if(isset($_SESSION['cart_off']) && count($_SESSION['cart_off']) > 0){
+				foreach ($_SESSION['cart_off'] as $key => $value) {
+					$money += ($value['giaban'] * $value['soluong']);
+					$number += $value['soluong'];
+				}
+			}
+			$data_add = array(
+				'id_admin' => $id_admin,
+				'tenkh' => $tenkhachhang,
+				'sdt' => $sdt,
+				'diachi' => $diachi,
+				'thanhpho' => $thanhpho,
+				'thanhtoan' => $money,
+				'soluong' => $number,
+				'trangthai' => "Don offline",
+				);
+			$xuatkho_off = $this->Kho_models->add($data_add);
+			if($xuatkho_off){
+				foreach ($xuatkho_off as $xko) {};
+				$id_xuatkho = $xko->id_xuatkho;
+				if(isset($_SESSION['cart_off']) && count($_SESSION['cart_off']) > 0){
+					foreach ($_SESSION['cart_off'] as $key => $value) {
+						$data_add_ct = array(
+							'id_xuatkho' => $id_xuatkho,
+							'img' =>$value['img'],
+							'sanpham' => $value['tensanpham'],
+							'soluong' => $value['soluong'],
+							'gia' => $value['giaban'],
+							'thanhtien' => $value['soluong'] * $value['giaban'],
+							);
+            $product = $this->Admin_models->get_single ($value['id']);
+            foreach ($product as $prd) {};
+            $new_number = $prd->number - $value['soluong'];
+            $new_number_kho = $prd->number_kho - $value['soluong'];
+            $update_number = array(
+              'number' => $new_number,
+              'number_kho' => $new_number_kho,
+              );
+            $this->Admin_models->edit($value['id'],$update_number);
+						$this->Kho_models->add_detail($data_add_ct);
+					}
+				}	
+			}
 		}
-       	redirect('xuatkho');
+		unset($_SESSION['cart_off']);
+       	redirect('admin/view_phieuxuat/'.$id_xuatkho);
         
 	}
 }

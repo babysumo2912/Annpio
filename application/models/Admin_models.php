@@ -180,6 +180,7 @@ class admin_models extends CI_model{
         return true;
     }   
     public function hoadonnhap(){
+        $this->db->Order_by('id_nhapkho','DESC');
         $query = $this->db->get('tb_nhapkho');
         if($query->num_rows() > 0){
             return $query->result();
@@ -214,10 +215,72 @@ class admin_models extends CI_model{
         }else return false;   
     }
     public function hoadonxuat(){
+        $this->db->Order_by('id_xuatkho','DESC');
         $query = $this->db->get('tb_xuatkho');
         if($query->num_rows() > 0){
             return $query->result();
         }else return false;
     }
+    public function top_nhvien(){
+        $this->db->group_by('id_admin');
+        $this->db->where('trangthai','Don offline');
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function list_hdnv($id_admin){
+        $this->db->where('id_admin',$id_admin);
+        $this->db->where('trangthai','Don offline');
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    public function thongke_nv($day_begin,$day_end){
+        $this->db->group_by('id_admin');
+        $this->db->where('trangthai','Don offline');
+        $this->db->where('ngaythang>=',$day_begin);
+        $this->db->where('ngaythang<=',$day_end);
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function thongke_hd($day_begin,$day_end){
+        $this->db->where('date>=',$day_begin);
+        $this->db->where('date<=',$day_end);
+        $query = $this->db->get('tb_hoadon');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    public function thongke_xk($day_begin,$day_end){
+        $this->db->where('ngaythang>=',$day_begin);
+        $this->db->where('ngaythang<=',$day_end);
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;   
+    }
+    // public function thongke_nk($day_begin,$day_end){
+    //     $this->db->where('ngaythang>=',$day_begin);
+    //     $this->db->where('ngaythang<=',$day_end);
+    //     $query = $this->db->get('tb_nhapkho');
+    //     if($query->num_rows() > 0){
+    //         return $query->result();
+    //     }else return false;   
+    // }
+    public function list_hdnv_date($day_begin,$day_end,$id_admin){
+        $this->db->where('id_admin',$id_admin);
+        $this->db->where('trangthai','Don offline');
+        $this->db->where('ngaythang>=',$day_begin);
+        $this->db->where('ngaythang<=',$day_end);
+        $query = $this->db->get('tb_xuatkho');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    
 }
 ?>

@@ -249,13 +249,13 @@ echo form_open('xuatkho/xuatkho_off')
     			<td></td>
     		</tr>
     		<?php 
+    		$money = 0;
     		if(isset($cart_offline)){
     			// echo '<pre>';
     			// var_dump($cart_offline);
     			// echo '<pre>';
     			// die();
     			$i = 0;
-    			$money = 0;
     			foreach ($cart_offline as $key => $value) {
     				$money+=($value['giaban'] * $value['soluong']);
     				$i ++;
@@ -288,9 +288,10 @@ echo form_open('xuatkho/xuatkho_off')
     		 		<td colspan="4">
     		 			<p style="float: right">Thanh toán: </p>
     		 		</td>
-    		 		<td colspan="2">
+    		 		<td>
     		 			<p class="text-center"><?php echo number_format($money); ?></p>
     		 		</td>
+    		 		<td></td>
     		 	</tr>
     	</table>
     	<div class="text-center">
