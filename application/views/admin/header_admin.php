@@ -71,7 +71,7 @@ if(!isset($count_mess)){
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-cubes"></i> Kho <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url()?>admin/nhapkho">Nhập kho</a></li>
-            <li><a href="#">Xuất kho</a></li>
+            <li><a href="<?php echo base_url() ?>xuatkho">Xuất kho</a></li>
             <li><a href="<?php echo base_url() ?>admin/kho">Tồn kho</a></li>
             <!--            <li role="separator" class="divider"></li>-->
             <!--            <li><a href="#">Separated link</a></li>-->

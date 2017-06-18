@@ -18,7 +18,7 @@
     // public function delete($id){
     //     $login = $this->session->userdata('login');
     //     if(!isset($login) || $login != "admin"){
-    //         redirect('home');
+    //         redirect ('home');
     //         die();
     //     }
     //     $this->Admin_models->delete_user($id);

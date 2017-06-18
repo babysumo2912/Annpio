@@ -34,33 +34,34 @@ class product extends CI_Controller{
         $pass = md5($this->input->post('password'));
         if(isset($email) && isset($pass)){
             $check['user'] = $this->User_models->login($email,$pass);
-        if($check['user'] == false){
-            $mess="Bạn phải đăng nhập để thực hiện chức năng này!";
-            $data['mess']=$mess;
-            $data['id'] = $id;
-            $this->load->view('product_login',$data);
-        }else{
-            foreach($check['user'] as   $item){
-                $name = $item->name;
-                $phone = $item->phone;
-                $address = $item->address;
-            }
-            $data['phone'] = $phone;
-            $data['address'] = $address;
-            $session_login = array(
-                'login' => $email ,
-                'name' => $name
-            );
-            $this->session->set_userdata($session_login);
-            if($id == 0){
-                redirect('product');
+            if($check['user'] == false){
+                $mess="Tài khoản hoặc mật khẩu không chính xác!";
+                $data['mess']=$mess;
+                $data['id'] = $id;
+                $this->load->view('product_login',$data);
             }else{
-                redirect('product/view/'.$id);
-            }
-            
+                foreach($check['user'] as   $item){
+                    $name = $item->name;
+                    $phone = $item->phone;
+                    $address = $item->address;
+                }
+                $data['phone'] = $phone;
+                $data['address'] = $address;
+                $session_login = array(
+                    'login' => $email ,
+                    'name' => $name
+                );
+                $this->session->set_userdata($session_login);
+                if($id == 0){
+                    redirect('product');
+                }else{
+                    redirect('product/view/'.$id);
+                }
+                
             }   
         }else{
-            $this->load->view('login');
+            $data['id'] = $id;
+            $this->load->view('product_login',$data);
         }
     }
     public function buy($id)
@@ -68,10 +69,7 @@ class product extends CI_Controller{
         $this->load->library("cart");
         $login = $this->session->userdata('login');
         if(!isset($login)){
-            $data['mess'] = "Bạn phải đăng nhập để thực hiện chức năng này";
-            $data['id'] = $id;
-            $this->load->view('product_login',$data);
-            die();
+           redirect('product/login/'.$id);
         }
         $count = $this->session->userdata('count');
         if($count <= 0){

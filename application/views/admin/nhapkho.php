@@ -198,7 +198,7 @@
 <section class = "border padding20 hdadmin">
 <?php
 //    echo form_open();
-//
+// 
 //    ?>
     <div class = "text-center title-phieu">
         <span>Phiếu Nhập Kho</span>
