@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2017 at 12:52 AM
+-- Generation Time: Jun 25, 2017 at 09:47 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -62,8 +62,8 @@ CREATE TABLE `tb_catalog` (
 --
 
 INSERT INTO `tb_catalog` (`id`, `madanhmuc`, `name`) VALUES
-(7, 'A', 'Áo'),
-(8, 'Q', 'Quần'),
+(7, 'AO', 'Áo'),
+(8, 'QU', 'Quần'),
 (9, 'VD', 'Váy Đầm'),
 (10, 'PK', 'Phụ Kiện'),
 (11, 'TX', 'Túi Xách');
@@ -91,11 +91,10 @@ CREATE TABLE `tb_chitietnhap` (
 --
 
 INSERT INTO `tb_chitietnhap` (`id_chitietnhap`, `id_nhapkho`, `tensanpham`, `anhsanpham`, `gianhap`, `giaban`, `soluong`, `danhmuc`, `size`) VALUES
-(1, 1, 'Tu  Tho', 'botcaogot.jpg', '1000', '10000000', 30, 'A', 'M'),
-(2, 1, 'Giuong ngu', 'aokhoac1.jpg', '1', '20000000', 30, 'A', 'M'),
-(3, 1, 'Tu ao', 'sandal.jpg', '1', '15000000', 30, 'A', 'M'),
-(4, 2, 'Túi bucket', 'image1xxl11.jpg', '500000', '1100000', 1, 'TX', 'Free Size'),
-(5, 2, 'Túi dáng cổ điển Asos', 'image1xxl--43-1.jpg', '650000', '1120000', 1, 'TX', 'Free Size');
+(7, 4, 'Váy', 'image1xxl--12-1.jpg', '500000', '1000000', 10, 'VD', 'M'),
+(8, 4, 'Váy', 'image1xxl--12-2.jpg', '500000', '1000000', 3, 'VD', 'S'),
+(9, 4, 'Váy', 'image1xxl--12-3.jpg', '500000', '1000000', 5, 'VD', 'L'),
+(10, 4, 'Váy', 'image1xxl--12-4.jpg', '500000', '1000000', 7, 'VD', 'XL');
 
 -- --------------------------------------------------------
 
@@ -108,6 +107,7 @@ CREATE TABLE `tb_chitietxuat` (
   `id_xuatkho` int(11) NOT NULL,
   `img` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `sanpham` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `size` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `soluong` int(11) NOT NULL,
   `gia` int(11) NOT NULL,
   `thanhtien` int(11) NOT NULL
@@ -117,46 +117,8 @@ CREATE TABLE `tb_chitietxuat` (
 -- Dumping data for table `tb_chitietxuat`
 --
 
-INSERT INTO `tb_chitietxuat` (`id_chitietxuat`, `id_xuatkho`, `img`, `sanpham`, `soluong`, `gia`, `thanhtien`) VALUES
-(43, 12, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(44, 12, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(45, 12, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(46, 13, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(47, 13, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(48, 13, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(49, 14, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(50, 14, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(51, 14, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(52, 15, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(53, 15, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(54, 15, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(55, 16, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(56, 16, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(57, 16, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(58, 17, 'botcaogot.jpg', 'Tu  Tho', 2, 10000000, 20000000),
-(59, 17, 'aokhoac1.jpg', 'Giuong ngu', 1, 20000000, 20000000),
-(60, 17, 'sandal.jpg', 'Tu ao', 2, 15000000, 30000000),
-(61, 18, 'botcaogot.jpg', 'Tu  Tho', 2, 10000000, 20000000),
-(62, 18, 'aokhoac1.jpg', 'Giuong ngu', 1, 20000000, 20000000),
-(63, 18, 'sandal.jpg', 'Tu ao', 2, 15000000, 30000000),
-(64, 19, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 2, 1120000, 2240000),
-(65, 19, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1, 1300000, 1300000),
-(66, 20, 'image1xxl--43-1.jpg', 'Tui co dien Asos', 2, 1120000, 2240000),
-(67, 20, 'image1xxl--12-1.jpg', 'Quan vay Asos', 1, 1300000, 1300000),
-(68, 21, 'image1xxl--14-.jpg', 'Quần Short', 5, 750000, 3750000),
-(69, 21, 'image1xxl--49-.jpg', 'Túi đeo chéo Mango', 7, 990000, 6930000),
-(70, 22, 'image4xxl--10-.jpg', 'Quần Jean', 5, 700000, 3500000),
-(71, 22, 'image1xxl11.jpg', 'Túi bucket', 3, 1100000, 3300000),
-(72, 23, 'image4xxl--10-.jpg', 'Quần Jean', 5, 700000, 3500000),
-(73, 23, 'image1xxl11.jpg', 'Túi bucket', 3, 1100000, 3300000),
-(74, 23, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 2, 1120000, 2240000),
-(75, 24, 'image4xxl--10-.jpg', 'Quần Jean', 5, 700000, 3500000),
-(76, 24, 'image1xxl11.jpg', 'Túi bucket', 3, 1100000, 3300000),
-(77, 24, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 2, 1120000, 2240000),
-(78, 25, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(79, 25, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 1, 1120000, 1120000),
-(80, 28, 'image1xxl11.jpg', 'Túi bucket', 10, 1100000, 11000000),
-(81, 28, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 5, 1120000, 5600000);
+INSERT INTO `tb_chitietxuat` (`id_chitietxuat`, `id_xuatkho`, `img`, `sanpham`, `size`, `soluong`, `gia`, `thanhtien`) VALUES
+(1, 1, 'image1xxl--12-1.jpg', 'Váy', 'M', 1, 1000000, 1000000);
 
 -- --------------------------------------------------------
 
@@ -172,24 +134,10 @@ CREATE TABLE `tb_chitiet_hoadon` (
   `name` varchar(50) NOT NULL,
   `qty` int(11) NOT NULL,
   `price` bigint(20) NOT NULL,
-  `subtotal` bigint(20) NOT NULL
+  `subtotal` bigint(20) NOT NULL,
+  `size` varchar(15) NOT NULL,
+  `madanhmuc` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_chitiet_hoadon`
---
-
-INSERT INTO `tb_chitiet_hoadon` (`id`, `id_product`, `mahoadon`, `img`, `name`, `qty`, `price`, `subtotal`) VALUES
-(17, 41, 10, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(18, 43, 10, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 3, 1300000, 3900000),
-(19, 48, 10, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1, 1190000, 1190000),
-(20, 49, 11, 'botcaogot.jpg', 'Tu  Tho', 2, 10000000, 20000000),
-(21, 50, 11, 'aokhoac1.jpg', 'Giuong ngu', 1, 20000000, 20000000),
-(22, 51, 11, 'sandal.jpg', 'Tu ao', 2, 15000000, 30000000),
-(23, 42, 12, 'image1xxl--43-1.jpg', 'Tui dang co dien Asos', 2, 1120000, 2240000),
-(24, 43, 12, 'image1xxl--12-1.jpg', 'Quan vay Asos', 1, 1300000, 1300000),
-(25, 41, 13, 'image1xxl11.jpg', 'Túi bucket', 1, 1100000, 1100000),
-(26, 42, 13, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 1, 1120000, 1120000);
 
 -- --------------------------------------------------------
 
@@ -211,16 +159,6 @@ CREATE TABLE `tb_hoadon` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tb_hoadon`
---
-
-INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `money`, `ship`, `ghichu`, `date`, `active`) VALUES
-(10, 'babysumo2912@gmail.com', 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 40000, '', '2017-06-12 22:06:22', 1),
-(11, 'dachuy@gmail.com', 'Nguyen Dac Huy', '0966599493', 'Xa Van Ha, Huyen Dong Anh', 'Ha Noi', 70000000, 40000, 'Liên hệ trước khi giao hàng', '2017-06-14 07:33:01', 1),
-(12, 'lananh@gmail.com', 'Lai Thi Lan Anh', '0972940495', 'Co Nhue Tu Liem', 'Ha Noi', 3540000, 40000, '', '2017-06-15 11:47:09', 1),
-(13, 'lananh@gmail.com', 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'Hà Nội', 2220000, 40000, '', '2017-06-18 18:00:28', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -235,14 +173,6 @@ CREATE TABLE `tb_message` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_message`
---
-
-INSERT INTO `tb_message` (`id`, `name`, `email`, `content`, `date`, `active`) VALUES
-(8, 'Ngoc Duc', 'abc@gmail.com', 'ABC', '2016-12-25 07:56:23', 1),
-(9, 'Lai Lan Anh', 'lananh@gmail.com', 'Shop có đợt giảm giá không ạ', '2017-05-30 08:35:41', 0);
 
 -- --------------------------------------------------------
 
@@ -263,8 +193,7 @@ CREATE TABLE `tb_nhapkho` (
 --
 
 INSERT INTO `tb_nhapkho` (`id_nhapkho`, `id_admin`, `money`, `number`, `date`) VALUES
-(1, 1, 30060, 90, '2017-06-14 07:29:59'),
-(2, 1, 1150000, 2, '2017-06-18 18:06:46');
+(4, 1, 12500000, 25, '2017-06-25 02:00:51');
 
 -- --------------------------------------------------------
 
@@ -289,14 +218,10 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, `number_kho`, `madanhmuc`, `size`) VALUES
-(41, 'image1xxl11.jpg', 'Túi bucket', 1100000, 500000, 20, 20, 'TX', 'Free Size'),
-(42, 'image1xxl--43-1.jpg', 'Túi dáng cổ điển Asos', 1120000, 650000, 5, 5, 'TX', 'Free Size'),
-(43, 'image1xxl--12-1.jpg', 'Quần váy rủ Asos', 1300000, 650000, 2, 8, 'TX', 'Free Size'),
-(44, 'image1xxl--14-.jpg', 'Quần Short', 750000, 500000, 10, 10, 'Q', 'L'),
-(45, 'image4xxl--10-.jpg', 'Quần Jean', 700000, 300000, 7, 7, 'Q', 'XL'),
-(46, 'image1xxl-1--c6eac49d-8358-44bc-a768-70d3a4da85aa.jpg', 'Đầm maxi pha ren', 2190000, 700000, 1, 3, 'VD', 'L'),
-(47, 'image1xxl--49-.jpg', 'Túi đeo chéo Mango', 990000, 650000, 27, 30, 'TX', 'Free Size'),
-(48, 'image1xxl--2-.jpg', 'Đầm maxi trễ vai', 1190000, 400000, 5, 6, 'VD', 'XL');
+(49, 'image1xxl--12-1.jpg', 'Váy', 1000000, 500000, 10, 10, 'VD', 'M'),
+(50, 'image1xxl--12-2.jpg', 'Váy', 1000000, 500000, 3, 3, 'VD', 'S'),
+(51, 'image1xxl--12-3.jpg', 'Váy', 1000000, 500000, 4, 4, 'VD', 'L'),
+(52, 'image1xxl--12-4.jpg', 'Váy', 1000000, 500000, 7, 7, 'VD', 'XL');
 
 -- --------------------------------------------------------
 
@@ -318,8 +243,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `email`, `password`, `phone`, `address`) VALUES
-(5, 'Lại Thị Lan Anh', '1221050146@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', ''),
-(6, 'Lai Lan Anh', 'lananh@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', '');
+(8, 'Lai Thi Lan Anh', 'lananh@gmail.com', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', '');
 
 -- --------------------------------------------------------
 
@@ -345,23 +269,7 @@ CREATE TABLE `tb_xuatkho` (
 --
 
 INSERT INTO `tb_xuatkho` (`id_xuatkho`, `id_admin`, `tenkh`, `sdt`, `diachi`, `thanhpho`, `thanhtoan`, `soluong`, `ngaythang`, `trangthai`) VALUES
-(12, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Hà Nội', 6190000, 5, '2017-06-12 18:42:35', 'Đơn online10'),
-(13, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:06:22', 'Đơn online10'),
-(14, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:15:04', 'Đơn online10'),
-(15, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:18:25', 'Đơn online10'),
-(16, 1, 'Lai Lan Anh', '0438827017', 'Co Nhue', 'Ha Noi', 6190000, 5, '2017-06-12 22:19:38', 'Đơn online10'),
-(17, 1, 'Nguyen Dac Huy', '0966599493', 'Xa Van Ha, Huyen Dong Anh', 'Hà Nội', 70000000, 5, '2017-06-14 07:32:18', 'Đơn online11'),
-(18, 1, 'Nguyen Dac Huy', '0966599493', 'Xa Van Ha, Huyen Dong Anh', 'Ha Noi', 70000000, 5, '2017-06-14 07:33:09', 'Đơn online11'),
-(19, 1, 'Lại Thị Lan Anh', '0972940495', 'Co Nhue Tu Liem', 'Hà Nội', 3540000, 3, '2017-06-15 11:45:56', 'Đơn online12'),
-(20, 1, 'Lai Thi Lan Anh', '0972940495', 'Co Nhue Tu Liem', 'Ha Noi', 3540000, 3, '2017-06-15 11:47:14', 'Đơn online12'),
-(21, 1, 'Nguyen Dac Huy 123', '09999999999', 'Ha Dong - Dong Anh', 'Ha Noi', 10680000, 12, '2017-06-18 16:11:19', ''),
-(22, 1, 'Nguyen Dac Huy 123456', '08888888888', 'Ha Dong - Dong Anh', 'Ha Noi', 6800000, 8, '2017-06-18 16:14:18', ''),
-(23, 13, 'huy1111', '0123456789', 'Cau Ham Rong', 'Da Nang', 9040000, 10, '2017-06-18 20:32:20', 'Don offline'),
-(24, 1, 'huy1111', '0123456789', 'Cau Ham Rong', 'Da Nang', 9040000, 10, '2017-06-18 16:37:59', 'Don offline'),
-(25, 1, 'Tran Ngoc Duc', '0972940495', 'Co Nhue Tu Liem', 'Hà Nội', 2220000, 2, '2017-06-18 18:00:28', 'Đơn online13'),
-(26, 1, 'Nguyen Dac Huy 1', '0777777777', 'Co Nhue Tu Liem', 'Ha Noi', 16600000, 15, '2017-05-31 18:15:53', 'Don offline'),
-(27, 9, 'Nguyen Dac Huy 1', '0777777777', 'Co Nhue Tu Liem', 'Ha Noi', 16600000, 15, '2017-06-09 20:20:59', 'Don offline'),
-(28, 8, 'Nguyen Dac Huy 1', '0777777777', 'Co Nhue Tu Liem', 'Ha Noi', 16600000, 15, '2017-06-08 20:32:04', 'Don offline');
+(1, 1, 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 1000000, 1, '2017-06-25 07:29:46', 'Đơn online17');
 
 --
 -- Indexes for dumped tables
@@ -451,47 +359,47 @@ ALTER TABLE `tb_catalog`
 -- AUTO_INCREMENT for table `tb_chitietnhap`
 --
 ALTER TABLE `tb_chitietnhap`
-  MODIFY `id_chitietnhap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_chitietnhap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_chitietxuat`
 --
 ALTER TABLE `tb_chitietxuat`
-  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
 ALTER TABLE `tb_chitiet_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_hoadon`
 --
 ALTER TABLE `tb_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_message`
 --
 ALTER TABLE `tb_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_nhapkho`
 --
 ALTER TABLE `tb_nhapkho`
-  MODIFY `id_nhapkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nhapkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_xuatkho`
 --
 ALTER TABLE `tb_xuatkho`
-  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

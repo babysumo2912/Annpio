@@ -67,7 +67,7 @@ include'header_admin.php';
                                         <sup class="badge"><?php echo $row->qty?></sup>
                                     </td>
                                     <td>
-                                        <?php echo $row->name?>
+                                        <?php echo $row->name?> - <?php echo $row->size ?>
                                     </td>
                                     <td  class="text-right">
                                         <?php echo number_format($row->subtotal)?>
@@ -105,12 +105,21 @@ include'header_admin.php';
     </div>
 </div>
 <?php
+}else{
+?>
+<?php 
+if(isset($err)){
+    ?>
+    <div class="alert alert-danger">
+        <p><i class="fa fa-warning"></i> <?php echo $err ?></p>
+    </div>
+    <?php
 }
-if(isset($oder)) {
+
 ?>
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
+        <th>Mã đơn hàng</th>
         <th>Ngày mua</th>
         <th>Tên Khách Hàng</th>
         <th>Số Điện Thoại</th>
@@ -118,6 +127,10 @@ if(isset($oder)) {
         <th>Ghi Chú</th>
         <th><a href="<?php echo base_url()?>old_oder" class="btn btn-success form-control">Hóa đơn đã giao</a></th>
     </tr>
+<?php
+if(isset($oder)) {
+?>
+
     <?php
     foreach ($oder as $item) {
         ?>
@@ -133,16 +146,30 @@ if(isset($oder)) {
                    class="btn btn-primary edit" title="Xem chi tiết">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
-                <a href="<?php echo base_url()?>hoadon/delete/<?php echo $item->id?>" class="btn btn-danger delete" title="Hủy hóa đơn">
+                <a href="<?php echo base_url()?>hoadon/delete/<?php echo $item->id?>" class="btn btn-danger delete" title="Hủy hóa đơn" onclick="return confirm('Xóa hóa đơn sẽ giảm uy tín của cửa hàng, bạn có chắc chắn muốn xóa hóa đơn không?')">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </td>
         </tr>
         <?php
     }
+    }else{
+    ?>
+    <tr>
+        <td colspan="7">
+            <div class="row centerpro">
+                <div class="text-center">
+                    <img src="<?php echo base_url()?>public/img/nocart.png" alt="matmeu"><br><br>
+                    <p>Hiện tại bạn không có đơn hàng nào.</p><br>
+                </div>
+            </div>   
+        </td>
+    </tr>
+    <?php
     }
     ?>
 </table>
+<?php } ?>
 <div class="col-sm-12 text-center">
     <ul class="pagination">
         <?php

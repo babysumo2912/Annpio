@@ -12,6 +12,7 @@ class product extends CI_Controller{
         $data['fullpage'] = ceil($numrow/$n);
         $this->db->where('number>','0');
     	$this->db->limit($n);
+        $this->db->group_by('name');
     	$query = $this->db->get('tb_product');
     	$data['product'] = $query->result();
         $this->load->view('product',$data);
@@ -25,6 +26,7 @@ class product extends CI_Controller{
         $data['fullpage'] = ceil($numrow/$n);
         $this->db->where('number>','0');
         $this->db->limit($n,$start);
+        $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['product'] = $query->result();
         $this->load->view('product',$data);
@@ -89,13 +91,17 @@ class product extends CI_Controller{
         $name = $item->name;
         $price =$item->price;
         $max = $item->number;
+        $size = $item->size;
+        $catalog = $item->madanhmuc;
         $cart = array(
             'id' => $id,
             'name' => $name,
             'price' => $price,
             'qty' => 1,
             'img' => $img,
-            'max' => $max
+            'max' => $max,
+            'size' => $size,
+            'madanhmuc' => $catalog,
         );
         if($this->cart->insert($cart)){
             $count ++;
@@ -108,11 +114,29 @@ class product extends CI_Controller{
     }
     public function view($id_product){
         $data = array();
+        // echo $id_product;die();
         $product = $this->User_models->view_product($id_product);
         if($product){
             $data['product'] = $product;
+            $size = $this->User_models->get_size($id_product);
+            // var_dump($size); die();
+            if($size){
+                $data['size'] = $size;
+            }
         }else $data['err'] = "Không tìm thấy sản phẩm phù hợp!";
         $this->load->view('view_product',$data);
+    }
+    public function get_size(){
+        $id = $this->input->post('id');
+        // echo json_encode($id);
+        $product = $this->User_models->view_product($id);
+        if($product){
+            $html = '';
+            foreach($product as $prd){
+                $html.='<input type="number" name="number" value="1" min="0" max="'.$prd->number.'" class="form-control">';
+            }
+            echo json_encode($html);
+        }
     }
 
 }

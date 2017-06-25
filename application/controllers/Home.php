@@ -8,6 +8,7 @@ class home extends CI_Controller{
         $this->db->order_by('id','DESC');
         $this->db->limit('8');
         $this->db->where('number>','0');
+        $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['newproduct'] = $query->result();
         $this->load->view('home',$data);
@@ -77,10 +78,11 @@ class home extends CI_Controller{
             die();
         }
         $soluongmua = $this->input->post('number');
+        $id_sanpham = $this->input->post('size');
         if(isset($soluongmua)){
             $soluong = $soluongmua;
         }else $soluong = 1;
-        $this->db->where('id=',$id);
+        $this->db->where('id=',$id_sanpham);
         $query_product = $this->db->get('tb_product');
         $product = $query_product->result();
         foreach($product as $item){};
@@ -88,13 +90,17 @@ class home extends CI_Controller{
         $price = $item->price;
         $img = $item->img;
         $number = $item->number;
+        $size = $item->size;
+        $catalog = $item->madanhmuc;
         $cart = array(
-            'id' => $id,
+            'id' => $id_sanpham,
             'name' => $name,
             'price' => $price,
             'qty' => $soluong,
             'img' => $img,
             'max' => $number,
+            'size' => $size,
+            'madanhmuc' => $catalog,
         );
         if($this->cart->insert($cart)){
             $count +=$soluong;

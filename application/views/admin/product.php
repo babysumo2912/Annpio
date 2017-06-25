@@ -69,13 +69,14 @@ include'header_admin.php'
     if(isset($product)){
     ?>
     <div class="col-md-12">
-        <table class="table table-hover tb_product">
+        <table class="table table-hover tb_product table-bordered">
             <h3><b>Danh sách sản phẩm</b></h3>
             <tr>
                 <th>Mã sản phẩm</th>
 <!--                <th>Ngày đăng</th>-->
                 <th>Ảnh</th>
                 <th>Tên</th>
+                <th>Size</th>
                 <th>Giá nhập <sup>VND</sup></th>
                 <th>Giá bán <sup>VND</sup></th>
                 <th>Số lượng có thể bán</th>
@@ -93,6 +94,7 @@ include'header_admin.php'
                         <img src="<?php echo base_url()?>public/img/product/<?php echo $item->img?>" alt="<?php echo $item->name?>">
                     </td>
                     <td><?php echo $item->name;?></td>
+                    <td><?php echo $item->size ?></td>
                     <td><?php echo number_format($item->price_nhap);?></td>
                     <td><?php echo number_format($item->price);?></td>
                     <td><?php echo $item->number?></td>

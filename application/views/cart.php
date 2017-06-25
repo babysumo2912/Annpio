@@ -243,7 +243,7 @@ $money = $this->session->userdata('money');
             <th><?php  echo $i++; ?></th>
             <th><img src="<?php echo base_url() ?>public/img/product/<?php echo $row['img'] ?>"
                      alt="<?php echo $row['name'] ?>"></th>
-            <td><?php echo $row['name'] ?></td>
+            <td><?php echo $row['name'] ?> - <?php echo $row['size'] ?></td>
             <td>
                 <?php
                 $data = array(

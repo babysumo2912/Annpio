@@ -158,6 +158,7 @@ class xuatkho extends CI_Controller
 		        				'soluong' => $item->qty,
 		        				'gia' => $item->price,
 		        				'thanhtien' => $item->subtotal,
+                    'size' => $item->size,
 		        				);
 		        			$product = $this->Admin_models->get_single($item->id_product);
 		        			foreach ($product as $prd) {};

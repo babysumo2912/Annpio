@@ -61,10 +61,30 @@ class User_models extends CI_Model
         }else return false;
     }
     public function view_product($id_product){
+        // return $id_product;die();
         $this->db->where('id',$id_product);
         $query = $this->db->get('tb_product');
         if($query->num_rows() > 0){
             return $query->result();
+            // $product = $query->result();
+            // foreach($product as $prd){
+            //     $name = $prd->name;
+            // }
+            // $this->db->where('name',$);
+        }else return false;
+    }
+    public function get_size($id_product){
+        // return $id_product;die();
+        $this->db->where('id',$id_product);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            $product = $query->result();
+            foreach($product as $prd){
+                $name = $prd->name;
+            }
+            $this->db->where('name',$name);
+            $size = $this->db->get('tb_product');
+            return $size->result();
         }else return false;
     }
 }

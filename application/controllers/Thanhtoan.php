@@ -54,6 +54,8 @@ class Thanhtoan extends CI_Controller {
                     $qty = $item['qty'];
                     $price = $item['price'];
                     $moneypro = $item['subtotal'];
+                    $size = $item['size'];
+                    $madanhmuc = $item['madanhmuc'];
                     $data_product = array(
                         'mahoadon' => $mahoadon,
                         'id_product' => $id_product,
@@ -62,6 +64,8 @@ class Thanhtoan extends CI_Controller {
                         'qty' => $qty,
                         'price' => $price,
                         'subtotal' => $moneypro,
+                        'size' => $size,
+                        'madanhmuc'=>$madanhmuc,
                     );
                     $this->User_models->set_order($data_product);
                     $id = $item['id'];

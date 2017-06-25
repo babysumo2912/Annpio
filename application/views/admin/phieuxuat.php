@@ -71,6 +71,7 @@ if(isset($view_single)){
                 <tr>
                     <td>STT</td>
                     <td>Sản Phẩm</td>
+                    <td>Size</td>
                     <td>Giá</td>
                     <td>Số lượng</td>
                     <td>Thanh toán</td>
@@ -86,6 +87,9 @@ if(isset($view_single)){
     					<img src="<?php echo base_url()?>public/img/product/<?php echo $row->img?>" alt="" width="50px" height="50px">
                         <?php echo $row->name?>
     				</td>
+                    <td>
+                        <?php echo $row->size ?>
+                    </td>
     				<td>
     					<?php echo number_format($row->price) ?>
     				</td>
@@ -117,7 +121,7 @@ if(isset($view_single)){
         </div>
     </div>
 <?php
-//    echo form_close();
+   echo form_close();
 //
 //    ?>
 </section>

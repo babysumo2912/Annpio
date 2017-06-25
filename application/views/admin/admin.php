@@ -2,7 +2,11 @@
 <section class="max">
     <?php
     if(isset($err)){
-        echo $err;
+        ?>
+	<div class="alert alert-danger">
+		<p><i class="fa fa-warning"></i> <?php echo $err; ?></p>
+	</div>
+        <?php
     }
     ?>
 <div style="padding: 10px">

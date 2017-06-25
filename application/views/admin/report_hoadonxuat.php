@@ -109,8 +109,11 @@ $html = '
 		<td style="width: 10%">
 		STT
 		</td>
-		<td style="width: 30%">
+		<td style="width: 25%">
 		Sản phẩm
+		</td>
+		<td style="width: 10%">
+		Size
 		</td>
 		<td style="width: 20%">
 		Giá bán
@@ -136,6 +139,7 @@ $html .='
 			
             '.$value->sanpham.'
 		</td>
+		<td>'.$value->size.'</td>
 		<td>'.number_format($value->gia).'</td>
 		<td>'.$value->soluong.'</td>
 		<td>'.number_format($value->thanhtien).'</td>
@@ -146,7 +150,7 @@ $html .='
 }
 $html .= '
 	<tr style = "text-align: center; background-color: #f5f5f5">
-		<td colspan="3" style="text-align: right">Tổng cộng:</td>
+		<td colspan="4" style="text-align: right">Tổng cộng:</td>
 		<td>'.number_format($key->soluong).'</td>
 		<td>'.number_format($key->thanhtoan).'</td>
 	</tr>
