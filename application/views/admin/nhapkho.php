@@ -38,10 +38,7 @@
                     </div>
                     <div class="form-group">
                         <img src="<?php echo base_url() ?>public/img/product/<?php echo $value->img ?>" alt="" width="100px" height="100px">
-                        <?php echo $value->name?> - <?php echo $value->size?>
-                    </div>
-                    <div class="form-group">
-                        <p>Danh mục:<?php echo $getdm->name?></p>
+                        <?php echo $value->name?> - <?php echo $value->size ?>
                     </div>
                     <div class="form-group row">
                         <div class="col-xs-6">

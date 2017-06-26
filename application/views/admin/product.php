@@ -49,6 +49,22 @@ include'header_admin.php'
                     <input type="number" name="number" value="<?php echo $item->number?>" class="form-control" required>
                 </div> -->
                 <div class="form-group">
+                    <b>Size :</b>
+                    <select class="form-control" id="size" name="size">
+                    <?php 
+                    if(isset($size)){
+                        foreach($size as $sz){
+                    ?>
+                    <option value="<?php echo $sz->id?>"><?php echo $sz->size ?></option>
+                    <?php
+                        }
+                    }
+
+                    ?>
+                        <!-- <option></option> -->
+                    </select>
+                </div>
+                <div class="form-group">
                     <b>Catalog:</b>
                      <?php
                         $danhmuc = $this->Home_models->getinfo('tb_catalog','madanhmuc',$item->madanhmuc);
@@ -67,6 +83,7 @@ include'header_admin.php'
     ?>
     <?php
     if(isset($product)){
+
     ?>
     <div class="col-md-12">
         <table class="table table-hover tb_product table-bordered">

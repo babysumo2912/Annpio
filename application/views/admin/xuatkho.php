@@ -119,7 +119,7 @@ include'header_admin.php';
             </div>
             <div class="form-group">
                 <img src="<?php echo base_url() ?>public/img/product/<?php echo $value->img ?>" alt="" width="100px" height="100px">
-                <?php echo $value->name?> - <?php echo $value->size?>
+                <?php echo $value->name?>
             </div>
             <div class="form-group row">
                 <div class="col-xs-6">
@@ -127,6 +127,26 @@ include'header_admin.php';
                 </div>
                 <div class="col-xs-6">
                     <?php echo $getdm->name?>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-6">
+                   Size:
+                </div>
+                <div class="col-xs-6">
+                    <select class="form-control" id="size" name="size">
+                    <?php 
+                    if(isset($size)){
+                        foreach($size as $sz){
+                    ?>
+                    <option value="<?php echo $sz->id?>"><?php echo $sz->size ?></option>
+                    <?php
+                        }
+                    }
+
+                    ?>
+                        <!-- <option></option> -->
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -141,8 +161,8 @@ include'header_admin.php';
                 <div class="col-xs-6">
                     Số lượng: 
                 </div>
-                <div class="col-xs-6">
-                    <input type="number" min="1" class="form-control" name="soluong" placeholder="Số lượng ..." required>
+                <div class="col-xs-6" id="soluong">
+                    <input type="number" name="number" value="1" min="0" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -243,6 +263,7 @@ echo form_open('xuatkho/xuatkho_off')
     		<tr>
     			<td>STT</td>
     			<td>Sản phẩm</td>
+                <td>Size</td>
     			<td>Giá bán</td>
     			<td>Số lượng</td>
     			<td>Thành tiền</td>
@@ -266,6 +287,7 @@ echo form_open('xuatkho/xuatkho_off')
 					<img src="<?php echo base_url()?>public/img/product/<?php echo $value['img']?>" alt="" width="50px" height="50px" style="float: left">
                 	<?php echo $value['tensanpham']?>
 				</td>
+                <td><?php echo $value['size'] ?></td>
 				<td>
 					<?php echo number_format($value['giaban']) ?>
 				</td>
@@ -307,3 +329,23 @@ echo form_open('xuatkho/xuatkho_off')
 include'footer.php';
 
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#size').on('change',function(){
+            var id = $(this).val();
+            // alert($id);
+            $.ajax({
+                url:"<?php echo base_url() ?>product/get_size",
+                type: "POST",
+                data: {'id' : id},
+                dataType: 'json',
+                success: function(data){
+                   $('#soluong').html(data);
+                },
+                error: function(){
+                    alert('Error occur...!!');
+                }
+            });
+        });
+    });
+</script>

@@ -37,23 +37,28 @@ class admin_models extends CI_model{
             return $infomation->result();
         }else return false;
     }
-    public function delete_product($id){
-        $this->db->where('id',$id);
-        $query = $this->db->get('tb_product');
-        if(isset($query)){
-            foreach ($query->result() as $item){}
-            unlink('public/img/product/'.$item->img);
-            $this->db->where('id',$id);
-            $this->db->delete('tb_product');
-        }
+    public function delete_product($name){
+        $this->db->where('name',$name);
+        $query = $this->db->delete('tb_product');
+        if($query){
+            return true;
+        }else return false;
+        // if(isset($query)){
+        //     foreach ($query->result() as $item){}
+        //     unlink('public/img/product/'.$item->img);
+        //     $this->db->where('name',$name);
+        //     $this->db->delete('tb_product');
+        // }
 
 
     }
     public function get(){
+        $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         return $query->result();
     }
     public function product(){
+        $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         if($query->num_rows() > 0){
             return $query->num_rows();
@@ -72,8 +77,15 @@ class admin_models extends CI_model{
             return $query->result();
         }
     }
-    public function edit($id,$data){
-        $this->db->where('id',$id);
+    public function edit($name,$data){
+        $this->db->where('name',$name);
+        $query = $this->db->update('tb_product',$data);
+        if(isset($query)){
+            return true;
+        }else return false;
+    }
+    public function edit1($name,$data){
+        $this->db->where('id',$name);
         $query = $this->db->update('tb_product',$data);
         if(isset($query)){
             return true;
@@ -161,6 +173,17 @@ class admin_models extends CI_model{
         }else return false;
     }
     function search_sp($key){
+
+        $this->db->group_by('name');
+        $this->db->like('name',$key);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function search_sp1($key){
+
+        // $this->db->group_by('name');
         $this->db->like('name',$key);
         $query = $this->db->get('tb_product');
         if($query->num_rows() > 0){

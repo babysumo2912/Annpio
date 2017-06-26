@@ -151,6 +151,7 @@ class admin extends CI_Controller{
         if(isset($err)){
             $data['err_luu'] = $err;
         }
+
         $data['admin'] = $this->Admin_models->information($login);
         $count_hoadon = $this->Admin_models->hoadon_count();
         $count_mess = $this->Messenger_models->count();
@@ -172,11 +173,15 @@ class admin extends CI_Controller{
         if($cart){
             $data['cart'] = $cart;
         }
+        $size = $this->session->flashdata('size');
+        if(isset($size)){
+            $data['size'] = $size;
+        }
         $this->load->view('admin/nhapkho',$data);
     }
     public function searchsp(){
         $key =  $this->input->post('key');
-        $search = $this->Admin_models->search_sp($key);
+        $search = $this->Admin_models->search_sp1($key);
         if($search!=false){
             $this->session->set_flashdata('data_search',$search);
             redirect('admin/nhapkho');
@@ -291,12 +296,18 @@ class admin extends CI_Controller{
     public function luupnk(){
         $cart = $this->cart->contents();
         $data_product = $this->Admin_models->data_product();
-        // var_dump($data_product);die();
-
+        // // var_dump($cart);die();/
+        // echo $row['id'];
+        // die();
+        // foreach ($cart as $key) {
+        //     echo $key['id'];
+        // }
+        // die();
         if(count($cart) > 0){
             $number = 0;
             $money = 0;
             foreach($cart as $row){
+
                 $number += $row['qty'];
                 $money+= $row['subtotal'];
                 if($data_product == false){
@@ -317,8 +328,8 @@ class admin extends CI_Controller{
                 // var_dump($data_product);die();
                     $check = false;
                     foreach ($data_product as $item){
-
                         if($row['id'] == $item->id){
+                            // echo 1; die();
                             $product_old = $this->Admin_models->get_single($row['id']);
                             if($product_old){
                                 foreach ($product_old as $po) {}
@@ -326,14 +337,14 @@ class admin extends CI_Controller{
                                 $number_old_kho = $po->number_kho;
                                 $number_new = $number_old + $row['qty'];
                                 $number_new_kho = $number_old_kho + $row['qty'];
-                                // echo $number_old;die();
+                                // echo $number_new_kho;die();
                                 $data_edit = array(
                                     'number_kho' => $number_new_kho,
                                     'number' => $number_new,
                                     'price' => $row['price_ban'],
                                     'price_nhap' => $row['price'],
                                     );
-                                $edit = $this->Admin_models->edit($row['id'],$data_edit);
+                                $edit = $this->Admin_models->edit1($row['id'],$data_edit);
                                 $check = true;
                             }
                         }

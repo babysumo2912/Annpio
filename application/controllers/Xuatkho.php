@@ -14,6 +14,7 @@ class xuatkho extends CI_Controller
         $check = $this->session->flashdata('check');
         $cart_offline = $this->session->userdata('cart_off');
         $err_buy = $this->session->flashdata('err_buy');
+        $size = $this->session->flashdata('size');
         if(isset($err_buy)){
         	$data['err_buy'] = $err_buy;
         }
@@ -28,6 +29,9 @@ class xuatkho extends CI_Controller
         }
         if(isset($err_search)){
         	$err = $err_search;
+        }
+        if(isset($size)){
+          $data['size'] = $size;
         }
         if(isset($login)){
             if(time() - $time >= 3000000000){
@@ -52,6 +56,11 @@ class xuatkho extends CI_Controller
 	public function check_sp($id){
         $data = $this->Admin_models->get_single($id);
         if($data){
+            $size = $this->User_models->get_size($id);
+            // var_dump($size); die();
+            if($size){
+                $this->session->set_flashdata('size',$size);
+            }
             $this->session->set_flashdata('check',$data);
             redirect('xuatkho');
         }
@@ -177,17 +186,22 @@ class xuatkho extends CI_Controller
         }	
 	}
 	public function buy(){
-		$masanpham = $this->input->post('masanpham');        
-        $soluong = $this->input->post('soluong');
+		$masanpham = $this->input->post('size');
+
+        $soluong = $this->input->post('number');
+        // echo $masanpham;
+        // echo $soluong;
+        // die();
         if(isset($masanpham)&& isset($soluong)){
-        	$array_masp = explode(' ',$masanpham);
-            $data_product = $this->Admin_models->get_single($array_masp['1']);
+        	// $array_masp = explode(' ',$masanpham);
+            $data_product = $this->Admin_models->get_single($masanpham);
             if($data_product){
                 foreach($data_product as $dtp){};
                 $id = $dtp->id;
                 $tensanpham = $dtp->name;
                 $giaban = $dtp->price;
                 $img = $dtp->img;
+                $size = $dtp->size;
             }
            	$cart_array = array(
            		'id' => $id,
@@ -195,6 +209,7 @@ class xuatkho extends CI_Controller
            		'giaban' => $giaban,
            		'img' => $img,
            		'soluong' => $soluong,
+              'size' => $size,
            		);
            	if(!isset($_SESSION['cart_off']) || count($_SESSION['cart_off'])<=0){
            		$_SESSION['cart_off'][] = $cart_array;
@@ -221,7 +236,7 @@ class xuatkho extends CI_Controller
            		}
            	}
            	redirect('xuatkho');
-        }
+        }else echo "1";
 	}
 	public function delete($id){
 		foreach ($_SESSION['cart_off'] as $key => $value) {

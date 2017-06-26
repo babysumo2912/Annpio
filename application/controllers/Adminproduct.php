@@ -12,6 +12,7 @@ class Adminproduct extends CI_Controller{
             $data['fullpage'] = ceil($numrow/$n);
             $this->db->limit($n);
             $this->db->order_by('number','ASC');
+            $this->db->group_by('name');
             $query = $this->db->get('tb_product');
             $data['product'] = $query->result();
             $this->load->view('admin/product',$data);
@@ -30,6 +31,11 @@ class Adminproduct extends CI_Controller{
         $data['count_hoadon'] = $count_hoadon;
         $data['product'] = $this->Admin_models->get();
         $data['data_edit'] = $this->Admin_models->get_single($id);
+        $size = $this->User_models->get_size($id);
+            // var_dump($size); die();
+            if($size){
+                $data['size'] = $size;
+            }
         $this->load->view('admin/product',$data);
     }
     public function edit(){
@@ -63,7 +69,7 @@ class Adminproduct extends CI_Controller{
                 'name' => $name,
                 'price' => $price,
             );
-            $edit = $this->Admin_models->edit($id,$data);
+            $edit = $this->Admin_models->edit($name,$data);
             if($edit == true){
                 redirect('adminproduct');
             }else{
@@ -77,17 +83,24 @@ class Adminproduct extends CI_Controller{
         $data['count_hoadon'] = $count_hoadon;
         $n = 10;
         $start = ($page-1)*$n;
-        $sql = $this->db->get('tb_product');
-        $numrow = $sql->num_rows();
+        // $sql = $this->db->get('tb_product');
+        $numrow = $this->Admin_models->product();
         $data['fullpage'] = ceil($numrow/$n);
+        // $this->db->group_by('name');
         $this->db->order_by('number','ASC');
         $this->db->limit($n,$start);
+        $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['product'] = $query->result();
         $this->load->view('admin/product',$data);
     }
     public function delete($id){
-        $this->Admin_models->delete_product($id);
+        $product = $this->Admin_models->get_single($id);
+        if($product){
+            foreach ($product as $prd) {
+                $delete = $this->Admin_models->delete_product($prd->name);        
+            }
+        }
         redirect('Adminproduct');
     }
 }

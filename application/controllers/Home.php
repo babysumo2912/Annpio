@@ -11,6 +11,7 @@ class home extends CI_Controller{
         $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['newproduct'] = $query->result();
+        
         $this->load->view('home',$data);
     }
     public function register(){

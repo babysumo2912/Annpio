@@ -22,7 +22,7 @@ class product extends CI_Controller{
         $start = ($page-1)*$n;
         $this->db->where('number>','0');
         $sql = $this->db->get('tb_product');
-        $numrow = $sql->num_rows();
+        $numrow = $this->Admin_models->product();
         $data['fullpage'] = ceil($numrow/$n);
         $this->db->where('number>','0');
         $this->db->limit($n,$start);
