@@ -229,15 +229,7 @@ echo form_open('home/buy/'.$sp->id);
         <h1><?php echo $sp->name?></h1>
         <h2 style="color: red"><?php echo number_format($sp->price)?><sup>đ</sup></h2>
         <hr>
-        Quần váy rủ Asos phù hợp cho cả phong cách dạo phố và tiệc tối.
-<br>
-Quần có cạp cao, lớp giả váy phía trước xoắn rất cá tính.
-<br>
-Chất liệu: viscose
-<br>
-Lót trong: Không
-<br>
-Màu sắc: Đen, xám, cam
+        <?php echo $sp->mota ?>
         <hr>
         <div class="row">
             <div class="col-md-6">

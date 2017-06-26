@@ -6,12 +6,12 @@ include'header_admin.php'
     if(isset($data_edit)){
         foreach($data_edit as $item){};
         ?>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <img src="<?php echo base_url()?>/public/img/product/<?php echo $item->img?>" alt="<?php echo $item->name?>" width="350px" height="400px">
         </div>
         <?php
         $style = array(
-            'class' => 'form-group col-md-4',
+            'class' => 'form-group col-md-8',
             'entype' =>'multipart/form-data',
         );
         echo form_open('adminproduct/edit',$style);
@@ -19,6 +19,7 @@ include'header_admin.php'
         <div class="form-group">
             <fieldset>
                 <legend><b>Form Edit</b></legend>
+                <div class="col-md-6">
                 <?php
                 if(isset($err)) {
                     ?>
@@ -49,22 +50,6 @@ include'header_admin.php'
                     <input type="number" name="number" value="<?php echo $item->number?>" class="form-control" required>
                 </div> -->
                 <div class="form-group">
-                    <b>Size :</b>
-                    <select class="form-control" id="size" name="size">
-                    <?php 
-                    if(isset($size)){
-                        foreach($size as $sz){
-                    ?>
-                    <option value="<?php echo $sz->id?>"><?php echo $sz->size ?></option>
-                    <?php
-                        }
-                    }
-
-                    ?>
-                        <!-- <option></option> -->
-                    </select>
-                </div>
-                <div class="form-group">
                     <b>Catalog:</b>
                      <?php
                         $danhmuc = $this->Home_models->getinfo('tb_catalog','madanhmuc',$item->madanhmuc);
@@ -72,8 +57,15 @@ include'header_admin.php'
                         echo $key->name;
                         ?>
                 </div>
-                <div class="form-group">
+                
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" rows="10" name="mota"></textarea>
+                </div>
+                <div style="margin-top:10px">
+                    <div class="text-center">
                     <input type="submit" class="btn btn-info" value="Save">
+                </div>
                 </div>
             </fieldset>
         </div>

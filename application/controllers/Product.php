@@ -8,13 +8,17 @@ class product extends CI_Controller{
         $n = 8;
         $this->db->where('number>','0');
         $sql = $this->db->get('tb_product');
-        $numrow = $sql->num_rows();
+        $numrow = $this->Admin_models->product();
         $data['fullpage'] = ceil($numrow/$n);
         $this->db->where('number>','0');
     	$this->db->limit($n);
         $this->db->group_by('name');
     	$query = $this->db->get('tb_product');
     	$data['product'] = $query->result();
+        $danhmuc = $this->User_models->get_danhmuc();
+        if($danhmuc){
+            $data['danhmuc'] = $danhmuc;
+        }
         $this->load->view('product',$data);
     }
     public function page($page){
@@ -29,6 +33,23 @@ class product extends CI_Controller{
         $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['product'] = $query->result();
+        $danhmuc = $this->User_models->get_danhmuc();
+        if($danhmuc){
+            $data['danhmuc'] = $danhmuc;
+        }
+        $this->load->view('product',$data);
+    }
+    public function catalog($macatalog){
+        $this->db->group_by('name');
+        $this->db->where('madanhmuc',$macatalog);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            $data['product'] = $get->result();
+        }
+        $danhmuc = $this->User_models->get_danhmuc();
+        if($danhmuc){
+            $data['danhmuc'] = $danhmuc;
+        }
         $this->load->view('product',$data);
     }
     public function login($id){

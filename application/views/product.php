@@ -213,11 +213,18 @@ $count = $this->session->userdata('count');
             <div class="menuleft">
                 <p>Menu</p>
                 <ul>
-                    <li><a href="">Áo</a></li>
-                    <li><a href="">Quần</a></li>
-                    <li><a href="">Váy đầm</a></li>
-                    <li><a href="">Phụ kiện</a></li>
-                    <li><a href="">Túi xách</a></li>
+                    <?php 
+                    if($danhmuc){
+                        foreach ($danhmuc as $dm) {
+                        ?>
+                    <li>
+                        <a href="<?php echo base_url()?>product/catalog/<?php echo $dm->madanhmuc ?>"><?php echo $dm->name ?></a>
+                    </li>
+                        <?php
+                        }
+                    }
+
+                     ?>
                 </ul>
             </div>
         </div>

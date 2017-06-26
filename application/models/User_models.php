@@ -87,5 +87,11 @@ class User_models extends CI_Model
             return $size->result();
         }else return false;
     }
+    function get_danhmuc(){
+        $query = $this->db->get('tb_catalog');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
 }
 ?>

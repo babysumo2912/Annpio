@@ -75,7 +75,7 @@ class Thanhtoan extends CI_Controller {
                     $data_product_new = array(
                         'number' => $number_new,
                     );
-                    $this->Admin_models->edit($id,$data_product_new);
+                    $this->Admin_models->edit1($id,$data_product_new);
                 }
             }
             $session = array(
