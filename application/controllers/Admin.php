@@ -220,6 +220,7 @@ class admin extends CI_Controller{
             $this->session->set_flashdata('err',$err);
             redirect('admin/nhapkho');
         }
+        $product = $this->Admin_models->get_name($tensanpham);
         if(isset($masanpham)){
 //            if(isset($soluong) && isset($gianhap) && isset($giaban)){
                 $array_masp = explode(' ',$masanpham);
@@ -488,6 +489,36 @@ class admin extends CI_Controller{
                     $this->load->library('Pdf');
                     $this->load->view('admin/report_hoadonxuat',$data);
                 }
+
+                // $this->load->view('admin/view_hoadon',$data);
+            }
+        }else{
+            $this->load->view('admin/adminlogin');
+        }   
+    }
+    public function creat_pdf_thongke($day_begin,$day_end){
+        $data = array();
+        $login = $this->session->userdata('admin');
+        $time = $this->session->userdata('time');
+        // $err = $this->session->flashdata('err');
+        if(isset($login)){
+            if(time() - $time >= 3000000000){
+                redirect('admin');
+            }else{
+                // echo $day_begin;
+                // echo $day_end;
+                $hoadon = $this->Hoa_don_models->get_date($day_begin,$day_end);
+                if($hoadon){
+                    $data['hoadon'] = $hoadon;
+                }
+                $hoadon_off = $this->Hoa_don_models->get_date_off($day_begin,$day_end);
+                if($hoadon_off){
+                    $data['hoadon_off'] = $hoadon_off;
+                }
+                $data['day_begin'] = $day_begin;
+                $data['day_end'] = $day_end;
+                $this->load->library('Pdf');
+                $this->load->view('admin/report',$data);
 
                 // $this->load->view('admin/view_hoadon',$data);
             }

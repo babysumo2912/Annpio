@@ -112,5 +112,47 @@ class home extends CI_Controller{
             redirect('home');
         }
     }
+    public function buy1($id){
+        $login = $this->session->userdata('login');
+        $count = $this->session->userdata('count');
+        $this->load->library("cart");
+        if(!isset($login)){
+            redirect('product/login/'.$id);
+            die();
+        }
+        $soluongmua = $this->input->post('number');
+        // $id_sanpham = $this->input->post('size');
+        if(isset($soluongmua)){
+            $soluong = $soluongmua;
+        }else $soluong = 1;
+        $this->db->where('id=',$id);
+        $query_product = $this->db->get('tb_product');
+        $product = $query_product->result();
+        foreach($product as $item){};
+        $name = $item->name;
+        $price = $item->price;
+        $img = $item->img;
+        $number = $item->number;
+        $size = $item->size;
+        $catalog = $item->madanhmuc;
+        $cart = array(
+            'id' => $id,
+            'name' => $name,
+            'price' => $price,
+            'qty' => $soluong,
+            'img' => $img,
+            'max' => $number,
+            'size' => $size,
+            'madanhmuc' => $catalog,
+        );
+        if($this->cart->insert($cart)){
+            $count +=$soluong;
+            $session_data = array(
+                'count' => $count,
+            );
+            $this->session->set_userdata($session_data);
+            redirect('home');
+        }
+    }
 }
 ?>

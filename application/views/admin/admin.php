@@ -192,7 +192,7 @@
 	  	if($check == false){
 	  		?>
 	  		<div class="text-center">
-	  		<a href="<?php echo base_url() ?>admin" class="btn btn-info"><i class="fa fa-check"></i> OK</a>
+	  		<a href="<?php echo base_url() ?>admin/creat_pdf_thongke/<?php echo $day_begin ?>/<?php echo $day_end ?>" class="btn btn-info"><i class="fa fa-check"></i> In chi tiết</a>
 	  	</div>
 	  		<?php
 	  	}

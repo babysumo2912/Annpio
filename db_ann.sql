@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2017 at 11:19 AM
+-- Generation Time: Jun 26, 2017 at 02:51 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -197,7 +197,9 @@ CREATE TABLE `tb_chitietxuat` (
 --
 
 INSERT INTO `tb_chitietxuat` (`id_chitietxuat`, `id_xuatkho`, `img`, `sanpham`, `size`, `soluong`, `gia`, `thanhtien`) VALUES
-(1, 1, 'image1xxl--12-1.jpg', 'Váy', 'M', 1, 1000000, 1000000);
+(1, 1, 'image1xxl--12-1.jpg', 'Váy', 'M', 1, 1000000, 1000000),
+(2, 2, 'vaycongchua.jpg', 'Váy công chúa trắng đen', 'M', 1, 720000, 720000),
+(3, 3, '112.jpg', 'Chân váy bút chì', '', 1, 480000, 480000);
 
 -- --------------------------------------------------------
 
@@ -218,6 +220,14 @@ CREATE TABLE `tb_chitiet_hoadon` (
   `madanhmuc` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tb_chitiet_hoadon`
+--
+
+INSERT INTO `tb_chitiet_hoadon` (`id`, `id_product`, `mahoadon`, `img`, `name`, `qty`, `price`, `subtotal`, `size`, `madanhmuc`) VALUES
+(1, 110, 1, 'vaycongchua.jpg', 'Váy công chúa trắng đen', 1, 720000, 720000, 'M', 'VD'),
+(2, 115, 2, 'skiiny1.jpg', 'Quần Skinny co giãn 4 chiều ', 1, 520000, 520000, 'S', 'QU');
+
 -- --------------------------------------------------------
 
 --
@@ -237,6 +247,14 @@ CREATE TABLE `tb_hoadon` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_hoadon`
+--
+
+INSERT INTO `tb_hoadon` (`id`, `email`, `name`, `phone`, `address`, `city`, `money`, `ship`, `ghichu`, `date`, `active`) VALUES
+(1, 'lananh@gmail.com', 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 720000, 40000, '', '2017-06-26 11:34:32', 1),
+(2, 'lananh@gmail.com', 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 520000, 40000, '', '2017-06-26 12:18:25', 0);
 
 -- --------------------------------------------------------
 
@@ -365,12 +383,12 @@ INSERT INTO `tb_product` (`id`, `img`, `name`, `price`, `price_nhap`, `number`, 
 (107, 'aonutheuhoa3.jpg', 'Áo sơ mi thêu hoa hồng đỏ', 620000, 390000, 10, 10, 'AO', 'XL', ''),
 (108, 'aonutheuhoa5.jpg', 'Áo sơ mi thêu hoa hồng đỏ', 620000, 390000, 2, 2, 'AO', 'XXL', ''),
 (109, 'tuixachhanquoc.jpg', 'Túi xách Hàn Quốc', 1600000, 1200000, 20, 20, 'TX', 'Free Size', ''),
-(110, 'vaycongchua.jpg', 'Váy công chúa trắng đen', 720000, 460000, 5, 5, 'VD', 'M', ''),
+(110, 'vaycongchua.jpg', 'Váy công chúa trắng đen', 720000, 460000, 4, 4, 'VD', 'M', ''),
 (111, 'vaycongchua1.jpg', 'Váy công chúa trắng đen', 720000, 460000, 5, 5, 'VD', 'S', ''),
 (112, 'vaycongchua2.jpg', 'Váy công chúa trắng đen', 720000, 460000, 5, 5, 'VD', 'XL', ''),
 (113, 'vaycongchua3.jpg', 'Váy công chúa trắng đen', 720000, 460000, 5, 5, 'VD', 'XXL', ''),
 (114, 'vaycongchua4.jpg', 'Váy công chúa trắng đen', 720000, 460000, 5, 5, 'VD', 'L', ''),
-(115, 'skiiny1.jpg', 'Quần Skinny co giãn 4 chiều ', 520000, 480000, 10, 10, 'QU', 'S', '<p>Mo ta thanh cong nhe</p>'),
+(115, 'skiiny1.jpg', 'Quần Skinny co giãn 4 chiều ', 520000, 480000, 9, 10, 'QU', 'S', '<p>Mo ta thanh cong nhe</p>'),
 (116, 'skiiny2.jpg', 'Quần Skinny co giãn 4 chiều ', 520000, 480000, 10, 10, 'QU', 'L', '<p>Mo ta thanh cong nhe</p>'),
 (117, 'skiiny3.jpg', 'Quần Skinny co giãn 4 chiều ', 520000, 480000, 10, 10, 'QU', 'XL', '<p>Mo ta thanh cong nhe</p>'),
 (118, 'skiiny4.jpg', 'Quần Skinny co giãn 4 chiều ', 520000, 480000, 10, 10, 'QU', 'M', '<p>Mo ta thanh cong nhe</p>'),
@@ -423,7 +441,9 @@ CREATE TABLE `tb_xuatkho` (
 --
 
 INSERT INTO `tb_xuatkho` (`id_xuatkho`, `id_admin`, `tenkh`, `sdt`, `diachi`, `thanhpho`, `thanhtoan`, `soluong`, `ngaythang`, `trangthai`) VALUES
-(1, 1, 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 1000000, 1, '2017-06-25 07:29:46', 'Đơn online17');
+(1, 1, 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 1000000, 1, '2017-06-25 07:29:46', 'Đơn online17'),
+(2, 1, 'Lại Thị Lan Anh', '0972940495', 'Cổ Nhuế - Từ Liêm', 'Hà Nội', 720000, 1, '2017-06-26 11:34:32', 'Đơn online1'),
+(3, 1, 'Lại Thị Kim Thanh', '01654565270', 'Hà Đông', 'Ha Noi', 480000, 1, '2017-06-26 12:34:31', 'Don offline');
 
 --
 -- Indexes for dumped tables
@@ -518,17 +538,17 @@ ALTER TABLE `tb_chitietnhap`
 -- AUTO_INCREMENT for table `tb_chitietxuat`
 --
 ALTER TABLE `tb_chitietxuat`
-  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_chitietxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_chitiet_hoadon`
 --
 ALTER TABLE `tb_chitiet_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_hoadon`
 --
 ALTER TABLE `tb_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_message`
 --
@@ -553,7 +573,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_xuatkho`
 --
 ALTER TABLE `tb_xuatkho`
-  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_xuatkho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

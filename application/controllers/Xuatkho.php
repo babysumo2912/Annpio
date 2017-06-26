@@ -175,7 +175,7 @@ class xuatkho extends CI_Controller
 		        			$update_number = array(
 		        				'number_kho' => $soluongmoi,
 		        				);
-		        			$this->Admin_models->edit($item->id_product,$update_number);
+		        			$this->Admin_models->edit1($item->id_product,$update_number);
 		        			$this->Kho_models->add_detail($data_add_detail);
 		        		}
 		        	}redirect('admin/creat_pdf_phieuxuat/'.$value->id_xuatkho);
@@ -298,7 +298,7 @@ class xuatkho extends CI_Controller
               'number' => $new_number,
               'number_kho' => $new_number_kho,
               );
-            $this->Admin_models->edit($value['id'],$update_number);
+            $this->Admin_models->edit1($value['id'],$update_number);
 						$this->Kho_models->add_detail($data_add_ct);
 					}
 				}	

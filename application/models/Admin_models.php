@@ -77,6 +77,13 @@ class admin_models extends CI_model{
             return $query->result();
         }
     }
+    public function get_name($name){
+        $this->db->where('name', $name);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }
+    }
     public function edit($name,$data){
         $this->db->where('name',$name);
         $query = $this->db->update('tb_product',$data);

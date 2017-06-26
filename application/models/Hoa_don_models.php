@@ -56,5 +56,22 @@ class Hoa_don_models extends CI_Model {
         }
         return true;
     }
+    public function get_date($day_begin,$day_end){
+        $this->db->where('date>=',$day_begin);
+        $this->db->where('date<=',$day_end);
+        $get = $this->db->get('tb_hoadon');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+    public function get_date_off($day_begin,$day_end){
+        $this->db->where('ngaythang>=',$day_begin);
+        $this->db->where('ngaythang<=',$day_end);
+        $this->db->where('trangthai','Don offline');
+        $get = $this->db->get('tb_xuatkho');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
 }
 ?>
