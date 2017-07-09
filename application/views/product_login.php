@@ -27,7 +27,7 @@ $count = $this->session->userdata('count');
             <div class="logo">
                 <a href="<?php echo base_url();?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1>NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1>NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
         </div>
@@ -35,11 +35,11 @@ $count = $this->session->userdata('count');
             <div class="navbar-right">
                 <div class="menufix">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -54,7 +54,7 @@ $count = $this->session->userdata('count');
                             <a href="#login-box" class="login-window">
                                 <span class="glyphicon glyphicon-user"></span>
                                 &nbsp;
-                                Login
+                                Đăng nhập
                             </a>
                         </li>
                     </ul>
@@ -75,7 +75,7 @@ $count = $this->session->userdata('count');
             <div class="logo">
                 <a href="<?php echo base_url();?>home">
                     <img src="<?php echo base_url();?>public/img/logo/logo.png" alt="annpio">
-                    <h1>NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1>NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
         </div>
@@ -83,11 +83,11 @@ $count = $this->session->userdata('count');
             <div class="navbar-right">
                 <div class="menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                        <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                        <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                        <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                        <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                        <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                        <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                        <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                        <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                        <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
                         <li>
                             <a href="<?php echo base_url()?>cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -102,7 +102,7 @@ $count = $this->session->userdata('count');
                             <a href="#login-box" class="login-window">
                                 <span class="glyphicon glyphicon-user"></span>
                                 &nbsp;
-                                Login
+                                Đăng nhập
                             </a>
                         </li>
                     </ul>
@@ -115,8 +115,8 @@ $count = $this->session->userdata('count');
 <div id="login-box" class="login-box">
     <a class="close" href="#">X</a><br><br>
     <div class="login-f">
-        <p class="title-login">Login</p>
-        <p>Register an account now to receive incentives from us.</p>
+        <p class="title-login">Đăng nhập</p>
+        <p>Đăng nhập để nhận ưu đãi từ chúng tôi.</p>
         <?php
         $style = array(
             'class' => 'form-group'
@@ -135,15 +135,15 @@ $count = $this->session->userdata('count');
         <?php echo form_close();?>
     </div>
     <div class="login-e">
-        <p>Do not have an account ?</p>
-        <a href="#register-box" class="register-window">Register</a>
+        <p>Bạn chưa có tài khoản ?</p>
+        <a href="#register-box" class="register-window">Đăng ký</a>
     </div>
 </div>
 <div id="register-box" class="login-box">
     <a class="close" href="#">X</a><br><br>
     <div class="login-f">
-        <p class="title-login">Register</p>
-        <p>Please fill out the information below</p>
+        <p class="title-login">Đăng ký</p>
+        <p>Vui lòng điền đầy đủ thông tin bên dưới!</p>
         <?php
         echo form_open('home/register',$style);
         ?>
@@ -158,7 +158,7 @@ $count = $this->session->userdata('count');
         </div>
         <div class="form-group">
             <input type="submit" name="register" class="btn btn-info" value="Register">
-            <a href="#login-box" class="relogin-window">Back Login</a>
+            <a href="#login-box" class="relogin-window">Đăng nhập</a>
         </div>
         <?php
         echo form_close();
@@ -170,20 +170,19 @@ $count = $this->session->userdata('count');
 <div class="centerintro">
     <div class="row widthcenterintro">
         <div class="col-md-10">
-            <span class="a">ACCOUNT LOGIN</span>
+            <span class="a">Form Đăng nhập</span>
         </div>
         <div class="col-md-2">
-            <a href="<?php echo base_url();?>home" class="a">Home</a>
-            /
-            <span>Login</span>
+            <a href="<?php echo base_url();?>home" class="a">Trang chủ</a>
+            
         </div>
     </div>
 </div>
 <div class="row centerpro">
     <div class="form-login">
         <div class="login-f">
-            <p class="title-login">Login</p>
-            <p>Register an account now to receive incentives from us.</p>
+            <p class="title-login">Đăng nhập</p>
+            <p>Đăng nhập để nhận ưu đãi từ chúng tôi.</p>
             <?php
             if(isset($mess)){?>
             <p><b><?php echo $mess ?></b></p>
@@ -203,15 +202,15 @@ $count = $this->session->userdata('count');
                 <input type="password" class="form-control" name="password" placeholder="Password ..." required>
             </div>
             <div class="form-group">
-                <input type="submit" name="login" class="btn btn-info" value="Login">
+                <input type="submit" name="login" class="btn btn-info" value="Đăng nhập">
             </div>
             <?php
             echo form_close();
             ?>
         </div>
         <div class="login-e">
-            <p>Do not have an account ?</p>
-            <a href="<?php echo base_url()?>register">Register</a>
+            <p>Bạn chưa có tài khoản ?</p>
+            <a href="<?php echo base_url()?>register">Đăng ký</a>
         </div>
     </div>
 </div>
@@ -224,24 +223,24 @@ $count = $this->session->userdata('count');
             <div class="logo" style="width: 100%">
                 <a href="<?php echo base_url()?>home">
                     <img src="<?php echo base_url(); ?>public/img/logo/logo.png" alt="annpio">
-                    <h1 style="float: left">NNPIO <br> <span>Thế giới giày nữ</span></h1>
+                    <h1 style="float: left">NNPIO <br> <span>Thế giới thời trang</span></h1>
                 </a>
             </div>
             <p>Tự hào là điểm đến mua sắm online hàng đầu Việt Nam, AnnPio hứa hẹn đem đến những sản phẩm thời trang độc đáo và chất lượng theo xu hướng của thế giới, nhằm mang đến trải nghiệm mua sắm tuyệt vời cho các tín đồ thời trang.</p>
         </div>
         <div class="col-md-3">
-            <h3>LINKS</h3>
+            <h3>Liên kết</h3>
             <ul>
-                <li><a href="<?php echo base_url();?>home">HOME</a></li>
-                <li><a href="<?php echo base_url();?>introduce">INTRODUCE</a></li>
-                <li><a href="<?php echo base_url();?>product">PRODUCT</a></li>
-                <li><a href="<?php echo base_url();?>news">NEWS</a></li>
-                <li><a href="<?php echo base_url();?>contact">CONTACT</a></li>
+                <li><a href="<?php echo base_url();?>home">Trang chủ</a></li>
+                <li><a href="<?php echo base_url();?>introduce">Giới thiệu</a></li>
+                <li><a href="<?php echo base_url();?>product">Sản phẩm</a></li>
+                <li><a href="<?php echo base_url();?>news">Tin tức</a></li>
+                <li><a href="<?php echo base_url();?>contact">Liên hệ</a></li>
             </ul>
         </div>
         <div class="col-md-3">
-            <h3>SIGN UP FOR</h3>
-            <p>Đăng kí nhận những thông tin khuyến mãi từ cửa hàng của chúng tôi</p>
+            <h3>Đăng ký</h3>
+            <p>Đăng nhập để nhận những ưu đãi từ chúng tôi!</p>
             <form action="" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" aria-label="..." placeholder="Email của bạn...">
@@ -252,11 +251,11 @@ $count = $this->session->userdata('count');
             </form>
         </div>
         <div class="col-md-3">
-            <h3>CONTACT US</h3>
+            <h3>Liên hệ</h3>
             <p>Nếu bạn có thắc mắc hãy liên hệ với chúng tôi theo các cách dưới đây</p>
             <p class="contactus">
                 <span class="glyphicon glyphicon-record"></span>Tin kinh tế K57 - HUMG<br><br>
-                <span class="glyphicon glyphicon-phone-alt"></span>0165456527x <br><br>
+                <span class="glyphicon glyphicon-phone-alt"></span>09729404xx <br><br>
                 <span class="glyphicon glyphicon-envelope"></span>support@gmail.com<br><br>
             </p>
         </div>
@@ -265,7 +264,7 @@ $count = $this->session->userdata('count');
 <div class="footer">
     <div class="endfooter">
         <div class="col-md-9">
-            <p>&copy; Bản quyền thuộc về <span>Đức Ann</span></p>
+            <p>&copy; Bản quyền thuộc về <span>LLANH</span></p>
         </div>
         <div class="col-md-2">
             <img src="<?php echo base_url(); ?>public/img/payment.png" alt="payment">

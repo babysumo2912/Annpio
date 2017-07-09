@@ -12,7 +12,7 @@ class Adminproduct extends CI_Controller{
             $data['fullpage'] = ceil($numrow/$n);
             $this->db->limit($n);
             $this->db->order_by('number','ASC');
-            $this->db->group_by('name');
+            // $this->db->group_by('name');
             $query = $this->db->get('tb_product');
             $data['product'] = $query->result();
             $this->load->view('admin/product',$data);
@@ -91,7 +91,7 @@ class Adminproduct extends CI_Controller{
         // $this->db->group_by('name');
         $this->db->order_by('number','ASC');
         $this->db->limit($n,$start);
-        $this->db->group_by('name');
+        // $this->db->group_by('name');
         $query = $this->db->get('tb_product');
         $data['product'] = $query->result();
         $this->load->view('admin/product',$data);

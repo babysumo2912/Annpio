@@ -22,7 +22,7 @@ class product extends CI_Controller{
         $this->load->view('product',$data);
     }
     public function page($page){
-        $n = 8;
+        $n = 8; 
         $start = ($page-1)*$n;
         $this->db->where('number>','0');
         $sql = $this->db->get('tb_product');

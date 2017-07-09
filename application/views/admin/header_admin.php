@@ -68,11 +68,11 @@ if(!isset($count_mess)){
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-cubes"></i> Kho <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-cubes"></i> Nghiệp Vụ <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url()?>admin/nhapkho">Nhập kho</a></li>
-            <li><a href="<?php echo base_url() ?>xuatkho">Xuất kho</a></li>
-            <li><a href="<?php echo base_url() ?>admin/kho">Tồn kho</a></li>
+            <li><a href="<?php echo base_url()?>admin/nhapkho">Nhập hàng</a></li>
+            <li><a href="<?php echo base_url() ?>xuatkho">Xuất hàng</a></li>
+            <li><a href="<?php echo base_url() ?>admin/kho">Danh sách XNK</a></li>
             <!--            <li role="separator" class="divider"></li>-->
             <!--            <li><a href="#">Separated link</a></li>-->
             <!--            <li role="separator" class="divider"></li>-->

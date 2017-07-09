@@ -244,7 +244,7 @@ $count = $this->session->userdata('count');
                     <p class="newprice"><?php echo number_format($item->price)?><sup>đ</sup></p>
                 </div>
                 <div class="buy">
-                    <a href="<?php echo base_url()?>home/buy/<?php echo $item->id?>" class="form-group form-control">
+                    <a href="<?php echo base_url()?>home/buy1/<?php echo $item->id?>" class="form-group form-control">
                         <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
                         Mua ngay
                     </a>
@@ -278,36 +278,7 @@ $count = $this->session->userdata('count');
     </div>
 </div>
 </div>
-<div class="row prokm">
-    <div class="centerkm">
-        <h1>SẢN PHẨM KHUYẾN MÃI<br>
-            <span>__</span>
-        </h1>
-    </div>
-    <div class="widthprokm">
-        <div class="col-sm-3">
-            <form action="#" method="post" class="form-group">
-                <a href="#">
-                    <p>SALE</p>
-                    <img src="<?php echo base_url(); ?>public/img/sandal.jpg" alt="aokhoac" width="100%">
-                </a>
-                <div class="contentprokm">
-                    <a href="#" title="Sandal cao gót Dune">Sandal cao gót Dune</a>
-                </div>
-                <div class="text-center">
-                    <p class="sale">1.090.000 <sup>đ</sup></p>
-                    <p class="newprice">999.000<sup>đ</sup></p>
-                </div>
-                <div>
-                    <a href="#" class="form-control btn btn-danger">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
-                        Buy Now
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <div>
     <img src="<?php echo base_url(); ?>public/img/widebaner.jpg" alt="annpiogiamgia" width="100%">
 </div>

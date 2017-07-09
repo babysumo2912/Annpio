@@ -253,7 +253,7 @@ $count = $this->session->userdata('count');
                         <p class="newprice"><?php echo number_format($item->price)?> <sup>đ</sup></p>
                     </div>
                     <div class="buy">
-                        <a href="<?php echo base_url()?>product/buy/<?php echo $item->id?>" class="form-control btn">
+                        <a href="<?php echo base_url()?>product/buy1/<?php echo $item->id?>" class="form-control btn">
                             <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;
                             Buy Now
                         </a>
